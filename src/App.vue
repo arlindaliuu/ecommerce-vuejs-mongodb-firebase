@@ -1,4 +1,5 @@
 <template>
+ 
   <div id="nav" v-if="$store.state.user">
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link>
@@ -10,6 +11,7 @@
 <script>
 import { onBeforeMount  } from 'vue';
 import { useStore } from 'vuex';
+// import Footer from '@/components/Footer'
 export default{
 setup(){
   const store = useStore();

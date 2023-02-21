@@ -3,7 +3,7 @@ import router from '../router';
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, signOut ,signInWithEmailAndPassword } from 'firebase/auth';
 
-export default createStore({
+const store = createStore({
     state:{
         user: null
     },
@@ -14,6 +14,9 @@ export default createStore({
         CLEAR_USER(state){
             state.user = null
         }
+    },
+    methods: {
+      
     },
     actions:{
         async login({commit}, details){
@@ -92,4 +95,4 @@ export default createStore({
           
         }
       })
-      
+      export default store;

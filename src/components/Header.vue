@@ -1,16 +1,20 @@
-
 <template>
-    <header :class="this.classes" class="backdrop-blur-xl transition ease-in-out delay-150 duration-300 fixed  w-full h-32 grid md:grid-rows-1 md:grid-cols-2 grid-cols-1 text-orange-600 font-serif pr-20 pl-10">
-        <div class="logo flex md:justify-self-start justify-self-center">
+    <header :class="this.classes" class="backdrop-blur-xl z-30 transition ease-in-out delay-150 duration-300 fixed w-full max-h-[110px]  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
+        <div class="logo flex md:justify-self-start justify-self-center ">
             <img src="../../dist/images/logo-luliflex.png" class="self-center w-96" />
         </div>
-        <div :class="this.headerFontColor" class="flex animate-ease-linear animate-fade-down duration-1000 self-center md:justify-self-end justify-self-center text-xl">
+        <div class="items-center md:hidden flex justify-end p-10">
+          <button @click="hadleShowMenu"><img src="../../dist/images/menu.png" /></button>
+        </div>
+        <div v-if="showMenu" :class="this.headerFontColor" class="grid grid-cols-1 md:flex col-span-2 md:col-span-1 animate-ease-linear gap-y-1 md:gap-y-0 animate-fade-down duration-1000 self-center justify-self-start md:justify-self-end pl-5 md:pl-0 text-xl">
             <router-link to="/" class="self-center md:ml-4 uppercase link link-underline link-underline-black">Ballina</router-link> 
             <router-link to="/about" class="self-center md:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
             <router-link to="/about" class="self-center md:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
             <router-link to="/about" class="self-center md:ml-4 uppercase link link-underline link-underline-black">Rreth nesh</router-link>
+            <router-link to="/userprofile" class="self-center block md:hidden md:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
+
             <div v-if="userEmail" class="relative">
-                <button @click="showDropdown = !showDropdown" id="dropdownHoverButton" :class="headerFontColor" class="animate-ease-linear animate-fade-down duration-1000 self-center items-center flex md:ml-4 uppercase" type="button">Profili<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
+                <button @click="showDropdown = !showDropdown" id="dropdownHoverButton" :class="headerFontColor" class="hidden animate-ease-linear animate-fade-down duration-1000 self-center items-center md:flex md:ml-4 uppercase" type="button">Profili<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
                 <div v-if="showDropdown" id="dropdownHover" class="z-10 right-3 bg-white divide-y absolute overflow-y-auto max-h-[200px]: divide-gray-100  shadow w-44 dark:bg-gray-700">
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
                     <li v-if="userEmail">
@@ -64,7 +68,8 @@ export default {
             newValue: "",
             headerFontColor: "text-white",
             windowTop: 0,
-            showDropdown: false
+            showDropdown: false,
+            showMenu: false
         }
     },  
         mounted() {
@@ -83,13 +88,21 @@ export default {
 
             if(this.windowTop > 5){
                 this.newValue = this.windowTop;
-                this.classes = "animate-fade-down animate-ease-linear bg-white"
+                this.classes = "bg-white"
                 this.headerFontColor = "text-orange-600 "
             }
-
-
+            },
+            hadleShowMenu(){
+              this.showMenu = !this.showMenu;
             }
+
         },
+        created() {
+          const mediaQuery = window.matchMedia('(min-width: 768px)');
+          if (mediaQuery.matches) {
+            this.showMenu = true;
+        }
+  },
         computed: {
             userEmail() {
                 return this.$store.state.user ? this.$store.state.user.email : '';

@@ -14,7 +14,9 @@
         <div class="my-8  sm:mx-20 gap-5 p-5 grid sm:grid-cols-3 grid-cols-1 items-center justify-items-center">
             <Card v-for="(card, index) in cardData" :key="index" :card-data="card" />
         </div>
-    <SecondBanner />
+        
+    <!-- <SecondBanner /> -->
+    <BannerBox />
     <Footer />
 </div>
 </template>
@@ -38,6 +40,7 @@ import Carousel from "../components/Carousel.vue"
 import Card from "../components/parts/Card.vue"
 import SecondBanner from "../components/SecondBanner.vue"
 import Toaster from "../components/Toaster.vue"
+import BannerBox from "../components/BannerBox.vue"
 export default{
     data() {
         return {
@@ -71,7 +74,8 @@ export default{
         Carousel,
         Card,
         SecondBanner,
-        Toaster
+        Toaster,
+        BannerBox
         
     },
 }

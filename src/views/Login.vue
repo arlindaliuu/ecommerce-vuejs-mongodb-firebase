@@ -1,46 +1,40 @@
 <template>
-    <article>
-        <div class="container" :class="{'sign-up-active' : signUp}">
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overley-left">
-                        <h1>Miresevini</h1>
-                        <p>Ju lutemi identifikohuni me të dhënat tuaja personale</p>
-                        <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
-                    </div>
-                    <div class="overlay-right">
-                    <h1>Pershendetje</h1>
-                        <p>Ju lutemi shkruani të dhënat tuaja personale</p> 
-                        <button class="invert" id="signUp" @click="signUp = !signUp">Sign In</button>
-                </div>
-            </div>
-        </div>  
-        <form class="sign-up" action="#">
-            <h2>Krijo login </h2>
-            <div>Përdorni emailin tuaj për regjistrim</div>
-            <input type="text" placeholder="Name" />
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <button>Sign Up</button>
-        </form>
-        <form class="sign-in" action="#">
-            <h2>Sign In </h2>
-            <div> Përdorni llogarinë tuaj</div>
-            <input type="email" placeholder="Email" />
-            <input type="password" placeholder="Password" />
-            <a href="#">Keni harruar passwordin</a>
-            <button>Sign Up</button>
-        </form>
-    </div>
-    </article>
+    <main>
+        <section class="forms">
+            <form @submit.prevent="login" class="login">
+                <h2>Login</h2>
+                <input type="email" placeholder="Email adress" v-model="login_form.email" />
+                <input type="password" v-model="login_form.password" />
+                <input type="submit" value="Login">
+                <p id="infolog" class="text-red-500"></p>
+            </form>
+            <button @click="registerWithGoogle">Login with Google</button>
+
+        </section>
+    </main>
 </template>
 
 <script>
+import {ref} from 'vue'
+import { useStore, mapActions } from 'vuex'
+import Toaster from '../components/Toaster.vue'
 export default{
-    data:() => {
-        return{
-           
+    setup(){
+        const login_form = ref({});
+        const store = useStore();
+
+        const login = () =>{
+           store.dispatch('login', login_form.value);
         }
+
+        return{
+            login_form,
+            login,
+            ...mapActions(['registerWithGoogle'])
+        }
+    },
+    components: {
+        Toaster
     }
 
 }

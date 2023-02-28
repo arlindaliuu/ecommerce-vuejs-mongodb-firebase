@@ -2,37 +2,36 @@
     <div>
         <h2>Register</h2>
         <form @submit.prevent="Register">
-            <input type="text" placeholder="Email" v-model="email">
-            <input type="password" placeholder="Password" v-model="password">
+            <input type="text" placeholder="Email" v-model="register_form.email">
+            <input type="password" placeholder="Password" v-model="register_form.password">
             <input type="submit" placeholder="Register">
             <p>Have an account? <router-link to="/login">Login here</router-link></p>
-        </form>
+</form>
+<button @click="registerWithGoogle">Register with Google</button>
+
     </div>
 </template>
 <script>
 import {ref} from 'vue';
-import * as firebase from "firebase/app";
+import { mapActions, useStore } from 'vuex'
 import 'firebase/auth'
+
 export default{
     setup(){
-        const email = ref("");
-        const password = ref("");
+        const register_form = ref({});
+        const store = useStore();
 
         const Register = () =>{
-            firebase
-                .auth()
-                .createUserWithEmailAndPassword(email.value, password.value)
-                .then(user =>{
-                    alert(user);
-                })
-                .catch(err => alert(err.message));
+            store.dispatch('register', register_form.value);
         }
+
         return{
             Register,
-            email,
-            password
+            register_form,
+            ...mapActions(['registerWithGoogle'])
         }
-    }
+    },
+
 }
 </script>
 <style scoped>

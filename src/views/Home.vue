@@ -9,6 +9,10 @@
                 <button class="text-white text-4xl font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</button>
             </div>
         </div>
+        <div class="mt-4 p-5 grid grid-cols-3 items-center justify-items-center">
+            <Card :card-data="cardData"  />
+
+        </div>
     
     <Footer />
 </div>
@@ -29,12 +33,28 @@ import Footer from "../components/Footer.vue"
 import Header from "../components/Header.vue"
 import HeaderUp from "../components/HeaderUp.vue"
 import RegisterModal from "../components/RegisterModal.vue"
+import Carousel from "../components/Carousel.vue"
+import Card from "../components/parts/Card.vue"
 export default{
+    data() {
+        return {
+            cardData:{
+                dysheku: {
+                name: 'John Doe',
+                email: 'john.doe@example.com',
+                age: 30,
+                }
+            }
+        }
+    },
     components:{
         Footer,
         Header,
         HeaderUp,
-        RegisterModal
+        RegisterModal,
+        Carousel,
+        Card
+        
     },
 }
 </script>

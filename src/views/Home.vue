@@ -41,6 +41,7 @@ import Card from "../components/parts/Card.vue"
 import SecondBanner from "../components/SecondBanner.vue"
 import Toaster from "../components/Toaster.vue"
 import BannerBox from "../components/BannerBox.vue"
+import BackToTop from "../components/BackToTop.vue"
 export default{
     data() {
         return {
@@ -75,7 +76,8 @@ export default{
         Card,
         SecondBanner,
         Toaster,
-        BannerBox
+        BannerBox,
+        BackToTop
         
     },
 }

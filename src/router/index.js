@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '../firebase';
 
+
     const routes = [
         {path: '/', component: () => import('../views/Home.vue'), meta:{ requiresAuth: true}},
         {path: '/register', component: () => import('../views/Register.vue')},

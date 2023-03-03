@@ -1,5 +1,4 @@
 <template>
-  <body class="bg-gray-200">
       <footer>
           <div class="p-10 bg-gray-800 text-gray-200 ">
               <div class="max-w-7xl mx-auto">
@@ -62,6 +61,4 @@
           </div>
           </div> 
       </footer>
-
-  </body>
 </template>

@@ -17,6 +17,7 @@
         
     <!-- <SecondBanner /> -->
     <BannerBox />
+    <BackToTop />
     <Footer />
 </div>
 </template>

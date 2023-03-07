@@ -1,36 +1,19 @@
 <template>
-    <button @click="scrollToTop" class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </button>
-  </template>
-  
+    <back-to-top   bottom="50px" right="50px" >        
+         <button  type="button" class="btn btn-info rounded-full btn-to-top bg-green-900 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+            <img class="object-scale-down h-9  w-9" src="../../dist/images/up-arrow.png" alt="arrowup">
+        </button>
+    </back-to-top>
+</template>
+
   <script>
-  export default {
-    methods: {
-      scrollToTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      },
-    },
-  };
-  </script>
-  
-  <style>
-  .back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    border: none;
-    border-radius: 50%;
-    background-color: #333;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .back-to-top i {
-    margin-top: 8px;
-  }
-  </style>
+   import BackToTop from 'vue-backtotop'
+   export default{
+        components:{
+            BackToTop
+        }
+   }
+
+</script>
+
   

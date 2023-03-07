@@ -8,6 +8,7 @@ import {auth} from '../firebase';
         {path: '/about', component: () => import('../views/AboutUs.vue'), meta:{ requiresAuth: true}},
         {path: '/login', component: () => import('../views/Login.vue')},
         {path: '/404', component: () => import('../views/404.vue')}
+        
 
     ]
 const router = createRouter({

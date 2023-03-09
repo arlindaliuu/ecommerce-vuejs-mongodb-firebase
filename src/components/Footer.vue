@@ -4,7 +4,7 @@
               <div class="max-w-7xl mx-auto">
                   <div class="grid grid-cols-1 md-cols-2 lg:grid-cols-4 gap-2">
                       <div class="mb-5">
-                          <h4 class="text-2xl pb-4">Company</h4>
+                          <h4 class="text-2xl pb-4">Kompania</h4>
                         <p class="text-gray-500">
                           Selami Hallaci <br>
                           Presheve <br><br>
@@ -13,28 +13,28 @@
                         </p>
                       </div>
                       <div class="mb-5">
-                          <h4>Useful Links</h4>
+                          <h4>Lidhje të dobishme</h4>
                           <ul class="text-gray-500">
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Home</a></li>         
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">About</a></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Ballina</a></li>         
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Rreth nesh</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Services</a></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Terms of Services</a></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Kushtet e Shërbimeve</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Privacy policy</a></li>
                           </ul>
                       </div> 
                       <div class="mb-5">
-                          <h4 class="pb-4">Our Services</h4>
+                          <h4 class="pb-4">Shërbimet tona</h4>
                           <ul class="text-gray-500">
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Web design</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Web Development</a></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">roduct Menagement</a>P</li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Product Menagement</a>P</li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Marketing</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Graphic design</a></li>
                           </ul>
                       </div>
                       <div class="mb-5">
-                          <h4 class="pb-4">Join Our Newsletter</h4>
-                          <p class="text-gray-500 pb-2">Join 25.000 others and neves miss out on new tips tutorials and more</p>
+                          <h4 class="pb-4">Bashkohuni me ne</h4>
+                          <p class="text-gray-500 pb-2">Bashkohuni me 25.000 të tjerë dhe mos humbisni udhëzimet për ofertat të reja dhe më shumë</p>
                           <form class="flex flex-row flex-wrap">
                              <label> <input type="text" class="text-gray-500 w-2/3 p-2 focus:border-green-900"> </label>
                               <button class="p-2 w-1/3 bg-green-900 text-white hover:bg-green-900">Subscribe</button>

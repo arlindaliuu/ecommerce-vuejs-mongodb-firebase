@@ -7,17 +7,17 @@
                 <div class="flex flex-col lg:flex-row w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
                     
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url(../assets/image/register.jpg);">
-                        <h1 class=" text-black text-3xl mb-3">Welcome</h1>
-                        <img src="../assets/image/register.jpg">
+                        <h1 class=" text-black text-3xl mb-3">Mirësevini</h1>
+                        <img src="../assets/image/login.jpg">
                         
                         <div>
                             <p class="text-black">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti ea obcaecati culpa numquam ad quasi asperiores error repudiandae, hic rerum incidunt, illum, explicabo itaque! Sint sunt soluta vero eum pariatur.</p>
                         </div>
                     </div>
                     <div class=" w-full lg:w-1/2 py-16 px-12">
-                        <h2 class="text-3xl mb-4">Register</h2>
+                        <h2 class="text-3xl mb-4">Regjistrohu</h2>
                         <p class="mb-4">
-                            Create your account . it free and only take a minute
+                            Krijo llogarine tende . është falas dhe merr vetëm një minutë
                         </p>
                        <form @submit.prevent="Register">
                         <div class="grid grid-cols-2 gap-5">
@@ -52,11 +52,8 @@
                     </div>
                 </div>
             </div>
-            </div>
-            
+            </div> 
         </body> 
-
-
     </div>
 </template>
 <script>
@@ -91,9 +88,3 @@ h2{
 }
 </style>
 
-<!-- <form @submit.prevent="Register">
-    <input type="text" placeholder="Email" v-model="register_form.email">
-    <input type="password" placeholder="Password" v-model="register_form.password">
-    <input type="submit" placeholder="Register">
-    <p>Have an account? <router-link to="/login">Login here</router-link></p>
-</form> -->

@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <div class="min-h-screen py-40" style="background-image: linear-gradient(115deg, #9F7AEA,#fee2fe);">
+  <div class="min-h-screen py-40" style="background-image: linear-gradient;">
     <div class="container">
       <div class="has-text-right">
       </div>
@@ -36,10 +36,11 @@
                       <div class="column">
           </div>
           <h2 align="center">Story ynë</h2>
+
               <img width="200px" align="left" src="../assets/image/foto1.jpg" alt="foto1">
              </div>
              
-                  <p class="flex flex-col lg:flex-row w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  <p class="flex flex-col lg:flex-row w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden ">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                        Cum vero magni aspernatur ex explicabo. Voluptatem nam 
                        adipisci, alias enim nemo sit vitae necessitatibus
                         dolores pariatur ea quasi. Nihil, corporis corrupti?
@@ -57,15 +58,16 @@
 <style scoped>
 .container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 5fr;
   align-items: right;
   grid-column-gap: 20px;
 }
 
-.photo {
+/* .photo {
  
   width: 200px;
   height: 200px;
+  align-items: center;
 }
 
 .text {
@@ -74,12 +76,12 @@
 .container {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  align-items: center;
+  align-items: left;
   grid-column-gap: 20px;
 }
 
 .photo {
-  margin-right: auto;
+  margin-right: right;
   width: 200px;
   height: 200px;
 }
@@ -90,7 +92,7 @@
 
 body{
   background-color: red;
-}
+} */
 </style>
 <script>
 import Footer from "../components/Footer.vue"

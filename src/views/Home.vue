@@ -15,7 +15,7 @@
             <Card v-for="(card, index) in cardData" :key="index" :card-data="card" />
         </div>
         
-    <!-- <SecondBanner /> -->
+    <SecondBanner /> 
     <BannerBox />
     <Footer />
 </div>

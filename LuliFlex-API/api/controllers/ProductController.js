@@ -81,7 +81,8 @@ const controller = {
         return res.json(updatedProduct)
     },
     delete: async(req, res) =>{
-        const productId = req.params.categoryId;
+        const productId = req.params.productId;
+        console.log(productId)
        try  {
             await ProductModel.deleteOne({_id: productId});
             res.json({deleted: true})

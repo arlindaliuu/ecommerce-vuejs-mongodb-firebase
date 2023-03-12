@@ -1,5 +1,5 @@
 <template>
-    <div v-if="show" :class="toasterClasses">
+    <div v-if="message" :class="toasterClasses">
       <div>{{ message }}</div>
       <button @click="closeToaster" class="absolute top-0 right-0 z-50 p-2 text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
         <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20">
@@ -32,7 +32,7 @@
   },
   data() {
     return {
-      show: false,
+      message: '',
       startTime: 0,
       currentTime: 0
     }
@@ -41,6 +41,13 @@
       closeToaster() {
           this.show = false;
       },
+      show(message) {
+      this.message = message;
+
+      setTimeout(() => {
+        this.message = '';
+      }, 3000);
+    },
     showError(message) {
       this.message = message;
       setTimeout(() => {
@@ -96,17 +103,17 @@
       }
     }
   },
-  mounted() {
-    this.show = true
-    this.startTime = Date.now()
-    this.currentTime = Date.now()
-    setInterval(() => {
-      this.currentTime = Date.now()
-    }, 50)
-    setTimeout(() => {
-      this.show = false
-    }, this.duration)
-  }
+  // mounted() {
+  //   this.show = true
+  //   this.startTime = Date.now()
+  //   this.currentTime = Date.now()
+  //   setInterval(() => {
+  //     this.currentTime = Date.now()
+  //   }, 50)
+  //   setTimeout(() => {
+  //     this.show = false
+  //   }, this.duration)
+  // }
 }
 
   </script>

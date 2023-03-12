@@ -8,7 +8,8 @@ import {auth} from '../firebase';
         {name: 'about', path: '/about', component: () => import('../views/AboutUs.vue'), meta:{ requiresAuth: true}},
         {name: 'login', path: '/login', component: () => import('../views/Login.vue')},
         {name: '404', path: '/404', component: () => import('../views/404.vue')},
-        {name: 'dashboard', path: '/dashboard', children:[
+        {name: 'dashboard', path: '/dashboard',  component: () => import('../views/dashboard/dashboard.vue')},
+        {name: 'dashboardd', path: '/dashboardd', children:[
             {name: 'product',
              path: 'product',
             children:[

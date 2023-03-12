@@ -8,10 +8,11 @@ module.exports = {
     extend: {
       fontFamily:{
         title: "cursive;",
-        content: "'Libre Baskerville', serif;"
+        content: ["'Jomolhari', serif", "'Libre Baskerville'", "serif', 'Tilt Warp', cursive'"]
       },
       backgroundImage:{
-        main: "linear-gradient(to right, #ea580c, #df540c, #d5500b, #ca4c0b, #c0480a);"
+        main: "linear-gradient(to right, #ea580c, #df540c, #d5500b, #ca4c0b, #c0480a);",
+        dashboard: "linear-gradient(to bottom, #00b7f8, #00aeef, #00a5e6, #009ddd, #0094d4);"
       }
     },
   },

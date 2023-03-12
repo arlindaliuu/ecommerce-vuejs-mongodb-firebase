@@ -2,7 +2,8 @@
     <div>
         <h2>Register</h2>
         <form @submit.prevent="Register">
-            <input type="text" placeholder="Email" v-model="register_form.email">
+            <input type="text" placeholder="Username" v-model="register_form.username">
+            <input type="email" placeholder="Email" v-model="register_form.email">
             <input type="password" placeholder="Password" v-model="register_form.password">
             <input type="submit" placeholder="Register">
             <p>Have an account? <router-link to="/login">Login here</router-link></p>

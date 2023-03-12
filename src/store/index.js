@@ -2,6 +2,7 @@ import { createStore } from 'vuex';
 import router from '../router';
 import { auth  } from '../firebase';
 import { createUserWithEmailAndPassword, signOut ,signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification   } from 'firebase/auth';
+import apiRequest from '../utilities/apiRequest';
 
 const store = createStore({
     state:{
@@ -28,7 +29,14 @@ const store = createStore({
     },
     
     actions:{
-
+      async deleteProduct({commmit}, id){
+        console.log(id)
+        const res = await fetch('http://localhost:3000/product/'+id,
+        {
+          method:'delete'
+        })
+        const deletedProduct = await res.json();
+      },
       async listProducts({commit}){
         const res = await fetch('http://localhost:3000/product',
         {
@@ -58,16 +66,6 @@ const store = createStore({
           try {
             await signInWithEmailAndPassword(auth, email, password);
         
-            // Get the user's custom claims
-            const tokenResult = auth.currentUser.getIdTokenResult()
-            .then((idTokenResult) =>{
-              if(!!idTokenResult.claims.admin){
-                showAdminUI();
-              }else{
-                showRegularUI();
-              }
-            })
-        
             commit('SET_USER', auth.currentUser);
             router.push('/');
           } catch (error) {
@@ -84,57 +82,66 @@ const store = createStore({
           }
         },
       
-      async register({ commit }, details) {
-        const { email, password } = details;
-      
-        try {
-          const userCredential = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-          ).then(cred =>{
-             db.collection('users').doc(cred.user.uid).set({
-              bio: signupForm['signup-bio'].value
-            })
-          }).then(()=>{
-            
-          })
-          // Send email verification to the user
-          await sendEmailVerification(userCredential.user);
-      
-          // Wait for the user to verify their email
-          await auth.currentUser.reload();
-          const user = auth.currentUser;
-          while (!user.emailVerified) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-            await user.reload();
+        async register({ commit }, details) {
+          try {              
+              const response = await apiRequest.registerUser(details);
+              const user = response.user;
+              if(user){
+                await signInWithEmailAndPassword(auth, details.email, details.password);
+              }
+              // Commit successful registration to Vuex store
+              commit('SET_USER', auth.currentUser);
+              router.push('/')
+          } catch (error) {
+              // Handle registration error
+              console.error('registration error', error);
           }
-          // Update Vuex store with user information
-          commit('SET_USER', user);
-          router.push('/');
+      },
+      //   const { email, password } = details;
       
-          // Notify the user that their email has been verified
-          alert('Your email has been verified.');
-        } catch (error) {
-          switch (error.code) {
-            case 'auth/email-already-in-use':
-              alert('Email already in use');
-              break;
-            case 'auth/invalid-email':
-              alert('Invalid email');
-              break;
-            case 'auth/operation-not-allowed':
-              alert('Operation not allowed');
-              break;
-            case 'auth/weak-password':
-              alert('Weak password');
-              break;
-            default:
-              alert('Something went wrong');
-          }
-          return;
-        }
-      },      
+      //   try {
+      //     const userCredential = await createUserWithEmailAndPassword(
+      //       auth,
+      //       email,
+      //       password
+      //     )
+
+      //     // Send email verification to the user
+      //     await sendEmailVerification(userCredential.user);
+      
+      //     // Wait for the user to verify their email
+      //     await auth.currentUser.reload();
+      //     const user = auth.currentUser;
+      //     while (!user.emailVerified) {
+      //       await new Promise(resolve => setTimeout(resolve, 1000));
+      //       await user.reload();
+      //     }
+      //     // Update Vuex store with user information
+      //     commit('SET_USER', user);
+      //     router.push('/');
+      
+      //     // Notify the user that their email has been verified
+      //     alert('Your email has been verified.');
+      //   } catch (error) {
+      //     switch (error.code) {
+      //       case 'auth/email-already-in-use':
+      //         alert('Email already in use');
+      //         break;
+      //       case 'auth/invalid-email':
+      //         alert('Invalid email');
+      //         break;
+      //       case 'auth/operation-not-allowed':
+      //         alert('Operation not allowed');
+      //         break;
+      //       case 'auth/weak-password':
+      //         alert('Weak password');
+      //         break;
+      //       default:
+      //         alert('Something went wrong');
+      //     }
+      //     return;
+      //   }
+      // },      
         async registerWithGoogle({ commit }) {
 
             const provider = new GoogleAuthProvider();
@@ -146,8 +153,9 @@ const store = createStore({
             .catch((error)=>{
               console.log(error)
             })
+          }
          
-        },
+        ,
         
         //logout 
         async logout ({ commit }) {
@@ -162,18 +170,19 @@ const store = createStore({
             auth.onAuthStateChanged(async (user) => {
               if (user === null) {
                 commit('CLEAR_USER');
-              } else {
-                await user.reload(); // Reload the user to ensure we have the latest email verification status
-                if (user.emailVerified) {
-                  commit('SET_USER', user);
-                  if (router.isReady() && router.currentRoute.value.path === '/login') {
-                    router.push('/');
-                  }
-                } else {
-                  alert('Your email address has not been verified yet. Please click the link in the email that we sent you to verify your account.');
-                  commit('CLEAR_USER');
-                }
-              }
+               }
+              // else {
+              //   await user.reload(); // Reload the user to ensure we have the latest email verification status
+              //   if (user.emailVerified) {
+              //     commit('SET_USER', user);
+              //     if (router.isReady() && router.currentRoute.value.path === '/login') {
+              //       router.push('/');
+              //     }
+              //   } else {
+              //     alert('Your email address has not been verified yet. Please click the link in the email that we sent you to verify your account.');
+              //     commit('CLEAR_USER');
+              //   }
+              // }
             });
           }
         }

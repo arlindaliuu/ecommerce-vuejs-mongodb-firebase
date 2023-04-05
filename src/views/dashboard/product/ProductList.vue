@@ -1,6 +1,8 @@
 <template>
     <div>
-      <Toaster ref="toaster" />
+      <Toaster type="success" ref="toaster" />
+      <Toaster type="wrong" ref="toasterError" />
+
       <h1 class="text-3xl font-bold mx-64">Product List</h1>
       <!------>
       <div class="grid grid-cols-3 mx-64  my-5 h-36 rounded-3xl gap-5">
@@ -60,7 +62,7 @@
               {{ listProduct.author }}
              </td>
              <td class="text-center">
-              <button class="bg-yellow-400 py-2 px-5">Edito</button>
+              <router-link :to="{ name: 'product-edit', params: { id: listProduct._id } }" class="bg-yellow-400 py-2 px-5">Edito</router-link>
             </td>
              <td class="text-center">
               <button @click="confirmDeleteProduct(listProduct._id, listProduct.title)" class="bg-red-700 text-white py-2 px-8">Fshij</button>
@@ -82,7 +84,6 @@
     computed: {
       ...mapGetters(['listProduct']),
       productList() {
-        console.log(this.listProduct)
         return this.listProduct;
       }
     },
@@ -92,15 +93,23 @@
     methods: {
       ...mapActions(['listProducts']),
 
-      deleteProduct(id, title) {
-      // Delete the product with the specified id and title
-      // ...
-
-      // Show the toaster
-      this.$refs.toaster.show(`U fshi me sukses "${title}"!`);
+      async deleteProduct(id, title) {
+      this.$store.dispatch('deleteProduct', id)
+        .then((success) => {
+          if (success) {
+            this.$refs.toaster.show(`U fshi me sukses "${title}"!`, "success");
+          } else {
+            this.$refs.toasterError.show(`Ndodhi një gabim gjatë fshirjes së produktit "${title}".`, "wrong");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          this.$refs.toasterError.show(`Ndodhi një gabim gjatë fshirjes së produktit "${title}".`, "error");
+        });
     },
     confirmDeleteProduct(id, title) {
       if (confirm(`A jeni i sigurtë qe do të fshini "${title}"?`)) {
+        console.log('confirmDelete', id,title)
         this.deleteProduct(id, title);
       }
     },
@@ -124,10 +133,6 @@
 
       return new Blob([array], { type: 'image/jpeg' });
     }
-  
-
-
-
     },
   };
   </script> 

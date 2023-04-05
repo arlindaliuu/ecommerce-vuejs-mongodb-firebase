@@ -1,7 +1,7 @@
 <template>
-    <div class="h-96 mx-20 mb-20" >
+    <div class="min-h-96 mx-20 mb-20" >
         <h3 class="text-center font-bold text-2xl">Krijoni eksperiencen me te bukur te gjumit, me produkte te cilat premtojne jetese te shendetshme</h3>
-        <div class="grid grid-cols-1 md:grid-cols-3 justify-center mt-5" >
+        <div class="grid grid-cols-1 md:grid-cols-3 justify-center mt-16" >
             <div class="h-56 text-left space-y-2" >
                 <img class="h-10 w-10" src="../../dist/images/achivement.png" alt="Achievment Icon">
                 <h1 class="font-bold">10 vite pervoje ne treg</h1>

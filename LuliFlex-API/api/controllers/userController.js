@@ -25,7 +25,7 @@ export default {
       });
 
       const userClaim = { admin: true };
-      const adminEmails = 'arlindaliu08@gmail.com';
+      const adminEmails = 'ilirmemeti@luliflex.com';
       if (adminEmails === userRecord.email) {
         admin.auth().setCustomUserClaims(userRecord.uid, userClaim);
         admin.firestore().collection('roles').doc(userRecord.uid).set({

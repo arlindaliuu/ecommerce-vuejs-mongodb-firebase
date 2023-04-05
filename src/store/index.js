@@ -4,14 +4,19 @@ import { auth  } from '../firebase';
 import { createUserWithEmailAndPassword, signOut ,signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification   } from 'firebase/auth';
 import apiRequest from '../utilities/apiRequest';
 
+function getInitialState() {
+  return {
+    user: null,
+    newProduct: null,
+    listProduct: [],
+    adminRole: null,
+  };
+}
 const store = createStore({
-    state:{
-        user: null,
-        newProduct:null,
-        listProduct: []
-    },
+    state: getInitialState(),
     getters:{
-      listProduct: state => state.listProduct
+      listProduct: state => state.listProduct,
+      getAdmin: state => state.adminRole
     },
     mutations: {
         SET_USER(state, user){
@@ -19,6 +24,14 @@ const store = createStore({
         },
         CLEAR_USER(state){
             state.user = null
+        },
+        SET_IS_ADMIN(state, isAdmin){
+          if(isAdmin){
+            state.adminRole = true
+            localStorage.setItem('isAdmin', JSON.stringify(true))
+          }else{
+            state.adminRole = false
+          }
         },
         addProduct(state, newProduct){
           state.newProduct = newProduct
@@ -29,13 +42,20 @@ const store = createStore({
     },
     
     actions:{
-      async deleteProduct({commmit}, id){
-        console.log(id)
-        const res = await fetch('http://localhost:3000/product/'+id,
-        {
-          method:'delete'
-        })
-        const deletedProduct = await res.json();
+      async deleteProduct({commit}, id){
+        try {
+          const res = await fetch(`http://localhost:3000/product/${id}`, {
+            method: 'delete'
+          });
+          if (!res.ok) {
+            throw new Error(`Failed to delete product with ID ${id}: HTTP status ${res.status}`);
+          }
+          const deletedProduct = await res.json();
+          return true; // indicate success
+        } catch (error) {
+          console.error(error);
+          return false; // indicate failure
+        }
       },
       async listProducts({commit}){
         const res = await fetch('http://localhost:3000/product',
@@ -46,27 +66,58 @@ const store = createStore({
         const newProduct = await res.json();
         commit('listAllProducts', newProduct);
       },
-      //create product method
-        async createProduct({commit}, productData){
-          console.log('productData', productData);
-          const res = await fetch('http://localhost:3000/product',
-            {
-              method: 'post',
-              body: JSON.stringify(productData),
-              headers: {
-                'Content-Type': 'application/json'
-              }
+      //Edit product method
+      async editProduct({commit}, productData){
+        try {
+          const res = await fetch(`http://localhost:3000/product/${productData._id}`,
+          {
+            method: 'put',
+            body: JSON.stringify(productData),
+            headers: {
+              'Content-Type': 'application/json'
             }
-          )
-          const newProduct = await res.json();
-          commit('addProduct', newProduct);
-        },
+          });
+          if (!res.ok) {
+            throw new Error(`Failed to edit product with ID ${productData._id}: HTTP status ${res.status}`);
+          }
+          const editedProduct = await res.json();
+          return true; // indicate success
+        } catch (error) {
+          console.error(error);
+          return false; // indicate failure
+        }
+      },
+      //create product method
+      async createProduct({ commit }, productData) {
+        const formData = new FormData();
+        formData.append('title', productData.title);
+        formData.append('author', productData.author);
+        formData.append('description', productData.description);
+        formData.append('sasia', productData.sasia);
+        formData.append('ngjyra', productData.ngjyra);
+        formData.append('rating', productData.rating);
+        formData.append('imageField', productData.imageField);
+      
+        const res = await fetch('http://localhost:3000/product', {
+          method: 'post',
+          body: formData,
+        });
+      
+        const newProduct = await res.json();
+        commit('addProduct', newProduct);
+      },
+      
         async login({ commit }, details) {
           const { email, password } = details;
           try {
             await signInWithEmailAndPassword(auth, email, password);
-        
+
+            const user = auth.currentUser;
+            const idTokenResult = await user.getIdTokenResult();
+            const isAdmin = idTokenResult.claims.admin || false;
             commit('SET_USER', auth.currentUser);
+            commit('SET_IS_ADMIN', isAdmin); // store the isAdmin value in Vuex
+
             router.push('/');
           } catch (error) {
             switch (error.code) {
@@ -87,7 +138,7 @@ const store = createStore({
               const response = await apiRequest.registerUser(details);
               const user = response.user;
               if(user){
-                await signInWithEmailAndPassword(auth, details.email, details.password);
+                await signInWithEmailAndPassword(auth, details.email, details.password, details.username);
               }
               // Commit successful registration to Vuex store
               commit('SET_USER', auth.currentUser);
@@ -143,7 +194,6 @@ const store = createStore({
       //   }
       // },      
         async registerWithGoogle({ commit }) {
-
             const provider = new GoogleAuthProvider();
             await signInWithPopup(auth, provider)
             .then((result) =>{
@@ -160,7 +210,7 @@ const store = createStore({
         //logout 
         async logout ({ commit }) {
             await signOut(auth)
-      
+            localStorage.clear();
             commit('CLEAR_USER')
       
             router.push('/login')
@@ -171,18 +221,13 @@ const store = createStore({
               if (user === null) {
                 commit('CLEAR_USER');
                }
-              // else {
-              //   await user.reload(); // Reload the user to ensure we have the latest email verification status
-              //   if (user.emailVerified) {
-              //     commit('SET_USER', user);
-              //     if (router.isReady() && router.currentRoute.value.path === '/login') {
-              //       router.push('/');
-              //     }
-              //   } else {
-              //     alert('Your email address has not been verified yet. Please click the link in the email that we sent you to verify your account.');
-              //     commit('CLEAR_USER');
-              //   }
-              // }
+                 else {
+                     commit('SET_USER', user);
+
+                     if (router.isReady() && router.currentRoute.value.path === '/login') {
+                       router.push('/');
+                     }
+                 }
             });
           }
         }

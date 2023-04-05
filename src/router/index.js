@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '../firebase';
-
+import store from '../store/index';
 
     const routes = [
         {name: 'home', path: '/', component: () => import('../views/Home.vue'), meta:{ requiresAuth: true}},
         {name: 'register', path: '/register', component: () => import('../views/Register.vue')},
+        {name: 'ProductDetails', path: '/products/:id', component: () => import('../components/ProductDetails.vue')},
         {name: 'about', path: '/about', component: () => import('../views/AboutUs.vue'), meta:{ requiresAuth: true}},
         {name: 'login', path: '/login', component: () => import('../views/Login.vue')},
         {name: '404', path: '/404', component: () => import('../views/404.vue')},
@@ -27,6 +28,13 @@ import {auth} from '../firebase';
                             component: () => import(
                                 /* webpackChunkName: "post-create" */ '../views/dashboard/product/ProductList.vue',
                             )
+                        },
+                        {
+                            name:'product-edit',
+                            path: '/edit/:id',
+                            component: () => import(
+                                /* webpackChunkName: "post-create" */ '../views/dashboard/product/ProductEdit.vue',
+                            )
                         }
                 ]
             }
@@ -38,7 +46,6 @@ const router = createRouter({
         history: createWebHistory(),
         routes
 });
-// const routesNames = routes.flatMap((route) => route.children ? route.children.flatMap((route) => route.name).concat(route.name): route.name);
 function flattenRoutes(routes) {
     return routes.flatMap((route) => {
       if (Array.isArray(route.children)) {
@@ -49,7 +56,6 @@ function flattenRoutes(routes) {
       }
     });
   }
-  console.log(flattenRoutes(routes));
 
 router.beforeEach((to, from, next) =>{
     if(to.path === '/login' && auth.currentUser){
@@ -59,9 +65,18 @@ router.beforeEach((to, from, next) =>{
     if(!flattenRoutes(routes).includes(to.name)){
             next('/404')
     }
-    //redirect to login if user is not authenticated
-    if(to.matched.some(record => record.meta.requiresAuth) && !auth.currentUser){
-        next('/login')
+    if(to.matched.some(record => record.meta.requiresAdmin) && (!auth.currentUser || !auth.currentUser.isAdmin)){
+        next('/')
+        return;
+    }
+
+
+    const isAdmin = JSON.stringify(localStorage.getItem('isAdmin'));
+
+
+        //redirect non-admin users from the dashboard route
+    if (to.path === '/dashboard' && !isAdmin) {
+        next('/')
         return;
     }
     next();

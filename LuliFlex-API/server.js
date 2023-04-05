@@ -23,7 +23,6 @@ mongoose.connect(`${MONGO_CONNECTION_URI}:${MONGO_DB_PORT}/${MONGO_DB_NAME}`).th
     app.use('/product', categoryRoute)
     app.use('/users', userRoute)
 
-
     app.listen(API_PORT, () =>{
         console.log(`LULIFLEX API listening on port " + ${API_PORT}`)
     })

@@ -1,12 +1,6 @@
 <template>
-
   <router-view/>
 </template>
-
-
-
-
-
 <script>
 import { onBeforeMount  } from 'vue';
 import { useStore } from 'vuex';

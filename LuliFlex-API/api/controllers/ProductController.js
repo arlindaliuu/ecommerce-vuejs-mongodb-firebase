@@ -1,13 +1,9 @@
 import ProductModel from '../models/ProductModel.js';
 import { StatusCodes, ReasonPhrases } from 'http-status-codes';
 import createProductSchema from '../validator/products/create.js';
-import { json } from 'express';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import path from "path";
+import fs from "fs";
 
-const __filename = fileURLToPath(import.meta.url);
-const UPLOADS_DIR = path.join(path.dirname(__filename), '..', 'uploads');
 const controller = {
     list: async (req, res) => {
         try {
@@ -17,33 +13,51 @@ const controller = {
           console.log(error);
         }
       },
+      // create: async (req, res) => {
+      //   const validationResult = createProductSchema.validate(req.body);
+      
+      //   if (validationResult.error) {
+      //     return res.status(StatusCodes.BAD_REQUEST).json({
+      //       message: ReasonPhrases.BAD_REQUEST,
+      //       error: validationResult.error.message
+      //     })
+      //   }
+      
+      //   const { title, author, description, sasia, ngjyra, rating } = req.body;
+      
+      //   try {
+      //     // Create a new product and save it to the database
+      //     const newProduct = new ProductModel({
+      //       title,
+      //       author,
+      //       description,
+      //       sasia,
+      //       ngjyra,
+      //       rating,
+      //       // imageField: filename
+      //     });
+      //     const result = await newProduct.save();
+      
+      //     res.json({ success: true })
+      //   } catch (err) {
+      //     return res.json({
+      //       message: StatusCodes.UNAUTHORIZED,
+      //       error: err.message
+      //     })
+      //   }
+      // }
       create: async (req, res) => {
         const validationResult = createProductSchema.validate(req.body);
-      
         if (validationResult.error) {
           return res.status(StatusCodes.BAD_REQUEST).json({
             message: ReasonPhrases.BAD_REQUEST,
             error: validationResult.error.message
-          })
+          });
         }
+            
+          const { title, author, description, sasia, ngjyra, rating } = req.body;
       
-        const { title, author, description, sasia, ngjyra, rating } = req.body;
-      
-        if (!req.file) {
-          return res.status(StatusCodes.BAD_REQUEST).json({
-            message: ReasonPhrases.BAD_REQUEST,
-            error: 'Image file is required'
-          })
-        }
-      
-        const { filename, mimetype, buffer } = req.file;
-      
-        try {
-          // Save the file to the uploads directory
-          const imagePath = path.join(UPLOADS_DIR, filename);
-          await fs.promises.writeFile(imagePath, buffer);
-      
-          // Create a new product and save it to the database
+          // Create a new product and set the `imageField` property to the uploaded file path.
           const newProduct = new ProductModel({
             title,
             author,
@@ -51,18 +65,32 @@ const controller = {
             sasia,
             ngjyra,
             rating,
-            imageField: filename
+            imageField: req.file ? req.file.path : null
           });
-          const result = await newProduct.save();
-      
-          res.json({ success: true })
-        } catch (err) {
-          return res.json({
-            message: StatusCodes.UNAUTHORIZED,
-            error: err.message
-          })
-        }
+
+          const filePath = req.file ? req.file.path : null;
+          if (filePath) {
+            const dir = path.dirname(filePath);
+            if (!fs.existsSync(dir)) {
+              fs.mkdirSync(dir, { recursive: true });
+            }
+          }
+          
+          newProduct.save()
+            .then(product => {
+              res.status(201).json({
+                message: 'Product created successfully',
+                product: product
+              });
+            })
+            .catch(err => {
+              res.status(500).json({
+                message: 'Error creating product',
+                error: err.message
+              });
+            });
       }
+      
 ,      
     find: async(req, res) =>{
         try{

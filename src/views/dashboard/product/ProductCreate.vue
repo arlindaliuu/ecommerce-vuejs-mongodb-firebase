@@ -20,21 +20,14 @@ export default{
             this.$store.dispatch('createProduct', {...this.newCategory})
         },
         onImageChange(event) {
-            const file = event.target.files[0];
-            if (file) {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => {
-                this.newCategory.imageField = reader.result.split(',')[1];
-            };
-            }
+            this.newCategory.imageField = event.target.files[0];  
         }
     }
 }
 </script>
 
 <template>
-    <form @submit.prevent="handleCreateCategory" enctype="multipart/form-data">
+    <form method="post" @submit.prevent="handleCreateCategory" enctype="multipart/form-data">
         <h1 class="mx-64 font-bold text-3xl">Krijo Produkt</h1>
         <div class="mx-64 border mt-5 p-5 shadow-2xl px-32">
             <div class="form-group grid grid-cols-2 p-5">

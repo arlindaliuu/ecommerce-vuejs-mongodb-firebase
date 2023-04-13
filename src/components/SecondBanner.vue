@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      translateX: '0',
+      translateX: '150',
       prevScrollPos: 0
     }
   },
@@ -40,10 +40,10 @@ export default {
       if (isInView) {
         const scrollDirection = currentScrollPos > this.prevScrollPos ? 'up' : 'down'
 
-        if (scrollDirection === 'down' && parseInt(this.translateX) < 200) {
-          this.translateX = (parseInt(this.translateX) + 15).toString()
+        if (scrollDirection === 'down' && parseInt(this.translateX) < 300) {
+          this.translateX = (parseInt(this.translateX) + 13).toString()
         } else if (scrollDirection === 'up' && parseInt(this.translateX) > -500) {
-          this.translateX = (parseInt(this.translateX) - 15).toString()
+          this.translateX = (parseInt(this.translateX) - 8).toString()
         }
       }
 

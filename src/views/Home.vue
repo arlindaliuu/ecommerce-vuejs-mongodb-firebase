@@ -5,14 +5,29 @@
     <!-- <Toaster message="Hello, World!" :duration="500000" :type="'pending'" /> -->
 
         <div>
-            <img class="object-contain w-full" src="../../dist/images/pexels-freemockupsorg-775219.jpg" alt="Home Page Image">
+            <div  v-if="slideIndex == 0" class="animate-fade-left">
+                <img class="object-cover w-full max-h-[1080px]" v-bind:src="data.images[0]" alt="Home Page Image">
+            </div>
+            <div v-if="slideIndex == 1" class="animate-fade-left">
+                <img  class="object-cover w-full max-h-[1080px]" v-bind:src="data.images[1]" alt="Home Page Image">
+            </div>
+
             <div class=" top-1/3 left-10 border-2 p-20 pb-52 grid bg-white">
                 <p class=" text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
-                <button class="text-white text-4xl font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</button>
+                <router-link to="/shop" class="text-white text-4xl font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>
             </div>
         </div>
-        <div class="my-8 sm:mx-20 gap-32 grid sm:grid-cols-2 grid-cols-1 items-center justify-items-center">
+        <!----Discount products-->
+        <div class="my-8 md:mx-20">
+            <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
+            <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
+        </div>
+        <div class="my-8 md:mx-20 gap-32 grid grid-cols-1 md:grid-cols-2  items-center justify-items-center">
             <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
+        </div>
+
+        <div class="p-5 mb-32 w-full text-center">
+            <router-link to="/shop" class="text-3xl !text-black hover:underline font-light">SHIKONI TË GJITHA PRODUKTET ></router-link>
         </div>
         
     <SecondBanner /> 
@@ -50,6 +65,19 @@ import CookieAcceptDecline from "../components/CookieAcceptDecline .vue"
 import { mapActions, mapGetters } from 'vuex';
 
 export default{
+    data(){
+        return{
+            slideIndex: 0,
+            count: 0,
+            active: 1,
+            data:{
+                images:[
+                    "../../dist/images/pexels-freemockupsorg-775219.jpg",
+                    "../../dist/images/secondbannerbg.jpg"
+                ]
+            }
+        }
+    },
     components:{
         Footer,
         Header,
@@ -65,16 +93,21 @@ export default{
         
     },
     computed: {
-      ...mapGetters(['listProduct']),
+      ...mapGetters(['listDiscountProduct']),
       productList() {
-        return this.listProduct;
+        return this.listDiscountProduct;
       },
+
     },
     mounted() {
-      this.listProducts();
+      this.listDiscountProducts();
+      setInterval(() => {
+        this.slideIndex = (this.slideIndex + 1) % this.data.images.length;
+    }, 6000);
     },
     methods: {
-      ...mapActions(['listProducts']),
-    }
+      ...mapActions(['listDiscountProducts']),
+    },
+
 }
 </script>

@@ -1,0 +1,94 @@
+<template>
+    <Header />
+    <h1 class="">Shop</h1>
+    <div class="">
+        <img class="w-full max-h-[500px] object-cover" src="../assets/image/add2.JPG" />
+    </div>
+    <div class="text-lg font-light mx-32 leading-7 p-5 -mt-10 shadow-2xl bg-white z-20 relative text-green-900">
+    <p>
+        Në dyqanin tonë të dyshekëve, ne ofrojmë një gjumë të përsosur të natës për të gjithë. Nëse jeni duke kërkuar për një dyshek të butë dhe të rehatshëm për një pushim të mirë gjatë natës, ose një dyshek më të fortë për mbështetjen e duhur të shtyllës kurrizore, ne kemi dyshekun ideal për ju.
+        Ne e kuptojmë se të gjithë kanë preferenca të ndryshme për të fjetur, kjo është arsyeja pse ne disponojmë një gamë të gjerë dyshekësh, duke përfshirë shkumë memorie, supë xhepi dhe dyshekë latex, të gjitha me çmime konkurruese. Stafi ynë i ditur është gjithmonë gati për t'ju ndihmuar të zgjidhni dyshekun e përsosur për nevojat tuaja individuale, në mënyrë që të mund të flini të qetë duke ditur se keni bërë zgjedhjen e duhur.
+    </p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-5 mt-24">
+        <div class="col-span-1"></div>
+        <div class="col-span-4 py-10 flex justify-between">
+            <div class="self-center">
+                <input class="border p-2.5 w-96" type="search" v-model="searchTerm" />
+                <button class="ml-4 border p-2.5 bg-indigo-600 text-white rounded-md" @click="searchProducts">Kërko produktin</button>
+            </div>
+            <img src="../../dist/images/logo-luliflex.png" class="self-center w-96 max-h-[150px]" />
+
+        </div>
+        <div class="col-span-1 mx-5 border mb-32 p-10">
+            <h2 class="font-content text-3xl py-5">Filtro sipas çmimit </h2>
+            <hr class="p-4">
+            <div class="mb-4">
+              <label for="min-price" class="block font-content font-medium mb-2">Çmimi minimal</label>
+              <input type="number" id="min-price" class="border p-2.5 w-full" v-model.number="minPrice" />
+            </div>
+            <div class="mb-4">
+              <label for="max-price" class="block font-content font-medium mb-2">Çmimi maksimal</label>
+              <input type="number" id="max-price" class="border p-2.5 w-full" v-model.number="maxPrice" />
+            </div>
+          </div>          
+        <div class="col-span-4 border mb-32 p-5">
+            <div class="grid grid-cols-1 ">
+                <div class="grid grid-cols-1 gap-24 md:grid-cols-2 mt-10 ">
+                    <Card v-for="product in filteredProductList" :key="product.id" :card-data="product" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <Footer />
+</template>
+
+<script>
+import Footer from '../components/Footer.vue';
+import Header from '../components/Header.vue';
+import Card from '../components/parts/Card.vue';
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+    components: {
+        Footer,
+        Header,
+        Card
+    },
+    computed: {
+    ...mapGetters(['listProduct']),
+    productList() {
+        return this.listProduct;
+    },
+    filteredProductList() {
+      // Filter the product list based on the search query and price range
+      const searchTermLowerCase = this.searchTerm.toLowerCase();
+      const minPrice = this.minPrice ? Number(this.minPrice) : 0;
+      const maxPrice = this.maxPrice ? Number(this.maxPrice) : Infinity;
+      return this.productList.filter(product =>
+        product.title.toLowerCase().includes(searchTermLowerCase) &&
+        product.price >= minPrice && product.price <= maxPrice
+      );
+    }
+    },
+        data() {
+        return {
+            searchTerm: '',
+            minPrice: '1',
+            maxPrice: '',
+        };
+        },
+
+    mounted() {
+        window.scrollTo(0, 0);
+        this.listProducts();
+    },
+    methods: {
+        ...mapActions(['listProducts']),
+        searchProducts() {
+            // Trigger the product search action
+            this.listProducts();
+        },
+    },
+};
+</script>

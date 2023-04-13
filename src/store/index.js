@@ -9,6 +9,7 @@ function getInitialState() {
     user: null,
     newProduct: null,
     listProduct: [],
+    discountProduct: [],
     adminRole: null,
   };
 }
@@ -16,7 +17,8 @@ const store = createStore({
     state: getInitialState(),
     getters:{
       listProduct: state => state.listProduct,
-      getAdmin: state => state.adminRole
+      getAdmin: state => state.adminRole,
+      listDiscountProduct: state => state.discountProduct
     },
     mutations: {
         SET_USER(state, user){
@@ -38,6 +40,9 @@ const store = createStore({
         },
         listAllProducts(state, listProduct){
           state.listProduct = listProduct
+        },
+        listDiscountProducts(state, discountProduct){
+          state.discountProduct = discountProduct
         }
     },
     
@@ -57,14 +62,22 @@ const store = createStore({
           return false; // indicate failure
         }
       },
-      async listProducts({commit}){
-        const res = await fetch('http://localhost:3000/product',
+      async listProducts({ commit }, searchQuery) {
+        const searchParams = new URLSearchParams({ search: searchQuery });
+        const res = await fetch(`http://localhost:3000/product?${searchParams}`, {
+          method: 'get'
+        });
+        const newProduct = await res.json();
+        commit('listAllProducts', newProduct);
+      },      
+      async listDiscountProducts({commit}){
+        const res = await fetch('http://localhost:3000/product/listDiscount?discount=true',
         {
           method: 'get'
         }
         )
-        const newProduct = await res.json();
-        commit('listAllProducts', newProduct);
+        const discountProduct = await res.json();
+        commit('listDiscountProducts', discountProduct);
       },
       //Edit product method
       async editProduct({commit}, productData){

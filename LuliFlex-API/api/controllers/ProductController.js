@@ -13,6 +13,14 @@ const controller = {
           console.log(error);
         }
       },
+      listDiscount: async (req, res) => {
+        try {
+          const list = await ProductModel.find({ discount: true }).lean();
+          return res.json(list);
+        } catch (error) {
+          console.log(error);
+        }
+      },
       // create: async (req, res) => {
       //   const validationResult = createProductSchema.validate(req.body);
       

@@ -8,8 +8,8 @@
         </div>
         <div v-if="showMenu" :class="this.headerFontColor" class="grid grid-cols-1 whitespace-nowrap lg:flex col-span-2 lg:col-span-1 animate-ease-linear gap-y-1 lg:gap-y-0 animate-fade-down duration-1000 self-center justify-self-start lg:justify-self-end pl-5 lg:pl-0 text-xl">
             <router-link to="/" class="self-center lg:ml-4  uppercase link link-underline link-underline-black">Ballina</router-link> 
-            <router-link to="/about" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
-            <router-link to="/about" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
+            <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
+            <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
             <router-link to="/about" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Rreth nesh</router-link>
             <router-link to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
             <a @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>

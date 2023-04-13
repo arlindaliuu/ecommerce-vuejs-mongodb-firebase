@@ -20,6 +20,8 @@ categoryRouter.use(bodyParser.json());
 
 categoryRouter.get('/', productController.list);
 
+categoryRouter.get('/listDiscount', productController.listDiscount);
+
 categoryRouter.get('/:productId', productController.find);
 
 categoryRouter.put('/:productId', productController.edit);

@@ -45,7 +45,6 @@ export default {
     CookieAcceptDecline,
   },
   mounted() {
-    console.log(VueCookies.get('myCookie'))
     if (VueCookies.get('myCookie') !== null) {
       this.showCookieBanner = false;
     } else {
@@ -57,7 +56,7 @@ export default {
   methods: {
     handleAccept() {
       const name = 'myCookieValue'; // set the name of the cookie
-      VueCookies.set('myCookie', name, '1h'); // set the cookie for 1 hour
+      VueCookies.set('myCookie', name, '72h'); 
       this.showCookieBanner = false;
     },
     handleDecline() {

@@ -22,7 +22,14 @@
             <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
             <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
         </div>
-        <div class="my-8 md:mx-20 gap-32 grid grid-cols-1 md:grid-cols-2  items-center justify-items-center">
+        <div v-if="loading" class="flex justify-center items-center w-full h-64">
+            <div class="h-screen bg-white">
+                <div class="flex justify-center items-center h-full">
+                  <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
+                </div>
+            </div>
+        </div>
+        <div v-else class="my-8 md:mx-20 gap-32 grid grid-cols-1 md:grid-cols-2  items-center justify-items-center">
             <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
         </div>
 
@@ -34,6 +41,7 @@
     <BannerBox />
     <BackToTop />
     <Map />
+    <ContactUs />
     <CookieAcceptDecline />
     <Footer />
 </div>
@@ -62,6 +70,7 @@ import BannerBox from "../components/BannerBox.vue"
 import BackToTop from "../components/BackToTop.vue"
 import Map from "../components/Map.vue"
 import CookieAcceptDecline from "../components/CookieAcceptDecline .vue"
+import ContactUs from "./ContactUs.vue"
 import { mapActions, mapGetters } from 'vuex';
 
 export default{
@@ -75,7 +84,8 @@ export default{
                     "../../dist/images/pexels-freemockupsorg-775219.jpg",
                     "../../dist/images/secondbannerbg.jpg"
                 ]
-            }
+            },
+            loading: true
         }
     },
     components:{
@@ -89,7 +99,8 @@ export default{
         BannerBox,
         BackToTop,
         Map,
-        CookieAcceptDecline
+        CookieAcceptDecline,
+        ContactUs
         
     },
     computed: {
@@ -100,7 +111,9 @@ export default{
 
     },
     mounted() {
-      this.listDiscountProducts();
+      this.listDiscountProducts().then(()=>{
+        this.loading = false;
+      })
       setInterval(() => {
         this.slideIndex = (this.slideIndex + 1) % this.data.images.length;
     }, 6000);

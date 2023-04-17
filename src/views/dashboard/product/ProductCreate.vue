@@ -1,5 +1,10 @@
 <script>
+import Toaster from '../../../components/Toaster.vue';
+
 export default{
+    components: {
+      Toaster
+    },  
     data(){
         return{
             newCategory:{
@@ -9,24 +14,50 @@ export default{
                 ngjyra: [],
                 sasia: 0,
                 rating: 0,
-                imageField: ''
-                
+                imageField: '',
+                discount: false,
+                discountPercentage: 0,
+                price: 0 
             }
         }
     },
     methods:{
         async handleCreateCategory(){
             console.log(this.newCategory)
-            this.$store.dispatch('createProduct', {...this.newCategory})
+            this.$store.dispatch('createProduct', {...this.newCategory})  
+            .then((success) => {
+                if (success) {
+                    this.$refs.toaster.show(`U krijua me sukses!`, "success");
+                } else {
+                    this.$refs.toasterError.show(`Ndodhi një gabim gjatë krijimit të produktit`, "wrong");
+                }
+                })
+                .catch((error) => {
+                console.error(error);
+                this.$refs.toasterError.show(`Ndodhi një gabim gjatë krijimit së produktit.`, "error");
+                });
+        },
+        toggleDiscountPercentage() {
+            const checkbox = document.getElementById("discount");
+            const inputWrapper = document.getElementById("discountPercentage");
+
+            if (checkbox.checked) {
+                inputWrapper.classList.remove("hidden");
+                inputWrapper.classList.add("block");
+            } else {
+                inputWrapper.classList.add("hidden");
+            }
         },
         onImageChange(event) {
             this.newCategory.imageField = event.target.files[0];  
         }
-    }
+    },
 }
 </script>
 
 <template>
+    <Toaster type="success" ref="toaster" />
+    <Toaster type="wrong" ref="toasterError" />
     <form method="post" @submit.prevent="handleCreateCategory" enctype="multipart/form-data">
         <h1 class="mx-64 font-bold text-3xl">Krijo Produkt</h1>
         <div class="mx-64 border mt-5 p-5 shadow-2xl px-32">
@@ -46,6 +77,22 @@ export default{
                 <label class="" for="sasia">Sasia</label>
                 <input class="border h-10" id="sasia" type="number" name="sasia" v-model="newCategory.sasia" />
             </div>
+            <div class="form-group grid grid-cols-2 p-5">
+                <label class="" for="price">Cmimi</label>
+                <input class="border h-10" id="price" type="number" name="price" v-model="newCategory.price" />
+            </div>
+            <div class="form-group grid grid-cols-10 p-5">
+                <div class="col-span-3 flex justify-between">
+                  <label class="col-span-4 flex items-center justify-center" for="discount">Zbritje</label>
+                  <input class="border" id="discount" type="checkbox" name="discount" value="true" v-model="newCategory.discount" @change="toggleDiscountPercentage" />
+                </div>
+                <div class="col-span-7 flex justify-end">
+                    <label class="flex items-center justify-center" for="discountPercentage">Përqindja</label>
+                    <input class="border h-10 hidden" id="discountPercentage" type="number" name="discountPercentage" v-model="newCategory.discountPercentage" v-if="newCategory.discountPercentage !== null" />
+                    <span class="flex items-center justify-center">%</span>
+                  </div>
+            </div>
+              
             <div class="form-group grid grid-cols-2 p-5">
                 <label class="">Ngjyra</label>
                 <div class="flex flex-wrap justify-around">

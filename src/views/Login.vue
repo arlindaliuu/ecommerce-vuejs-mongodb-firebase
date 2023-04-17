@@ -6,7 +6,7 @@
                 <div class="flex flex-col lg:flex-row p-4 md:p-10 bg-white rounded-xl mx-auto shadow-lg overflow-hidden ">
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url(../assets/image/register.jpg);">
                         <h1 class=" text-black text-3xl mb-3 font-light">Mirësevini</h1>
-                        <img src="../assets/image/add1.JPG">
+                        <img src="../assets/image/add1.jpg">
                         <div>
                             <p class="text-black font-light leading-7 mt-5">Luli Flex ofron shërbime dhe zgjedhje të shumta sa i përket gjumit tuaj, kyçuni apo krijoni llogarinë tuaj për të parë produktet më bashkëkohore qe Luli Flex ofron për ju!</p>
                         </div>

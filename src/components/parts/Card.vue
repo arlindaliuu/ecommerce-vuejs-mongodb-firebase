@@ -42,15 +42,16 @@ export default {
       }
     },
   },
-  computed:{
-    getDiscountPrice(){
-      if(this.cardData.discount == true){
-        this.deletedPrice = this.cardData.price * this.cardData.discountPercentage / 100
-        return this.cardData.price.toFixed(2) - this.deletedPrice.toFixed(2);
-      }else{
-        return this.cardData.price;
-      }
-    },
+  computed: {
+  getDiscountPrice() {
+    if (this.cardData.discount) {
+      const deletedPrice = this.cardData.price * this.cardData.discountPercentage / 100;
+      const discountPrice = this.cardData.price - deletedPrice;
+      return discountPrice.toFixed(2);
+    } else {
+      return this.cardData.price.toFixed(2);
+    }
+  },
     truncatedDescription() {
       const words = this.cardData.description.split(' ');
       const limit = 50;

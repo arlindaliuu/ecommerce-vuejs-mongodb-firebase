@@ -49,7 +49,7 @@ const store = createStore({
     actions:{
       async deleteProduct({commit}, id){
         try {
-          const res = await fetch(`http://localhost:3000/product/${id}`, {
+          const res = await fetch(`https://luliflex-api.herokuapp.com/product/${id}`, {
             method: 'delete'
           });
           if (!res.ok) {
@@ -64,14 +64,14 @@ const store = createStore({
       },
       async listProducts({ commit }, searchQuery) {
         const searchParams = new URLSearchParams({ search: searchQuery });
-        const res = await fetch(`http://localhost:3000/product?${searchParams}`, {
+        const res = await fetch(`https://luliflex-api.herokuapp.com/product?${searchParams}`, {
           method: 'get'
         });
         const newProduct = await res.json();
         commit('listAllProducts', newProduct);
       },      
       async listDiscountProducts({commit}){
-        const res = await fetch('http://localhost:3000/product/listDiscount?discount=true',
+        const res = await fetch('https://luliflex-api.herokuapp.com/product/listDiscount?discount=true',
         {
           method: 'get'
         }
@@ -81,14 +81,23 @@ const store = createStore({
       },
       //Edit product method
       async editProduct({commit}, productData){
+        console.log(productData)
+        const formData = new FormData();
+        formData.append('title', productData.title);
+        formData.append('author', productData.author);
+        formData.append('description', productData.description);
+        formData.append('sasia', productData.sasia);
+        formData.append('ngjyra', productData.ngjyra);
+        formData.append('rating', productData.rating);
+        formData.append('imageField', productData.imageField);
+        formData.append('discount', productData.discount);
+        formData.append('discountPercentage', productData.discountPercentage);
+        formData.append('price', productData.price);
         try {
-          const res = await fetch(`http://localhost:3000/product/${productData._id}`,
+          const res = await fetch(`https://luliflex-api.herokuapp.com/product/${productData._id}`,
           {
             method: 'put',
-            body: JSON.stringify(productData),
-            headers: {
-              'Content-Type': 'application/json'
-            }
+            body: formData,
           });
           if (!res.ok) {
             throw new Error(`Failed to edit product with ID ${productData._id}: HTTP status ${res.status}`);
@@ -110,14 +119,25 @@ const store = createStore({
         formData.append('ngjyra', productData.ngjyra);
         formData.append('rating', productData.rating);
         formData.append('imageField', productData.imageField);
-      
-        const res = await fetch('http://localhost:3000/product', {
+        formData.append('discount', productData.discount);
+        formData.append('discountPercentage', productData.discountPercentage);
+        formData.append('price', productData.price);
+
+      try{
+        const res = await fetch('https://luliflex-api.herokuapp.com/product', {
           method: 'post',
           body: formData,
         });
-      
-        const newProduct = await res.json();
-        commit('addProduct', newProduct);
+        if (!res.ok) {
+          throw new Error(`Failed to edit product with ID ${productData._id}: HTTP status ${res.status}`);
+        }
+          const createdProduct = await res.json();
+          commit('addProduct', createdProduct);
+          return true; // indicate success
+      } catch (error) {
+          console.error(error);
+          return false; // indicate failure
+      }
       },
       
         async login({ commit }, details) {

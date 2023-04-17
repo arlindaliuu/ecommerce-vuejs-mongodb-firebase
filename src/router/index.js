@@ -1,47 +1,81 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '../firebase';
-import store from '../store/index';
 
-    const routes = [
-        {name: 'home', path: '/', component: () => import('../views/Home.vue'), meta:{ requiresAuth: true}},
-        {name: 'register', path: '/register', component: () => import('../views/Register.vue')},
-        {name: 'ProductDetails', path: '/products/:id', component: () => import('../components/ProductDetails.vue')},
-        {name: 'about', path: '/about', component: () => import('../views/AboutUs.vue'), meta:{ requiresAuth: true}},
-        {name: 'login', path: '/login', component: () => import('../views/Login.vue')},
-        {name: '404', path: '/404', component: () => import('../views/404.vue')},
-        {name: 'Shop', path: '/shop', component: () => import('../views/Shop.vue')},
-        {name: 'dashboard', path: '/dashboard',  component: () => import('../views/dashboard/dashboard.vue')},
-        {name: 'dashboardd', path: '/dashboardd', children:[
-            {name: 'product',
-             path: 'product',
-            children:[
-                        {
-                            name:'product-create',
-                            path: 'create',
-                            component: () => import(
-            
-                                /* webpackChunkName: "post-create" */ '../views/dashboard/product/ProductCreate.vue',
-                            )
-                        },
-                        {
-                            name:'product-list',
-                            path: 'list',
-                            component: () => import(
-                                /* webpackChunkName: "post-create" */ '../views/dashboard/product/ProductList.vue',
-                            )
-                        },
-                        {
-                            name:'product-edit',
-                            path: '/edit/:id',
-                            component: () => import(
-                                /* webpackChunkName: "post-create" */ '../views/dashboard/product/ProductEdit.vue',
-                            )
-                        }
-                ]
+
+const routes = [
+    {
+      name: 'home',
+      path: '/',
+      component: () => import('../views/Home.vue'),
+      meta: { title: 'Ballina' }
+    },
+    {
+      name: 'register',
+      path: '/register',
+      component: () => import('../views/Register.vue')
+    },
+    {
+      name: 'ProductDetails',
+      path: '/products/:id',
+      component: () => import('../components/ProductDetails.vue'),
+      meta: { title: 'Produkti' }
+    },
+    {
+      name: 'about',
+      path: '/about',
+      component: () => import('../views/AboutUs.vue'),
+      meta: { title: 'Rreth Nesh' }
+    },
+    {
+      name: 'login',
+      path: '/login',
+      component: () => import('../views/Login.vue')
+    },
+    {
+      name: '404',
+      path: '/404',
+      component: () => import('../views/404.vue')
+    },
+    {
+      name: 'Shop',
+      path: '/shop',
+      component: () => import('../views/Shop.vue'),
+      meta: { title: 'Dyqan' }
+    },
+    {
+      name: 'dashboard',
+      path: '/dashboard',
+      component: () => import('../views/dashboard/dashboard.vue')
+    },
+    {
+      name: 'dashboardd',
+      path: '/dashboardd',
+      children: [
+        {
+          name: 'product',
+          path: 'product',
+          children: [
+            {
+              name: 'product-create',
+              path: 'create',
+              component: () => import(/* webpackChunkName: "product-create" */'../views/dashboard/product/ProductCreate.vue')
+            },
+            {
+              name: 'product-list',
+              path: 'list',
+              component: () => import(/* webpackChunkName: "product-list" */ '../views/dashboard/product/ProductList.vue')
+            },
+            {
+              name: 'product-edit',
+              path: '/edit/:id',
+              component: () => import(/* webpackChunkName: "product-edit" */ '../views/dashboard/product/ProductEdit.vue')
             }
-        ]}
-
-    ]
+          ]
+        }
+      ]
+    }
+  ]
+  
 
 const router = createRouter({
         history: createWebHistory(),

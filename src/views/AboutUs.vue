@@ -1,11 +1,13 @@
 <template>
   <Header />
   <body>
+
     <div class="min-h-[2000px]">
   
 
     <div class="parallax w-full min-h-[2000px] bg-fixed bg-center flex flex-wrap">
       <div class="grid grid-cols-1 md:grid-cols-3 bg-white mt-96">
+        <Breadcrumbs class="col-span-3 px-32 pt-5 text-xl font-light"/>
         <div class="flex justify-center items-center">
           <h1 class="text-[80px] underline text-green-700 font-light">
             Kush <br>
@@ -56,9 +58,8 @@
         </h1>
       </div>
     </div>
-
-</div>
   </div>
+</div>
 </body>
   <Footer />
 
@@ -72,46 +73,19 @@
   grid-column-gap: 20px;
 }
 .parallax{
-  background-image: url(../assets/image/add2.JPG);
-}
-/* .photo {
- 
-  width: 200px;
-  height: 200px;
-  align-items: center;
+  background-image: url(../assets/image/add2.jpg);
 }
 
-.text {
-  grid-column: 2;
-}
-.container {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: left;
-  grid-column-gap: 20px;
-}
-
-.photo {
-  margin-right: right;
-  width: 200px;
-  height: 200px;
-}
-
-.text {
-  grid-column: 2;
-}
-
-body{
-  background-color: red;
-} */
 </style>
 <script>
 import Footer from "../components/Footer.vue"
 import Header from "../components/Header.vue"
+import Breadcrumbs from "../components/Breadcrumbs.vue"
 export default{
   components:{
       Footer,
-      Header
+      Header,
+      Breadcrumbs
   },
   data(){
       return{
@@ -120,6 +94,12 @@ export default{
   },
   mounted(){
     window.scrollTo(0, 0);
+  },
+  computed:{
+    pageTitle() {
+      // Get the page title from the route meta data
+      return this.$route.meta.title;
+    },
   }
 }
 </script>

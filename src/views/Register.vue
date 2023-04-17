@@ -1,6 +1,5 @@
 <template>
     <div>
-        
         <body>
             <div class="min-h-screen py-40" style="background-image: linear-gradient(115deg, #9F7AEA,#fee2fe);">
             <div class="container mx-auto bg-white">

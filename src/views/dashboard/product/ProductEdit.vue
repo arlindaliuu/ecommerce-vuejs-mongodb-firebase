@@ -21,6 +21,21 @@
             <input class="border h-10" id="sasia" type="number" name="sasia" v-model="product.sasia" />
         </div>
         <div class="form-group grid grid-cols-2 p-5">
+            <label class="" for="price">Cmimi</label>
+            <input class="border h-10" id="price" type="number" name="price" v-model="product.price" />
+        </div>
+        <div class="form-group grid grid-cols-10 p-5">
+            <div class="col-span-3 flex justify-between">
+              <label class="col-span-4 flex items-center justify-center" for="discount">Zbritje</label>
+              <input class="border" id="discount" type="checkbox" name="discount" value="true" v-model="product.discount" @change="toggleDiscountPercentage" />
+            </div>
+            <div class="col-span-7 flex justify-end">
+                <label class="flex items-center justify-center" for="discountPercentage">Përqindja</label>
+                <input class="border h-10 hidden" id="discountPercentage" type="number" name="discountPercentage" v-model="product.discountPercentage" v-if="product.discountPercentage !== null" />
+                <span class="flex items-center justify-center">%</span>
+              </div>
+          </div>
+        <div class="form-group grid grid-cols-2 p-5">
             <label class="">Ngjyra</label>
             <div class="flex flex-wrap justify-around">
                 <div class="border flex flex-wrap justify-center">
@@ -96,7 +111,10 @@ export default{
                 ngjyra: [],
                 sasia: 0,
                 rating: 0,
-                imageField: ''
+                imageField: '',
+                discount: false,
+                discountPercentage: 0,
+                price: 0
                 
             },
             product: {},
@@ -105,7 +123,7 @@ export default{
     },
     mounted() {
          this.product._id = this.$route.params.id;
-        fetch(`http://localhost:3000/product/${this.product._id}`)
+        fetch(`https://luliflex-api.herokuapp.com/product/${this.product._id}`)
             .then(response => response.json())
             .then(data => {
             this.product = data;
@@ -129,6 +147,21 @@ export default{
                 this.$refs.toasterError.show(`Ndodhi një gabim gjatë fshirjes së produktit.`, "error");
                 });
         },
+        toggleDiscountPercentage() {
+            const checkbox = document.getElementById("discount");
+            const inputWrapper = document.getElementById("discountPercentage");
+           
+            if (checkbox.checked) {
+                inputWrapper.classList.remove("hidden");
+                inputWrapper.classList.add("block");
+            } else {
+                inputWrapper.classList.add("hidden");
+                
+            }
+        },
+        onImageChange(event) {
+            this.product.imageField = event.target.files[0];  
+        }
     }
 }
 </script>

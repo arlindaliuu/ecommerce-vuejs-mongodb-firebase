@@ -1,7 +1,9 @@
 <template>
     <Header />
     <div class="parallax w-full min-h-[1700px] bg-fixed bg-center flex flex-wrap">
-    <div class="mt-[280px] grid md:grid-cols-2 w-full max-h-[1000px] bg-white">
+    <div class="mt-[280px] grid md:grid-cols-2 w-full mb-[280px] bg-white">
+      <Breadcrumbs class="col-span-2 pt-5 px-24 text-xl font-light"/>
+
         <div class="px-24">
             <h1 class="animate-fade-right text-center text-6xl font-light py-10">{{ product.title }}</h1>
             <p class="text-2xl font-light animate-fade-left mt-10">{{ product.description }}</p>
@@ -17,6 +19,7 @@
   <script>
   import Header from './Header.vue';
   import Footer from './Footer.vue';
+  import Breadcrumbs from './Breadcrumbs.vue';
   export default {
     name: 'ProductDetails',
     data() {
@@ -26,14 +29,15 @@
     },
     components:{
         Header,
-        Footer
+        Footer,
+        Breadcrumbs
     },
     mounted() {
         window.scrollTo(0, 0);
         // Fetch the details of the selected product
         const productId = this.$route.params.id;
         console.log(productId)
-        fetch(`http://localhost:3000/product/${productId}`)
+        fetch(`https://luliflex-api.herokuapp.com/product/${productId}`)
             .then(response => response.json())
             .then(data => {
             this.product = data;

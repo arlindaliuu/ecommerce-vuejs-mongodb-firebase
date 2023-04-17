@@ -45,7 +45,7 @@
                     <p class="pl-3">Modifikimi i Uebit</p>
                     </li>
                     <router-link class="flex p-2 hover:bg-white hover:text-[#00b7f8] cursor-pointer duration-150" to="/userprofile">
-                        <img class="object-contain" src="../../assets/icons/user (4).png">
+                        <img class="object-contain" src="../../assets/icons/user.png">
                         <p class="pl-3">Shko te llogaria përdoruesit</p>
                     </router-link>
                 </ul>

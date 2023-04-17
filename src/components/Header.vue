@@ -1,10 +1,10 @@
 <template>
     <header :class="this.classes" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
         <div class="logo flex lg:justify-self-start justify-self-center ">
-            <img src="../../dist/images/logo-luliflex.png" class="self-center w-96 max-h-[150px]" />
+            <img src="../../distribution/images/logo-luliflex.png" class="self-center w-96 max-h-[150px]" />
         </div>
         <div class="items-center lg:hidden flex justify-end p-10">
-          <button @click="hadleShowMenu"><img src="../../dist/images/menu.png" /></button>
+          <button @click="hadleShowMenu"><img src="../../distribution/images/menu.png" /></button>
         </div>
         <div v-if="showMenu" :class="this.headerFontColor" class="grid grid-cols-1 whitespace-nowrap lg:flex col-span-2 lg:col-span-1 animate-ease-linear gap-y-1 lg:gap-y-0 animate-fade-down duration-1000 self-center justify-self-start lg:justify-self-end pl-5 lg:pl-0 text-xl">
             <router-link to="/" class="self-center lg:ml-4  uppercase link link-underline link-underline-black">Ballina</router-link> 

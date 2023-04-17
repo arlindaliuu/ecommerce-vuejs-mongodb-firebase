@@ -81,8 +81,8 @@ export default{
             active: 1,
             data:{
                 images:[
-                    "../../dist/images/pexels-freemockupsorg-775219.jpg",
-                    "../../dist/images/secondbannerbg.jpg"
+                    "../../distribution/images/pexels-freemockupsorg-775219.jpg",
+                    "../../distribution/images/secondbannerbg.jpg"
                 ]
             },
             loading: true

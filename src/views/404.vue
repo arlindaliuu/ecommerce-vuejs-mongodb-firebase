@@ -20,7 +20,7 @@ import Header from "../components/Header.vue"
 <style scoped>
 h1 {
 
-    background-image: url('../../dist/images/Oopsstyle.png');
+    background-image: url('../../distribution/images/Oopsstyle.png');
     background-clip: text;
     -webkit-background-clip: text;
   color: transparent;

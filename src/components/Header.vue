@@ -11,8 +11,8 @@
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
             <router-link to="/about" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Rreth nesh</router-link>
-            <router-link to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
-            <a @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
+            <router-link v-if="userEmail" to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
+            <a v-if="userEmail" @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
 
             <div v-if="userEmail" class="relative">
                 <button @click="showDropdown = !showDropdown" id="dropdownHoverButton" :class="headerFontColor" class="hidden animate-ease-linear animate-fade-down duration-1000 self-center items-center lg:flex md:ml-4 uppercase" type="button">Profili<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>

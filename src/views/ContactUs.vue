@@ -1,9 +1,11 @@
 <template>
     <div class="bg-gray-100 py-12">
+      <Toaster type="success" ref="toaster" />
+      <Toaster type="wrong" ref="toasterError" />
       <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 class="text-3xl font-light tracking-tight text-gray-900">Na Kontakto!</h2>
         <p class="mt-2 text-lg text-gray-600 font-light">Keni një pyetje apo koment? Do të donim të dëgjonim nga ju. Plotësoni formularin e mëposhtëm dhe ne do t'ju kontaktojmë sa më shpejt të jetë e mundur.</p>
-        <form ref="form" class="mt-8 space-y-6">
+        <form ref="form" method="POST" class="mt-8 space-y-6">
             <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
               <div>
                 <label for="first_name" class="block text-lg font-medium text-gray-700">Emri</label>
@@ -31,7 +33,7 @@
               </div>
             </div>
             <div>
-            <button @click="checkForm" type="submit" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <button @click.prevent="checkForm" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Dërgo
               </button>
           </div>
@@ -47,6 +49,7 @@
   </template>
   
   <script>
+  import Toaster from '../components/Toaster.vue';
   import axios from 'axios';
   export default {
     name: 'ContactUs',
@@ -59,6 +62,9 @@
         errors:[]
       }
     },
+    components:{
+      Toaster
+    },
     methods: {
         async handleSubmit() {
                 try {
@@ -68,7 +74,8 @@
                     email: this.email,
                     message: this.message
                     });
-                    alert('Emaili u dergua me sukses!');
+                    this.$refs.toaster.show(`Emaili u dergua me sukses!`, "success");
+
                     // clear the form fields after successful submission
                     this.firstName = '';
                     this.lastName = '';
@@ -78,12 +85,13 @@
                     this.$refs.form.reset(); // reset the form fields
                 } catch (error) {
                     console.log(error);
-                    alert('Gabim gjatë dërgimit të emailit, ju lutem provoni më vonë');
+                    this.$refs.toasterError.show(`Ndodhi një gabim gjatë dërgimit të emailit!`, "wrong");
                 }
         },
         checkForm: function (e) {
             if (this.firstName && this.lastName && this.email && this.message) {
-                handleSubmit();
+              console.log("Suceed inputs")
+                this.handleSubmit();
                 return true;
             }
 

@@ -6,12 +6,11 @@
 
         <div>
             <div  v-if="slideIndex == 0" class="animate-fade-left">
-                <img class="object-cover w-full max-h-[1080px]" src="../../src/assets/image/pexels-freemockupsorg-775219.jpg" alt="Home Page Image">
+                <img class="object-cover w-full" style="height: 1000px;" src="../../src/assets/image/pexels-freemockupsorg-775219.jpg" alt="Home Page Image">
             </div>
             <div v-if="slideIndex == 1" class="animate-fade-left">
-                <img  class="object-cover w-full max-h-[1080px]" src="../../src/assets/image/secondbannerbg.jpg" alt="Home Page Image">
+                <img  class="object-cover w-full" style="height: 1000px;" src="../../src/assets/image/secondbannerbg.jpg" alt="Home Page Image">
             </div>
-
             <div class=" top-1/3 left-10 border-2 p-20 pb-52 grid bg-white">
                 <p class=" text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
                 <router-link to="/shop" class="text-white text-4xl font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>

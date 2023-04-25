@@ -19,7 +19,7 @@
                 <input class="border w-full lg:w-96 lg:mx-0 p-2.5 " type="search" v-model="searchTerm" />
                 <button class="lg:ml-4 border lg:mt-0 mt-5 p-2.5 bg-indigo-600 text-white rounded-md" @click="searchProducts">Kërko produktin</button>
             </div>
-            <img src="../../distribution/images/logo-luliflex.png" class="self-center w-96 max-h-[150px] lg:block hidden" />
+            <img src="../assets/icons/logo-luliflex.png" class="self-center w-96 max-h-[150px] lg:block hidden" />
         </div>
         <div v-if="!showFilter" class="col-span-1 lg:hidden w-full flex justify-center">
             <button class="font-light" @click="showPriceFilter">Filtro sipas çmimit</button>

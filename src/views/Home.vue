@@ -60,7 +60,6 @@ h2{
 <script>
 import Footer from "../components/Footer.vue"
 import Header from "../components/Header.vue"
-import HeaderUp from "../components/HeaderUp.vue"
 import RegisterModal from "../components/RegisterModal.vue"
 import Card from "../components/parts/Card.vue"
 import SecondBanner from "../components/SecondBanner.vue"
@@ -90,7 +89,6 @@ export default{
     components:{
         Footer,
         Header,
-        HeaderUp,
         RegisterModal,
         Card,
         SecondBanner,

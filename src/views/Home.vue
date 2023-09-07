@@ -4,20 +4,19 @@
     <RegisterModal />
     <!-- <Toaster message="Hello, World!" :duration="500000" :type="'pending'" /> -->
 
-        <div>
+        <div class="relative">
             <div  v-if="slideIndex == 0" class="animate-fade-left">
                 <img class="object-cover w-full h-[1000px]" src="../../src/assets/image/pexels-freemockupsorg-775219.jpg" alt="Home Page Image">
             </div>
             <div v-if="slideIndex == 1" class="animate-fade-left">
                 <img  class="object-cover w-full h-[1000px]" src="../../src/assets/image/secondbannerbg.jpg" alt="Home Page Image">
             </div>
-            <div class=" top-1/3 left-10 border-2 p-20 pb-52 grid bg-white">
-                <p class=" text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
-                <router-link to="/shop" class="text-white text-4xl font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>
+            <div class="w-1/3 h-1/2 bg-beige-100/70 absolute top-1/3 left-32">
+                Miresevini
             </div>
         </div>
         <!----Discount products-->
-        <div class="my-8 md:mx-20">
+        <div class="my-8 mx-6 md:mx-auto max-w-4xl">
             <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
             <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
         </div>
@@ -28,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div v-else class="my-8 md:mx-20 gap-32 grid grid-cols-1 md:grid-cols-2  items-center justify-items-center">
+        <div v-else class="my-8 mx-6 md:mx-auto max-w-4xl gap-4 grid grid-cols-2 md:grid-cols-3 items-center justify-items-center">
             <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
         </div>
 
@@ -38,6 +37,13 @@
         
     <SecondBanner /> 
     <BannerBox />
+    <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
+        <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');"></div>
+        <div class="max-w-4xl mx-6 lg:mx-auto grid items-center">
+            <p class="relative text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
+            <router-link to="/shop" class="relative text-white text-4xl mt-6 font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>
+        </div>
+    </div>
     <BackToTop />
     <Map />
     <ContactUs />

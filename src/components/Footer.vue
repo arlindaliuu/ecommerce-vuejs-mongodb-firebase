@@ -26,7 +26,7 @@
                           <h4 class="pb-4">Shërbimet tona</h4>
                           <ul class="text-gray-500 mt-2">
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Shop</a></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Kontakti</a></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/contactus" class="hover:text-green-900">Kontakti</router-link></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Mbrojtja e privatësisë</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Marketing</a></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Oferta</a></li>

@@ -68,7 +68,7 @@
     methods: {
         async handleSubmit() {
                 try {
-                    const response = await axios.post('https://luliflex-api.herokuapp.com/send-email', {
+                    const response = await axios.post('http://localhost:3000/send-email', {
                     first_name: this.firstName,
                     last_name: this.lastName,
                     email: this.email,

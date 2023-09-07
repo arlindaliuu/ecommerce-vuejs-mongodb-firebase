@@ -6,7 +6,7 @@ const headers = {
 }
 
 const apiCaller = axios.create({
-    baseURL: "https://luliflex-api.herokuapp.com/",
+    baseURL: "http://localhost:3000/",
     timeout: 10* 1000,
     headers
 })

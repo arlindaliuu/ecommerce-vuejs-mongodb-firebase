@@ -67,7 +67,6 @@ import Header from '../components/Header.vue';
 import Card from '../components/parts/Card.vue';
 import Breadcrumbs from '../components/Breadcrumbs.vue';
 import { mapActions, mapGetters } from 'vuex';
-
 export default {
     components: {
         Footer,
@@ -86,8 +85,8 @@ export default {
       const minPrice = this.minPrice ? Number(this.minPrice) : 0;
       const maxPrice = this.maxPrice ? Number(this.maxPrice) : Infinity;
       return this.productList.filter(product =>
-        product.title.toLowerCase().includes(searchTermLowerCase) &&
-        product.price >= minPrice && product.price <= maxPrice
+       product.title.toLowerCase().includes(searchTermLowerCase)
+       && product.price >= minPrice && product.price <= maxPrice
       );
     }
     },

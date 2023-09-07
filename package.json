@@ -19,7 +19,7 @@
     "vue-backtotop": "^1.6.1",
     "vue-cookie-accept-decline": "^6.1.0",
     "vue-cookies": "^1.8.3",
-    "vue-router": "^4.1.6",
+    "vue-router": "^4.0.13",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

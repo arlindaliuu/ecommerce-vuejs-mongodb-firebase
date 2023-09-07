@@ -3,7 +3,7 @@ import router from '../router';
 import { auth  } from '../firebase';
 import { createUserWithEmailAndPassword, signOut ,signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification   } from 'firebase/auth';
 import apiRequest from '../utilities/apiRequest';
-
+import axios from 'axios';
 function getInitialState() {
   return {
     user: null,
@@ -11,6 +11,7 @@ function getInitialState() {
     listProduct: [],
     discountProduct: [],
     adminRole: null,
+    aboutContent: [],
   };
 }
 const store = createStore({
@@ -18,7 +19,8 @@ const store = createStore({
     getters:{
       listProduct: state => state.listProduct,
       getAdmin: state => state.adminRole,
-      listDiscountProduct: state => state.discountProduct
+      listDiscountProduct: state => state.discountProduct,
+      listAboutContent: (state) => state.aboutContent, // Corrected property name
     },
     mutations: {
         SET_USER(state, user){
@@ -41,6 +43,9 @@ const store = createStore({
         listAllProducts(state, listProduct){
           state.listProduct = listProduct
         },
+        listAboutContent(state, aboutFields){
+          state.aboutContent = aboutFields
+        },
         listDiscountProducts(state, discountProduct){
           state.discountProduct = discountProduct
         }
@@ -49,7 +54,7 @@ const store = createStore({
     actions:{
       async deleteProduct({commit}, id){
         try {
-          const res = await fetch(`https://luliflex-api.herokuapp.com/product/${id}`, {
+          const res = await fetch(`http://localhost:3000/product/${id}`, {
             method: 'delete'
           });
           if (!res.ok) {
@@ -62,26 +67,43 @@ const store = createStore({
           return false; // indicate failure
         }
       },
-      async listProducts({ commit }, searchQuery) {
-        const searchParams = new URLSearchParams({ search: searchQuery });
-        const res = await fetch(`https://luliflex-api.herokuapp.com/product?${searchParams}`, {
-          method: 'get'
-        });
-        const newProduct = await res.json();
-        commit('listAllProducts', newProduct);
+      async listProducts({ commit }) {
+        const timestamp = new Date().getTime();
+        const apiUrl = `https://api.luliflex.com/wp-json/custom/v1/posts?timestamp=${timestamp}`;
+        
+        try {
+          const response = await axios.get(apiUrl);
+          const productList = response.data;
+          commit('listAllProducts', productList);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
       },      
       async listDiscountProducts({commit}){
-        const res = await fetch('https://luliflex-api.herokuapp.com/product/listDiscount?discount=true',
-        {
-          method: 'get'
+        try{
+          const response = await axios.get('https://api.luliflex.com/wp-json/custom/v1/posts/discount')
+          const discountProduct = response.data;
+          commit('listDiscountProducts', discountProduct);
         }
-        )
-        const discountProduct = await res.json();
-        commit('listDiscountProducts', discountProduct);
+        catch(error){
+          console.error('Error fetching products:', error);
+        }
       },
+      async aboutContent({ commit }) {
+        
+        const timestamp = new Date().getTime();
+
+        const apiUrl = `https://api.luliflex.com/wp-json/custom/v1/general?timestamp=${timestamp}`;
+        try {
+          const response = await axios.get(apiUrl);
+          const aboutFields = response.data;
+          commit('listAboutContent', aboutFields);
+        } catch (error) {
+          console.error('Error fetching products:', error);
+        }
+      }, 
       //Edit product method
       async editProduct({commit}, productData){
-        console.log(productData)
         const formData = new FormData();
         formData.append('title', productData.title);
         formData.append('author', productData.author);
@@ -94,7 +116,7 @@ const store = createStore({
         formData.append('discountPercentage', productData.discountPercentage);
         formData.append('price', productData.price);
         try {
-          const res = await fetch(`https://luliflex-api.herokuapp.com/product/${productData._id}`,
+          const res = await fetch(`http://localhost:3000/product/${productData._id}`,
           {
             method: 'put',
             body: formData,
@@ -124,7 +146,7 @@ const store = createStore({
         formData.append('price', productData.price);
 
       try{
-        const res = await fetch('https://luliflex-api.herokuapp.com/product', {
+        const res = await fetch('http://localhost:3000/product', {
           method: 'post',
           body: formData,
         });

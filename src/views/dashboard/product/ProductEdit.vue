@@ -123,7 +123,7 @@ export default{
     },
     mounted() {
          this.product._id = this.$route.params.id;
-        fetch(`https://luliflex-api.herokuapp.com/product/${this.product._id}`)
+        fetch(`http://localhost:3000/product/${this.product._id}`)
             .then(response => response.json())
             .then(data => {
             this.product = data;

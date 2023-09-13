@@ -12,15 +12,19 @@ function getInitialState() {
     discountProduct: [],
     adminRole: null,
     aboutContent: [],
+    cartItems: JSON.parse(localStorage.getItem('cartItems')) || [], // Load cart items from localStorage
   };
 }
 const store = createStore({
     state: getInitialState(),
+
     getters:{
       listProduct: state => state.listProduct,
       getAdmin: state => state.adminRole,
       listDiscountProduct: state => state.discountProduct,
       listAboutContent: (state) => state.aboutContent, // Corrected property name
+      cartItemCount: (state) => state.cartItems.length, // Get the number of items in the cart
+      cartItems: (state) => state.cartItems, // Get all cart items
     },
     mutations: {
         SET_USER(state, user){
@@ -28,6 +32,7 @@ const store = createStore({
         },
         CLEAR_USER(state){
             state.user = null
+            localStorage.removeItem('cartItems');
         },
         SET_IS_ADMIN(state, isAdmin){
           if(isAdmin){
@@ -36,6 +41,14 @@ const store = createStore({
           }else{
             state.adminRole = false
           }
+        },
+        removeCartItem(state, index) {
+          state.cartItems.splice(index, 1); // Remove the item at the specified index
+          localStorage.setItem('cartItems', JSON.stringify(state.cartItems)); // Update localStorage
+        },
+        addToCart(state, item) {
+          state.cartItems.push(item);
+          localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
         },
         addProduct(state, newProduct){
           state.newProduct = newProduct

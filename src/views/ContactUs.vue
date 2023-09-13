@@ -84,13 +84,11 @@
                     this.errors = '';
                     this.$refs.form.reset(); // reset the form fields
                 } catch (error) {
-                    console.log(error);
                     this.$refs.toasterError.show(`Ndodhi një gabim gjatë dërgimit të emailit!`, "wrong");
                 }
         },
         checkForm: function (e) {
             if (this.firstName && this.lastName && this.email && this.message) {
-              console.log("Suceed inputs")
                 this.handleSubmit();
                 return true;
             }

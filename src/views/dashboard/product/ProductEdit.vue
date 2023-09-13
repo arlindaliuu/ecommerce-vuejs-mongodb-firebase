@@ -143,7 +143,6 @@ export default{
                 }
                 })
                 .catch((error) => {
-                console.error(error);
                 this.$refs.toasterError.show(`Ndodhi një gabim gjatë fshirjes së produktit.`, "error");
                 });
         },

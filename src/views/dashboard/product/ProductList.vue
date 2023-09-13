@@ -103,13 +103,11 @@
           }
         })
         .catch((error) => {
-          console.error(error);
           this.$refs.toasterError.show(`Ndodhi një gabim gjatë fshirjes së produktit "${title}".`, "error");
         });
     },
     confirmDeleteProduct(id, title) {
       if (confirm(`A jeni i sigurtë qe do të fshini "${title}"?`)) {
-        console.log('confirmDelete', id,title)
         this.deleteProduct(id, title);
       }
     },

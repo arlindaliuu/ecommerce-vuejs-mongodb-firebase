@@ -1,7 +1,7 @@
 <template>
-  <div class="max-w-4xl lg:mx-auto mx-6 mb-20">
+  <div class="max-w-5xl lg:mx-auto mx-6 mb-20">
     <h3 class="text-center font-bold text-2xl">Krijoni eksperiencen me te bukur te gjumit, me produkte te cilat premtojne jetese te shendetshme</h3>
-    <div class="grid grid-cols-1 md:grid-cols-3 justify-center mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 justify-center mt-16 gap-2">
       <div
         v-if="productList.length > 0"
         v-for="(item, index) in productList[0].about_us" 

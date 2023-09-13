@@ -1,10 +1,7 @@
 <template>
   <Header />
   <body>
-
     <div class="min-h-[2000px]">
-  
-
     <div class="parallax w-full min-h-[2000px] bg-fixed bg-center flex flex-wrap">
       <div class="grid grid-cols-1 md:grid-cols-3 bg-white mt-96">
         <Breadcrumbs class="col-span-3 px-32 pt-5 text-xl font-light"/>
@@ -14,8 +11,6 @@
             <span class="ml-5">jemi</span> 
             <br>
             <span class="ml-10">ne?</span> 
-
-           
           </h1>
         </div>
         <div class="p-5 md:p-20 col-span-2 leading-8 space-y-8 font-light text-xl flex items-center">

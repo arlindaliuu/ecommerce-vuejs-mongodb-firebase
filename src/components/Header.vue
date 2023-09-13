@@ -1,5 +1,5 @@
 <template>
-    <header :class="this.classes" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
+    <header :class="[this.classes, headerClass]" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
         <div class="logo flex lg:justify-self-start justify-self-center ">
             <img src="../assets/icons/logo-luliflex.png" class="self-center w-96 max-h-[150px]" />
         </div>
@@ -10,7 +10,11 @@
             <router-link to="/" class="self-center lg:ml-4  uppercase link link-underline link-underline-black">Ballina</router-link> 
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
-            <router-link to="/about" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Rreth nesh</router-link>
+            <router-link to="/about" class="self-center lg:ml-4 lg:pr-4 uppercase link link-underline link-underline-black border-r-2 ">Rreth nesh</router-link>
+            <router-link to="/cartitems" class="self-center relative lg:ml-4 uppercase link link-underline link-underline-black">
+              <img class="max-w-[32px] min-w-[32px] max-h-[32px] min-h-[32px] relative z-20" src="../assets/icons/shopping-cart.webp" alt="shoping bag" />
+              <span class="absolute top-[-19px] left-[13px]">{{ cartItemCount }}</span>
+            </router-link>
             <router-link v-if="userEmail" to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
             <a v-if="userEmail" @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
 
@@ -48,9 +52,12 @@
 
 </template>
 <script>
-import store from '../store/index'
+import { mapGetters } from 'vuex';
 
 export default {
+  props: {
+    headerClass: [String, Object], // Define the headerClass prop to accept a string or object
+  },
     data() {
         return{
             title: "hi there",
@@ -105,6 +112,7 @@ export default {
             userEmail() {
                 return this.$store.state.user ? this.$store.state.user.email : '';                
             },
+            ...mapGetters(['cartItemCount']), // Import the cartItemCount getter
         }
 }
 </script>

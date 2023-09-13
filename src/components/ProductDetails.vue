@@ -35,11 +35,9 @@
         window.scrollTo(0, 0);
         // Fetch the details of the selected product
         const productId = this.$route.params.id;
-        console.log(productId)
         fetch(`https://api.luliflex.com/wp-json/custom/v1/post/${productId}`)
             .then(response => response.json())
             .then(data => {
-              console.log(data)
             this.product = data;
             })
             .catch(error => {

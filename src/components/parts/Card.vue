@@ -1,5 +1,5 @@
 <template>
-  <div class="border shadow-2xl mx-3 w-full h-full">
+  <div class="border shadow-2xl w-full h-full">
     <div class="card  overflow-hidden bg-cover bg-no-repeat">  
       <div class="card-inner">
         <div class="image card-front relative ">
@@ -22,7 +22,7 @@
           <a @click="navigateToProduct" class="hover:text-orange-600 cursor-pointer duration-200 text-base text-center hover:text-lg">
             Shiko detajet &#8594;
           </a>
-          <div class="b mt-2 mx-auto flex justify-center items-center">
+          <div @click="addToCart"  class="b mt-2 mx-auto flex justify-center items-center">
             <div class="i px-5 py-2 bg-gradient-to-br from-blue-400 to-blue-600 items-center rounded-xl shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-105 hover:scale-y-105 transition duration-300 ease-out">
               <a class="text-center text-white font-semibold z-10 pointer-events-none flex justify-content items-center">Shto në shportë</a>
             </div>
@@ -52,6 +52,10 @@ export default {
     navigateToProduct() {
       router.push({ name: 'ProductDetails', params: { id: this.cardData.id } });
     },
+    addToCart() {
+      // Add the card data to the cart using Vuex
+      this.$store.commit('addToCart', this.cardData);
+    },
   },
   computed: {
   getDiscountPrice() {
@@ -72,9 +76,6 @@ export default {
       }
       return this.cardData.description;
     }},
-    created(){
-      console.log(this.cardData)
-    }
 };
 </script>
 <style scoped>

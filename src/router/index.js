@@ -29,7 +29,8 @@ const routes = [
     {
       name: 'login',
       path: '/login',
-      component: () => import('../views/Login.vue')
+      component: () => import('../views/Login.vue'),
+      meta: { title: 'Kycuni ne Luliflex' }
     },
     {
       name: '404',
@@ -39,13 +40,20 @@ const routes = [
     {
       name: 'contactus',
       path: '/contactus',
-      component: () => import('../views/ContactUs.vue')
+      component: () => import('../views/ContactUs.vue'),
+      meta: { title: 'Kontakti' }
     },
     {
       name: 'Shop',
       path: '/shop',
       component: () => import('../views/Shop.vue'),
-      meta: { title: 'Dyqan' }
+      meta: { title: 'Dyqani' }
+    },
+    {
+      name: 'Cart',
+      path: '/cartitems',
+      component: () => import('../views/CartItems.vue'),
+      meta: { title: 'Karta' }
     },
     {
       name: 'dashboard',

@@ -50,7 +50,7 @@
                   </div>
                   
               </div>
-              <div class="text-center text-xl text-white mb-2">
+              <div class="text-center text-xl text-white">
               <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/facebook.svg"></a>
               <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/tik-tok.svg"></a>
               <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/instagram.svg"></a>

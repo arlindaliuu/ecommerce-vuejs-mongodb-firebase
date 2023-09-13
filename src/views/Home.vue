@@ -11,12 +11,20 @@
             <div v-if="slideIndex == 1" class="animate-fade-left">
                 <img  class="object-cover w-full h-[1000px]" src="../../src/assets/image/secondbannerbg.jpg" alt="Home Page Image">
             </div>
-            <div class="w-1/3 h-1/2 bg-beige-100/70 absolute top-1/3 left-32">
-                Miresevini
+            <div class="w-9/12 lg:w-1/3 h-1/2 flex flex-col justify-center py-10 px-6 bg-beige-100/70 absolute top-1/3 left-[12.5%] lg:left-32">
+                <span class="text-3xl font-light">Mirësevini në Luliflex,</span>
+                <br><br>
+                <span class="text-lg font-light overflow-y-auto">ku ne e rithemelojmë eksperiencën tuaj të gjumit.
+                Seleksioni ynë i kujdesshëm i dysheve të cilësisë së lartë i përshtatet çdo stili gjumi dhe preferencë komode.
+                Eksploroni gamën tonë, nga pjekja e luksoze e shpumës së kujdesshme deri te dizajnet tradicionalë të mbushur me shtylla.
+                Me udhëzim ekspertësh, gjeni dyshekun që ju përshtatet më së miri.
+                Transformoni natët tuaja dhe rinovoni ditët tuaja me dyshekun e përsosur nga Lulifkex. 
+                Gjumi i këndshëm, jeta më e mirë.</span>
+
             </div>
         </div>
         <!----Discount products-->
-        <div class="my-8 mx-6 md:mx-auto max-w-4xl">
+        <div class="my-8 mx-6 md:mx-auto max-w-5xl">
             <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
             <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
         </div>
@@ -27,7 +35,7 @@
                 </div>
             </div>
         </div>
-        <div v-else class="my-8 mx-6 md:mx-auto max-w-4xl gap-4 grid grid-cols-2 md:grid-cols-3 items-center justify-items-center">
+        <div v-else class="my-8 mx-6 md:mx-auto max-w-5xl gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
             <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
         </div>
 
@@ -39,12 +47,12 @@
     <BannerBox />
     <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
         <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');"></div>
-        <div class="max-w-4xl mx-6 lg:mx-auto grid items-center">
+        <div class="max-w-5xl mx-6 lg:mx-auto grid items-center">
             <p class="relative text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
             <router-link to="/shop" class="relative text-white text-4xl mt-6 font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>
         </div>
     </div>
-    <BackToTop />
+    <!-- <BackToTop /> -->
     <Map />
     <ContactUs />
     <CookieAcceptDecline />

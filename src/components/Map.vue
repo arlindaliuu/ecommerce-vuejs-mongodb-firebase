@@ -16,7 +16,7 @@
             target="_blank" class="border self-center shadow-2xl text-center cursor-pointer duration-500 hover:bg-green-900 border-orange-600 m-auto hover:w-52 w-44 whitespace-nowrap py-2 mt-5 rounded-lg hover:text-white hover:px-7 inline-block">Më dërgo në LuliFlex</a>
 
         </div>
-        <div class="mt-5 md:mt-0 w-fit">
+        <div class="mt-5 lg:mt-0">
             <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Luli Flex 17523&amp;t=k&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://embed-googlemap.com">embed code google maps</a></div></div>
         </div>
    </div>

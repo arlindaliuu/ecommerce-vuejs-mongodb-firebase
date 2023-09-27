@@ -20,6 +20,9 @@ module.exports = {
         'darkgreen':{
           100:"#008000",
         },
+        'pink':{
+          100:"#f973a0"
+        }
       },
       backgroundImage:{
         main: "linear-gradient(to right, #ea580c, #df540c, #d5500b, #ca4c0b, #c0480a);",

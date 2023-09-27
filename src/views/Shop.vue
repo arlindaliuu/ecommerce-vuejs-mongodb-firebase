@@ -1,7 +1,7 @@
 <template>
     <Header />
-    <h1 class="">Shop</h1>
-    <div class="">
+    <h1>Shop</h1>
+    <div>
         <img class="w-full max-h-[500px] object-cover" src="../assets/image/add2.jpg" />
     </div>
     <div class="text-lg font-light mx-2 lg:mx-32 leading-7 p-5 -mt-32 lg:-mt-10 shadow-2xl bg-white z-20 relative text-green-900">
@@ -43,13 +43,13 @@
         <div class="col-span-4 border mb-32 p-5">
             <div class="grid grid-cols-1 ">
                 <div v-if="loading" class="flex justify-center items-center w-full h-64">
-                    <div class="h-screen bg-white">
+                    <div class="h-auto bg-white">
                         <div class="flex justify-center items-center h-full">
-                          <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
+                          <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="Spinner">
                         </div>
                     </div>
                 </div>
-                <div v-else-if="filteredProductList.length > 0" class="grid grid-cols-1 gap-24 md:grid-cols-2 mt-10 ">
+                <div v-else-if="filteredProductList.length > 0" class="grid grid-cols-1 gap-4 md:grid-cols-3 mt-10">
                   <Card v-for="product in filteredProductList" :key="product.id" :card-data="product" />
                 </div>
                 <div v-else class="w-full">

@@ -13,7 +13,7 @@
         <p class="text-gray-600">{{ item.about_us_field.about_us_content }}</p>
       </div>
       <div v-else>
-        Loading...
+        Po ngarkohet...
       </div>
     </div>
   </div>

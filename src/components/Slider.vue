@@ -10,8 +10,8 @@
         </div>
       </div>
       <div class="slider-controls flex absolute bottom-1 left-1/2 transform -translate-x-1/2">
-        <button @click="prevSlide" class="slider-arrow left-arrow">&#129028;</button>
-        <button @click="nextSlide" class="slider-arrow right-arrow">&#129030;</button>
+        <button @click="prevSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 left-arrow">&#129028;</button>
+        <button @click="nextSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 right-arrow">&#129030;</button>
       </div>
     </div>
 </template>
@@ -107,8 +107,6 @@
 }
 
 .slider-arrow {
-  background-color: #333;
-  color: #fff;
   border: none;
   padding: 10px 15px;
   margin: 0 5px;

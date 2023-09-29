@@ -1,15 +1,18 @@
 <template>
     <Header />
-    <div class="parallax w-full min-h-[1700px] bg-fixed bg-center flex flex-wrap">
-    <div class="mt-[280px] grid md:grid-cols-2 w-full mb-[280px] bg-white">
+    <div :style="{ 'max-height': elementHeight + 'px' }" class="parallax w-full flex flex-wrap">
+    <div ref="elementToMeasure" class="thisElement mt-[280px] w-full mb-[100%] bg-white">
       <Breadcrumbs class="col-span-2 pt-5 px-24 text-xl font-light"/>
+      <div class="grid grid-cols-2">
         <div class="px-24">
+          {{elementHeight}}
             <h1 class="animate-fade-right text-center text-6xl font-light py-10">{{ product.title }}</h1>
-            <p class="text-2xl font-light animate-fade-left mt-10">{{ product.content }}</p>
+            <p class="text-2xl font-light animate-fade-left mt-10">{{ product.content }}asdddddddddddddddddddddddddd asdasd asd asda sdasdas das das dasd asd asdasd asd asdasd ad sas</p>
         </div>
         <div class="py-5">
-            <img class="max-w-[900px] duration-300 hover:shadow-2xl hover:scale-110 max-h-[900px]" :src="product.post_image" />
+            <img class="max-w-[500px] min-w-[500px] min-h[500px] max-h-[500px] duration-300 hover:shadow-2xl hover:scale-105" :src="product.post_image" />
         </div>
+      </div>
     </div>
     </div>
     <button @click="downloadPDF" class="btn-download">Download as PDF</button>
@@ -23,11 +26,13 @@
   import jsPDF from 'jspdf';
   import mammoth from 'mammoth';
 
+
   export default {
     name: 'ProductDetails',
     data() {
       return {
         product: {},
+        elementHeight: 0,
       };
     },
     components:{
@@ -36,6 +41,10 @@
         Breadcrumbs
     },
     mounted() {
+        const element = this.$refs.elementToMeasure;
+        const rect = element.getBoundingClientRect();
+        this.elementHeight = rect.height + 700; // 
+
         window.scrollTo(0, 0);
         // Fetch the details of the selected product
         const productId = this.$route.params.id;
@@ -47,6 +56,7 @@
             .catch(error => {
             console.error(error);
             });
+       
         },
         methods:{
           async fetchImageData(imageUrl) {

@@ -1,6 +1,6 @@
 <template>
-  <div class="border shadow-2xl w-full h-full">
-    <div class="card  overflow-hidden bg-cover bg-no-repeat">  
+  <div class="border card-main shadow-2xl w-full h-full">
+    <div class="card overflow-hidden bg-cover bg-no-repeat">  
       <div class="card-inner">
         <div class="image card-front relative ">
           <div v-if="cardData.discount" class="absolute right-1 p-3 border bg-white font-bold animate-bounce hover:bg-yellow-50">- {{cardData.discount_percentage }}%</div>
@@ -11,7 +11,7 @@
     <p class="text-center text-md md:text-xl pt-5 pb-2">{{ cardData.title }}</p>
     <div class="flex justify-around items-center p-2">
       <div class="flex flex-col">
-        <div class="flex gap-2" v-if="cardData.discount">
+        <div class="flex gap-2 justify-center" v-if="cardData.discount">
           <p class="text-gray-400 line-through text-base">{{ cardData.price }}€</p>
           <p class="text-base">{{ getDiscountPrice }}€</p>
         </div>
@@ -79,6 +79,11 @@ export default {
 };
 </script>
 <style scoped>
+.card-main{
+  border: 1px solid var(--Stroke, rgba(105, 120, 255, 0.47));
+  background: var(--kit-colors-white-base-fdfefd, #FDFEFD);
+  border-image-slice: 1;
+}
 .i::before {
   content: "";
   position: absolute;

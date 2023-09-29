@@ -6,7 +6,7 @@
             <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
           </div>
   
-          <div class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full animate-fade-down animate-duration-[2000ms] animate-ease-in-out">
+          <div class="bg-white rounded-lg mx-2 overflow-hidden shadow-xl transform transition-all sm:max-w-2xl sm:w-full animate-fade-down animate-duration-[2000ms] animate-ease-in-out">
             <div class="bg-white p-4">
               <h3 class="text-lg font-medium leading-6 text-gray-900">
                 Krijo llogari
@@ -15,7 +15,7 @@
                 <p class="text-md text-gray-500">
                   Nuk keni llogari ende? Nxito dhe regjistrohuni tani 
                 </p>
-                <router-link to="/register" class="border ml-auto px-5 py-2 bg-orange-600 text-white font-light rounded-full hover:bg-orange-500">Regjistrohu</router-link>
+                <router-link to="/register" class="border ml-auto px-5 py-2 bg-orange-600 text-white font-light rounded-full hover:bg-orange-500 self-center">Regjistrohu</router-link>
               </div>
             </div>
             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

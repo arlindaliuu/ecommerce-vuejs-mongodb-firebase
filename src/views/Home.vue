@@ -3,10 +3,9 @@
     <Header />
     <RegisterModal />
     <!-- <Toaster message="Hello, World!" :duration="500000" :type="'pending'" /> -->
-
         <Slider />
         <!----Discount products-->
-        <div class="my-8 mx-6 md:mx-auto max-w-5xl">
+        <div class="my-8 mx-6 lg:mx-auto max-w-5xl">
             <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
             <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
         </div>
@@ -17,7 +16,7 @@
                 </div>
             </div>
         </div>
-        <div v-else class="my-8 mx-6 md:mx-auto max-w-5xl gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
+        <div v-else class="my-8 mx-6 lg:mx-auto max-w-5xl gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
             <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
         </div>
 
@@ -25,30 +24,28 @@
             <router-link to="/shop" class="text-3xl !text-black hover:underline font-light">SHIKONI TË GJITHA PRODUKTET ></router-link>
         </div>
         <div v-if="addValidity && showModal">
-  <div v-for="productWithCountdown in formattedCountdownForProduct" :key="productWithCountdown.id">
-    <div v-if="productWithCountdown?.offer" class="fixed inset-0 flex items-center justify-center z-50">
-      <!-- Modal Background -->
-      <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
-      <div class="bg-white shadow-lg z-20 flex flex-col lg:grid lg:grid-cols-2 animate-fade-down min-h-[400px] w-2/3 md:w-1/2 lg:w-2/4">
-        <div class="relative">
-          <img src="../assets/image/bg-countdown.jpg" class="w-full h-64 sm:h-full" />
-          <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full flex-col gap-4 sm:gap-10 block">
-            <p class="text-xs sm:text-xl text-white font-semibold uppercase">Përfitoni ofertën deri në <span class="text-2xl sm:text-4xl font-bold text-darkgreen-100">20%</span> zbritje</p>
-            <p class="text-sm sm:text-lg flex justify-center gap-1" v-html="formattedCountdownVariable"></p>
-            <a @click="navigateToProduct(productWithCountdown.id)" class="mt-4 mx-4 rounded-full px-6 py-2 bg-white block text-sm sm:text-lg self-center text-pink-100 hover:text-white hover:bg-darkgreen-100 cursor-pointer hover:scale-105 duration-300">Blej tani</a>
+          <div v-for="productWithCountdown in formattedCountdownForProduct" :key="productWithCountdown.id">
+            <div v-if="productWithCountdown?.offer" class="fixed inset-0 flex items-center justify-center z-50">
+              <!-- Modal Background -->
+              <div class="fixed inset-0 bg-black opacity-50" @click="closeModal"></div>
+              <div class="bg-white shadow-lg z-20 flex flex-col lg:grid lg:grid-cols-2 animate-fade-down min-h-[400px] w-2/3 md:w-1/2 lg:w-2/4">
+                <div class="relative">
+                  <img src="../assets/image/bg-countdown.jpg" class="w-full h-64 sm:h-full" />
+                  <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center w-full flex-col gap-4 sm:gap-10 block">
+                    <p class="text-xs sm:text-xl text-white font-semibold uppercase">Përfitoni ofertën deri në <span class="text-2xl sm:text-4xl font-bold text-darkgreen-100">20%</span> zbritje</p>
+                    <p class="text-sm sm:text-lg flex justify-center gap-1" v-html="formattedCountdownVariable"></p>
+                    <a @click="navigateToProduct(productWithCountdown.id)" class="mt-4 mx-4 rounded-full px-6 py-2 bg-white block text-sm sm:text-lg self-center text-pink-100 hover:text-white hover:bg-darkgreen-100 cursor-pointer hover:scale-105 duration-300">Blej tani</a>
+                  </div>
+                  <button @click="closeModal" class="text-red absolute flex lg:hidden justify-center items-center -top-4 -right-1 rounded-full p-1 w-6 h-6 bg-white"> &cross;</button>
+                </div>
+                <div class="relative">
+                  <img :src="productWithCountdown.post_image" alt="Image Add" class="w-full h-[300px] lg:h-full" />
+                  <button @click="closeModal" class="text-red absolute justify-center items-center -top-4 -right-1 rounded-full p-1 w-6 h-6 bg-white lg:flex hidden"> &cross;</button>
+                </div>
+              </div>
+            </div>
           </div>
-          <button @click="closeModal" class="text-red absolute flex lg:hidden justify-center items-center -top-4 -right-1 rounded-full p-1 w-6 h-6 bg-white"> &cross;</button>
         </div>
-        <div class="relative">
-          <img :src="productWithCountdown.post_image" alt="Image Add" class="w-full h-[300px] lg:h-full" />
-          <button @click="closeModal" class="text-red absolute justify-center items-center -top-4 -right-1 rounded-full p-1 w-6 h-6 bg-white lg:flex hidden"> &cross;</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
     <SecondBanner /> 
     <BannerBox />
     <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
@@ -63,10 +60,8 @@
     <ContactUs />
     <CookieAcceptDecline />
     <Footer />
-</div>
-
+  </div>
 </template>
-
 
 <style scoped>
 body{
@@ -138,6 +133,8 @@ export default{
         },
     },
     mounted() {
+      window.scrollTo(0, 0);
+
       this.listDiscountProducts().then(()=>{
         this.loading = false;
       })

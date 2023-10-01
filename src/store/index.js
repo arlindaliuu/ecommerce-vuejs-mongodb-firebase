@@ -93,8 +93,11 @@ const store = createStore({
         }
       },      
       async listDiscountProducts({commit}){
+        const timestamp = new Date().getTime();
+        const apiUrl = `https://api.luliflex.com/wp-json/custom/v1/posts/discount?timestamp=${timestamp}`;
+
         try{
-          const response = await axios.get('https://api.luliflex.com/wp-json/custom/v1/posts/discount')
+          const response = await axios.get(apiUrl)
           const discountProduct = response.data;
           commit('listDiscountProducts', discountProduct);
         }

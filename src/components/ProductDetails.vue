@@ -1,15 +1,14 @@
 <template>
     <Header />
     <div :style="{ 'max-height': elementHeight + 'px' }" class="parallax w-full flex flex-wrap">
-    <div ref="elementToMeasure" class="thisElement mt-[280px] w-full mb-[100%] bg-white">
+    <div ref="elementToMeasure"  class="thisElement mt-[280px] w-full mb-[100%] bg-white">
       <Breadcrumbs class="col-span-2 pt-5 px-24 text-xl font-light"/>
-      <div class="grid grid-cols-2">
+      <div class="grid grid-cols-2 py-6">
         <div class="px-24">
-          {{elementHeight}}
             <h1 class="animate-fade-right text-center text-6xl font-light py-10">{{ product.title }}</h1>
-            <p class="text-2xl font-light animate-fade-left mt-10">{{ product.content }}asdddddddddddddddddddddddddd asdasd asd asda sdasdas das das dasd asd asdasd asd asdasd ad sas</p>
+            <p class="text-2xl font-light animate-fade-left mt-10">{{ product.content }}</p>
         </div>
-        <div class="py-5">
+        <div class="py-5 flex items-center">
             <img class="max-w-[500px] min-w-[500px] min-h[500px] max-h-[500px] duration-300 hover:shadow-2xl hover:scale-105" :src="product.post_image" />
         </div>
       </div>
@@ -24,8 +23,6 @@
   import Footer from './Footer.vue';
   import Breadcrumbs from './Breadcrumbs.vue';
   import jsPDF from 'jspdf';
-  import mammoth from 'mammoth';
-
 
   export default {
     name: 'ProductDetails',
@@ -41,17 +38,25 @@
         Breadcrumbs
     },
     mounted() {
-        const element = this.$refs.elementToMeasure;
-        const rect = element.getBoundingClientRect();
-        this.elementHeight = rect.height + 700; // 
-
         window.scrollTo(0, 0);
         // Fetch the details of the selected product
         const productId = this.$route.params.id;
-        fetch(`https://api.luliflex.com/wp-json/custom/v1/post/${productId}`)
+        const timestamp = new Date().getTime();
+        const apiUrl = `https://api.luliflex.com/wp-json/custom/v1/post/${productId}?timestamp=${timestamp}`;
+
+        fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
             this.product = data;
+                  // Now that the API data is fetched, measure the element height
+              this.$nextTick(() => {
+                const element = this.$refs.elementToMeasure;
+                const rect = element.getBoundingClientRect();
+                this.elementHeight = rect.height + 500;
+
+                // Scroll to the top after everything is set
+                window.scrollTo(0, 0);
+              });
             })
             .catch(error => {
             console.error(error);

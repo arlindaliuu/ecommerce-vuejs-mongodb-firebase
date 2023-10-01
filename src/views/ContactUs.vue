@@ -68,7 +68,7 @@
     methods: {
         async handleSubmit() {
                 try {
-                    const response = await axios.post('http://localhost:3000/send-email', {
+                    const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/send-email', {
                     first_name: this.firstName,
                     last_name: this.lastName,
                     email: this.email,
@@ -92,7 +92,6 @@
                 this.handleSubmit();
                 return true;
             }
-
             this.errors = [];
 
             if (!this.firstName) {
@@ -114,9 +113,3 @@
     }
   }
 </script>
-
-  
-  <style scoped>
-  /* Tailwind styles go here */
-  </style>
-  

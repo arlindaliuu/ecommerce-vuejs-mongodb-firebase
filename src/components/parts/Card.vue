@@ -13,10 +13,10 @@
       <div class="flex flex-col">
         <div class="flex gap-2 justify-center" v-if="cardData.discount">
           <p class="text-gray-400 line-through text-base">{{ cardData.price }}€</p>
-          <p class="text-base">{{ getDiscountPrice }}€</p>
+          <p class="text-base text-center">{{ getDiscountPrice }}€</p>
         </div>
         <div v-else>
-          <p class="text-base">{{ cardData.price }}€</p>
+          <p class="text-base text-center">{{ cardData.price }}€</p>
         </div>
         <div class="grid mt-2">
           <a @click="navigateToProduct" class="hover:text-orange-600 cursor-pointer duration-200 text-base text-center hover:text-lg">

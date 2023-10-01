@@ -80,15 +80,31 @@ export default {
         return this.listProduct;
     },
     filteredProductList() {
-      // Filter the product list based on the search query and price range
-      const searchTermLowerCase = this.searchTerm.toLowerCase();
-      const minPrice = this.minPrice ? Number(this.minPrice) : 0;
-      const maxPrice = this.maxPrice ? Number(this.maxPrice) : Infinity;
-      return this.productList.filter(product =>
-       product.title.toLowerCase().includes(searchTermLowerCase)
-       && product.price >= minPrice && product.price <= maxPrice
-      );
-    }
+        // Filter the product list based on the search query and price range
+        const searchTermLowerCase = this.searchTerm.toLowerCase();
+        const minPrice = this.minPrice ? Number(this.minPrice) : 0;
+        const maxPrice = this.maxPrice ? Number(this.maxPrice) : Infinity;
+
+        return this.productList.filter(product => {
+            // Check if the product has a discount and discount_percentage is valid
+            if (product.discount === true && !isNaN(parseFloat(product.discount_percentage))) {
+            // Calculate the discounted price based on the discount_percentage
+            const discountedPrice = (1 - parseFloat(product.discount_percentage) / 100) * parseFloat(product.price);
+
+            // Check if the discounted price is within the price range
+            return (
+                product.title.toLowerCase().includes(searchTermLowerCase) &&
+                discountedPrice >= minPrice && discountedPrice <= maxPrice
+            );
+            } else {
+            // If no discount or invalid discount_percentage, use the regular price
+            return (
+                product.title.toLowerCase().includes(searchTermLowerCase) &&
+                parseFloat(product.price) >= minPrice && parseFloat(product.price) <= maxPrice
+            );
+            }
+        });
+        }
     },
         data() {
         return {

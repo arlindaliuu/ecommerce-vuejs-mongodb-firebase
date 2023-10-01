@@ -1,5 +1,13 @@
 <template>
-    <div class="slider relative" v-touch:swipe.left="swipeLeft" v-touch:swipe.right="swipeRight">
+    <div v-if="loading" class="flex justify-center items-center w-full h-96 pt-40">
+        <div class="h-auto bg-white">
+            <div class="flex flex-col justify-center items-center h-full">
+              <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
+              Po mbingarkohet
+            </div>
+        </div>
+    </div>
+    <div v-else class="slider relative" v-touch:swipe.left="swipeLeft" v-touch:swipe.right="swipeRight">
       <div class="slider-container">
         <div
           class="slider-item duration-500"
@@ -26,6 +34,7 @@
             currentIndex: 0,
             intervalId: null,
             animate: "",
+            loading: true,
             };
         },
         computed: {
@@ -64,7 +73,9 @@
           this.$store.dispatch('aboutContent').then(()=>{
             if(this.productList[0].slider_array.length > 0){
               this.items = this.productList[0].slider_array.map(item => item.image_field);
+              this.loading = false;
             }else{
+              this.loading = false;
               this.items = [
                 "../../src/assets/image/pexels-freemockupsorg-775219.jpg",
                 "../../src/assets/image/secondbannerbg.jpg",

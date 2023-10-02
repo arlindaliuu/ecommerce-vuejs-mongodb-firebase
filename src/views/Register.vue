@@ -58,7 +58,7 @@
                         </div>
                         <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 md:p-10 bg-login">
                             <div class="text-sm grid gap-4 justify-between items-center">
-                                <p class="text-3xl">Mirësevini në Luliflex</p>
+                                <p class="text-3xl">Mirësevini në LULIflex</p>
                                 <p class="font-light whitespace-nowrap">Keni llogari?</p>
                                 <router-link to="/login" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Kyçu</router-link>
                                 <router-link to="/" class="w-full bg-beige-100 py-3 text-center text-green-900 rounded-lg hover:scale-105 duration-300 mt-10">Shko në faqen kryesore &#x2192;</router-link>

@@ -13,7 +13,7 @@
       <div class="flex flex-col">
         <div class="flex gap-2 justify-center" v-if="cardData.discount">
           <p class="text-gray-400 line-through text-base">{{ cardData.price }}€</p>
-          <p class="text-base text-center">{{ getDiscountPrice }}€</p>
+          <p class="text-base text-center text-red-900">{{ getDiscountPrice }}€</p>
         </div>
         <div v-else>
           <p class="text-base text-center">{{ cardData.price }}€</p>

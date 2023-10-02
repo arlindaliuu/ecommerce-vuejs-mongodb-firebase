@@ -7,21 +7,21 @@
       <!------>
       <div class="grid grid-cols-3 mx-64  my-5 h-36 rounded-3xl gap-5">
         <div class="border shadow-2xl hover:scale-110 duration-500 p-3 rounded-3xl bg-yellow-300 ">
-          <h1 class="text-center font-title text-2xl text-white">Përdorues Aktiv</h1>
+          <h1 class="text-center text-2xl text-white">Përdorues Aktiv</h1>
           <div class="flex justify-between px-2 pt-5">
             <img class="h-16 object-contain" src="../../../assets/icons/group.png" />
             <p class="text-[40px] text-white font-bold">78</p>
           </div>
         </div>
         <div class="border shadow-2xl hover:scale-110 duration-500 p-3 rounded-3xl bg-green-800">
-          <h1 class="text-center font-title text-2xl text-white">Sasia e produkteve</h1>
+          <h1 class="text-center text-2xl text-white">Sasia e produkteve</h1>
           <div class="flex justify-between px-2 pt-5">
             <img class="h-16 object-contain" src="../../../assets/icons/box.png" />
             <p class="text-[40px] text-white font-bold">78</p>
           </div>
         </div>
         <div class="border hover:scale-110 duration-500 shadow-2xl p-3 rounded-3xl bg-red-800">
-          <h1 class="text-center font-title text-2xl text-white">Të ardhurat</h1>
+          <h1 class="text-center text-2xl text-white">Të ardhurat</h1>
           <div class="flex justify-between px-2 pt-5">
             <img class="h-16 object-contain" src="../../../assets/icons/increase.png" />
             <p class="text-[40px] text-white font-bold">$ 8223.32</p>

@@ -1,4 +1,5 @@
 <template>
+  <div class="relative">
     <div v-if="loading" class="flex justify-center items-center w-full h-96 pt-40">
         <div class="h-auto bg-white">
             <div class="flex flex-col justify-center items-center h-full">
@@ -10,7 +11,7 @@
     <div v-else class="slider relative" v-touch:swipe.left="swipeLeft" v-touch:swipe.right="swipeRight">
       <div class="slider-container">
         <div
-          class="slider-item duration-500"
+          class="slider-item duration-500 relative"
           v-for="(item, index) in items"
           :key="index"
           :class="[animate, { active: index === currentIndex }]" >
@@ -22,6 +23,18 @@
         <button @click="nextSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 right-arrow">&#129030;</button>
       </div>
     </div>
+        <div class="absolute bg-beige-100/40 top-1/2 lg:w-1/3 transform -translate-y-1/2 lg:left-10 p-6 mx-4">
+            <div class="w-full h-full bg-beige-100/50 px-4 py-16 flex flex-col hover:bg-beige-100/40 duration-300 hover:scale-105">
+              <h1 class="tex-bold text-lg lg:text-3xl text-gray-700">Mirësevini në <span class="text-orange-600">LULIflex</span>,</h1>
+              <br>
+                <span class="text-left text-xs lg:text-base font-medium text-gray-700">
+                destinacioni juaj i fundit për dyshek më të cilin mund të merrni pjesë në botimin e komfortit dhe rinovimit të pamatuar.
+                Kërkoni një botë të pa-përshkallur komoditeti dhe rinovimit, ndërsa eksploroni seleksionin tonë të kujdesshëm të zgjedhur më hir të Zotit të dyshekeve të shkëlqyera. Qoftë se kerkoni gjumën e pefërmë të përditshme apo po përmirësoni dhomen tuaj, në në keni dyshekun e përfekt dhënë juve.
+                Hedhuni në një botë cilësie, luksoze dhe netë rehatshme me ne!
+                </span>
+            </div>
+        </div>
+  </div>
 </template>
 
 <script>

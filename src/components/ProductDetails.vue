@@ -3,13 +3,13 @@
     <div :style="{ 'max-height': elementHeight + 'px' }" class="parallax w-full flex flex-wrap">
     <div ref="elementToMeasure"  class="thisElement mt-[280px] w-full mb-[100%] bg-white">
       <Breadcrumbs class="col-span-2 pt-5 px-24 text-xl font-light"/>
-      <div class="grid grid-cols-2 py-6">
+      <div class="grid lg:grid-cols-2 py-6 justify-center">
         <div class="px-24">
-            <h1 class="animate-fade-right text-center text-6xl font-light py-10">{{ product.title }}</h1>
-            <p class="text-2xl font-light animate-fade-left mt-10">{{ product.content }}</p>
+            <h1 class="animate-fade-right text-lg lg:text-3xl py-6">{{ product.title }}</h1>
+            <p class="text-sm lg:text-lg font-light animate-fade-left">{{ product.content }}</p>
         </div>
-        <div class="py-5 flex items-center">
-            <img class="max-w-[500px] min-w-[500px] min-h[500px] max-h-[500px] duration-300 hover:shadow-2xl hover:scale-105" :src="product.post_image" />
+        <div class="py-5 grid items-center justify-between px-24 lg:px-0">
+            <img class="max-w-[300px] min-w-[300px] min-h-[300px] max-h-[300px] lg:max-w-[400px] lg:min-w-[400px] lg:min-h-[400px] lg:max-h-[400px] xl:max-w-[500px] xl:min-w-[500px] xl:min-h-[500px] xl:max-h-[500px] duration-300 hover:shadow-2xl hover:scale-105" :src="product.post_image" />
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
     data() {
       return {
         product: {},
-        elementHeight: 0,
+        elementHeight: 1000,
       };
     },
     components:{

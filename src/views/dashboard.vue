@@ -7,7 +7,7 @@
             </div>
             <h1 class="text-center text-white text-xl pt-4">Arlind Aliu</h1>
             <div class="p-5">
-                <ul class="text-white font-content text-2xl">
+                <ul class="text-white text-2xl">
                     <li class="flex p-2 rounded-3xl hover:bg-white hover:text-[#00b7f8] cursor-pointer duration-500">
                         <img class="object-contain" src="../../assets/icons/view.png">
                         <p class="pl-3">Pasqyra e përgjithshme</p>

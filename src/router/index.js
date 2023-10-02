@@ -30,7 +30,7 @@ const routes = [
       name: 'login',
       path: '/login',
       component: () => import('../views/Login.vue'),
-      meta: { title: 'Kycuni ne Luliflex' }
+      meta: { title: 'Kycuni ne LULIflex' }
     },
     {
       name: '404',

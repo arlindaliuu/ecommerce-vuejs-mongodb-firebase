@@ -19,7 +19,7 @@
                 <input class="border w-full lg:w-96 lg:mx-0 p-2.5 " type="search" v-model="searchTerm" />
                 <button class="lg:ml-4 border lg:mt-0 mt-5 p-2.5 bg-indigo-600 text-white rounded-md" @click="searchProducts">Kërko produktin</button>
             </div>
-            <img src="../assets/icons/logo-luliflex.png" class="self-center w-96 max-h-[150px] lg:block hidden" />
+            <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[150px] lg:block hidden" />
         </div>
         <div v-if="!showFilter" class="col-span-1 lg:hidden w-full flex justify-center">
             <button class="font-light" @click="showPriceFilter">Filtro sipas çmimit</button>
@@ -29,14 +29,14 @@
             <button class="absolute top-1 right-1 block lg:hidden" @click="showPriceFilter">
             <img src="../assets/icons/hidden.png" class="w-7 h-7"/>
             </button>
-            <h2 class="font-content text-3xl py-5">Filtro sipas çmimit </h2>
+            <h2 class="text-3xl py-5">Filtro sipas çmimit </h2>
             <hr class="p-4">
             <div class="mb-4">
-              <label for="min-price" class="block font-content font-medium mb-2">Çmimi minimal</label>
+              <label for="min-price" class="block font-medium mb-2">Çmimi minimal</label>
               <input type="number" id="min-price" class="border p-2.5 w-full" v-model.number="minPrice" />
             </div>
             <div class="mb-4">
-              <label for="max-price" class="block font-content font-medium mb-2">Çmimi maksimal</label>
+              <label for="max-price" class="block font-medium mb-2">Çmimi maksimal</label>
               <input type="number" id="max-price" class="border p-2.5 w-full" v-model.number="maxPrice" />
             </div>
           </div>          

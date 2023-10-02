@@ -6,10 +6,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        title: "cursive;",
-        content: ["'Jomolhari', serif", "'Libre Baskerville'", "serif', 'Tilt Warp', cursive'"]
-      },
       colors:{
         'beige':{
           100:"#F5F5DC",

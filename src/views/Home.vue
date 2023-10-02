@@ -4,25 +4,7 @@
     <RegisterModal />
     <!-- <Toaster message="Hello, World!" :duration="500000" :type="'pending'" /> -->
         <Slider />
-        <!----Discount products-->
-        <div class="my-8 mx-6 lg:mx-auto max-w-5xl">
-            <h1 class="text-left text-4xl font-light">Përfito nga zbritja...</h1>
-            <hr class="h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
-        </div>
-        <div v-if="loading" class="flex justify-center items-center w-full h-64">
-            <div class="h-auto bg-white">
-                <div class="flex justify-center items-center h-full">
-                  <img class="h-16 w-16" src="https://icons8.com/preloaders/preloaders/1488/Iphone-spinner-2.gif" alt="">
-                </div>
-            </div>
-        </div>
-        <div v-else class="my-8 mx-6 lg:mx-auto max-w-5xl gap-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-items-center">
-            <Card v-for="listProduct in productList" :key="listProduct.id" :card-data="listProduct"/>
-        </div>
-
-        <div class="p-5 mb-32 w-full text-center">
-            <router-link to="/shop" class="text-3xl !text-black hover:underline font-light">SHIKONI TË GJITHA PRODUKTET ></router-link>
-        </div>
+        <ListProducts />
         <div v-if="addValidity && showModal">
           <div v-for="productWithCountdown in formattedCountdownForProduct" :key="productWithCountdown.id">
             <div v-if="productWithCountdown?.offer" class="fixed inset-0 flex items-center justify-center z-50">
@@ -88,7 +70,7 @@ import { mapActions, mapGetters } from 'vuex';
 import { parse, differenceInSeconds } from 'date-fns';
 import router from './../router'
 import Slider from "../components/Slider.vue"
-
+import ListProducts from "../components/ListProducts.vue"
 export default{
     data(){
         return{
@@ -113,7 +95,8 @@ export default{
         Map,
         CookieAcceptDecline,
         ContactUs,
-        Slider
+        Slider,
+        ListProducts
         
     },
     computed: {

@@ -14,7 +14,7 @@
       <div class="overflow-hidden">
         <div class="slider-container grid justify-center" :style="`transform: translateX(${sliderPosition}px)`">
         <transition-group name="slide" tag="div" class="slider justify-between gap-10">
-          <Card v-for="(listProduct, index) in displayedProducts" :key="listProduct.id" :card-data="listProduct" @click="navigateToProduct(listProduct.id)" />
+          <Card v-for="(listProduct, index) in displayedProducts" :key="listProduct.id" :card-data="listProduct" />
         </transition-group>        
         </div>
       </div>
@@ -58,10 +58,20 @@
     },
     mounted() {
       window.scrollTo(0, 0);
-  
+      
       this.listProducts().then(() => {
         this.loading = false;
         this.startSlider();
+         // Check screen width and hide cards if it's a mobile screen
+         setTimeout(() => {
+        if (window.innerWidth <= 1024) {
+          const cards = document.getElementsByClassName('card-main');
+          if (cards.length >= 3) {
+            cards[1].style.display = "none";
+            cards[2].style.display = "none";
+          }
+        }
+      }, 100);
       });
     },
     methods: {
@@ -73,8 +83,17 @@
         const numProducts = this.listProduct.length;
         if (numProducts > 3) {
           setInterval(() => {
+            if (window.innerWidth <= 1024) {
+              const cards = document.getElementsByClassName('card-main');
+              if (cards.length >= 3) {
+                cards[1].style.display = "none";
+                cards[2].style.display = "none";
+              }
+            }
+            
+            // Update the card index outside of the mobile screen condition
             this.currentIndex = (this.currentIndex + 1) % numProducts;
-          },10000); // Adjust the interval as needed
+          }, 5000); // Adjust the interval as needed
         }
       },
     },

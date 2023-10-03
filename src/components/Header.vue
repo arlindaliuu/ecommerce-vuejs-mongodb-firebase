@@ -1,7 +1,7 @@
 <template>
-    <header :class="[this.classes, headerClass]" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10 max-h-[130px]">
+    <header :class="[this.classes, headerClass]" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
         <div class="logo flex lg:justify-self-start justify-self-center ">
-            <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[150px]" />
+            <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[130px]" />
         </div>
         <div class="items-center lg:hidden flex justify-end p-10">
           <button @click="hadleShowMenu"><img src="../assets/icons/menu.png" /></button>
@@ -10,14 +10,16 @@
             <router-link to="/" class="self-center lg:ml-4  uppercase link link-underline link-underline-black">Ballina</router-link> 
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Dyshek</router-link>
             <router-link to="/shop" class="self-center lg:ml-4 uppercase link link-underline link-underline-black">Ofertë</router-link>
-            <router-link to="/about" class="self-center lg:ml-4 lg:pr-4 uppercase link link-underline link-underline-black border-r-2 ">Rreth nesh</router-link>
-            <router-link to="/cartitems" class="self-center relative lg:ml-4 uppercase link link-underline link-underline-black">
+            <router-link to="/about" class="self-center lg:ml-4 lg:pr-4 uppercase link link-underline link-underline-black border-none lg:border-r-2">Rreth nesh</router-link>
+            <router-link to="/cartitems" class="self-center relative lg:ml-4 uppercase link link-underline link-underline-black hidden lg:block">
               <img class="max-w-[32px] min-w-[32px] max-h-[32px] min-h-[32px] relative z-20" src="../assets/icons/shopping-cart.webp" alt="shoping bag" />
-              <span class="absolute top-[-19px] left-[13px]">{{ cartItemCount }}</span>
+              <span class="absolute top-[-13px] left-[13px]">{{ cartItemCount }}</span>
             </router-link>
             <router-link v-if="userEmail" to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
             <a v-if="userEmail" @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
-
+            <router-link to="/cartitems" class="self-center lg:ml-4 uppercase link link-underline link-underline-black block lg:hidden">
+              Shporta
+            </router-link>
             <div v-if="userEmail" class="relative">
                 <button @click="showDropdown = !showDropdown" id="dropdownHoverButton" :class="headerFontColor" class="hidden animate-ease-linear animate-fade-down duration-1000 self-center items-center lg:flex md:ml-4 uppercase" type="button">Profili<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button>
                 <div v-if="showDropdown" id="dropdownHover" class="z-10 right-3 bg-white divide-y absolute overflow-y-auto max-h-[200px]: divide-gray-100  shadow w-44 dark:bg-gray-700">

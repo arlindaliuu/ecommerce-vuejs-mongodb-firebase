@@ -1,5 +1,5 @@
 <template>
-    <Header/>
+    <Header :headerClass="'bg-darkblue-100/30'" />
     <div class="bg-white m-auto w-full h-full grid grid-cols-1 justify-center p-32  space-y-2">
         <h1 class="w-full text-center text-[200px] font-extrabold">Oops!</h1>
         <h3 class="w-full text-center text-xl font-bold">Faqja nuk u gjet</h3>

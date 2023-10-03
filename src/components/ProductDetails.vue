@@ -96,6 +96,13 @@
               // Add the image to the PDF document
               // Adjust the coordinates, width, and height as needed
               doc.addImage(imageData, 'JPEG', 10, 30, 50, 50);
+              const d = new Date();
+              let year = d.getFullYear();
+
+              // Add a watermark in the middle of the page
+              doc.setFontSize(40);
+              doc.setTextColor(200); // Adjust transparency here
+              doc.text("LULIflex "+ year, doc.internal.pageSize.width / 2, doc.internal.pageSize.height / 2, 'center');
 
               // Save the PDF as a file
               doc.save('product_details.pdf');

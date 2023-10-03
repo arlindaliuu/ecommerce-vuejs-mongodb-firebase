@@ -33,8 +33,8 @@
     <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
         <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');"></div>
         <div class="max-w-5xl mx-6 lg:mx-auto grid items-center">
-            <p class="relative text-orange-600 text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
-            <router-link to="/shop" class="relative text-white text-4xl mt-6 font-serif border-2 rounded-sm bg-orange-600 p-1 m-auto">Bleni tani!</router-link>
+            <p class="relative text-white text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
+            <router-link to="/shop" class="hover:px-10 h over:text-white hover:border-white hover:bg-main duration-200 relative text-green-900 text-2xl mt-6 font-serif border-2 rounded-full px-6 bg-white py-2 border-green-900 m-auto">Bleni tani!</router-link>
         </div>
     </div>
     <!-- <BackToTop /> -->
@@ -64,7 +64,7 @@ import Toaster from "../components/Toaster.vue"
 import BannerBox from "../components/BannerBox.vue"
 import BackToTop from "../components/BackToTop.vue"
 import Map from "../components/Map.vue"
-import CookieAcceptDecline from "../components/CookieAcceptDecline .vue"
+import CookieAcceptDecline from "../components/CookieAcceptDecline.vue"
 import ContactUs from "./ContactUs.vue"
 import { mapActions, mapGetters } from 'vuex';
 import { parse, differenceInSeconds } from 'date-fns';

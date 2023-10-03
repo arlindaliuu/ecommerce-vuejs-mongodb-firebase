@@ -46,6 +46,10 @@ const store = createStore({
           state.cartItems.splice(index, 1); // Remove the item at the specified index
           localStorage.setItem('cartItems', JSON.stringify(state.cartItems)); // Update localStorage
         },
+        removeAllCartItems(state) {
+          state.cartItems = []; // Remove all items from the cart
+          localStorage.removeItem('cartItems'); // Remove the cartItems from localStorage
+        },
         addToCart(state, item) {
           state.cartItems.push(item);
           localStorage.setItem('cartItems', JSON.stringify(state.cartItems));

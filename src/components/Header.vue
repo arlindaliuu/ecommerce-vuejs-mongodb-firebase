@@ -1,7 +1,7 @@
 <template>
     <header :class="[this.classes, headerClass]" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
         <div class="logo flex lg:justify-self-start justify-self-center ">
-            <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[130px]" />
+            <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[130px]" alt="Luliflex logo" />
         </div>
         <div class="items-center lg:hidden flex justify-end p-10">
           <button @click="hadleShowMenu"><img src="../assets/icons/menu.png" /></button>

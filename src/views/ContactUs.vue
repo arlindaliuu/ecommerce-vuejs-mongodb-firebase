@@ -3,8 +3,8 @@
       <Toaster type="success" ref="toaster" />
       <Toaster type="wrong" ref="toasterError" />
       <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-3xl font-light tracking-tight text-gray-900">Na Kontakto!</h2>
-        <p class="mt-2 text-lg text-gray-600 font-light">Keni një pyetje apo koment? Do të donim të dëgjonim nga ju. Plotësoni formularin e mëposhtëm dhe ne do t'ju kontaktojmë sa më shpejt të jetë e mundur.</p>
+        <h2 class="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">Na Kontakto!</h2>
+        <p class="mt-2 text-base lg:text-lg text-gray-600">Keni një pyetje apo koment? Do të donim të dëgjonim nga ju. Plotësoni formularin e mëposhtëm dhe ne do t'ju kontaktojmë sa më shpejt të jetë e mundur.</p>
         <form ref="form" method="POST" class="mt-8 space-y-6">
             <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
               <div>

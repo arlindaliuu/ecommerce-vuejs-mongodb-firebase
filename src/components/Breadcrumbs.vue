@@ -1,6 +1,6 @@
 <template>
     <nav class="breadcrumb h-fit" aria-label="breadcrumbs">
-      <ul class="flex">
+      <ul class="flex w-max">
         <li class="li-elements flex" v-for="(crumb, index) in breadcrumbs" :key="index">
             <router-link class="hover:underline" :to="crumb.path" :class="crumb.className">{{ crumb.name }}</router-link>
             <span v-if="index < breadcrumbs.length - 1" class="separator"> > </span>

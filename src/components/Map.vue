@@ -3,11 +3,11 @@
         <div class="grid">
             <h1 class="text-2xl lg:text-4xl underline text-green-900 font-light">Lokacioni <br> <span>&</span> <br>Orari</h1>
             <h2 class="md:mt-10 mt-5 text-xl lg:text-3xl">Orari</h2>
-            <ul class="text-lg mt-5 font-light">
+            <ul class="text-lg font-light">
                 <li>E hënë - e shtunë - 09:00 - 18:00</li>
             </ul>
-            <h2 class="md:mt-10 text-2xl lg:text-4xl">Lokacioni</h2>
-            <ul class="text-lg mt-5 font-light">
+            <h2 class="md:mt-10 mt-4 text-2xl lg:text-4xl">Lokacioni</h2>
+            <ul class="text-lg font-light">
                 <li>15. Novembra</li>
                 <li>Preševo 17523</li>
                 <li>Serbia</li>

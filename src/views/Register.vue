@@ -96,10 +96,10 @@ export default{
         // add validation function for username input
         const validateUsername = () => {
             if (!register_form.value.username) {
-                usernameError.value = 'Please enter a username.';
+                usernameError.value = 'Ju lutemi shkruani emrin e përdoruesit.'
                 return false;
             } else if(register_form.value.username.length < 5){
-                usernameError.value = 'Username duhet të jetë më i gjatë se 5 shkronja.';
+                usernameError.value = 'Emri duhet të jetë më i gjatë se 5 shkronja.';
                 return false;
             } else {
                 usernameError.value = '';

@@ -5,15 +5,15 @@
     <div class="parallax w-full min-h-[2000px] bg-fixed bg-center flex flex-wrap">
       <div class="grid grid-cols-1 md:grid-cols-3 bg-white mt-96">
         <Breadcrumbs class="col-span-3 px-32 pt-5 text-xl font-light"/>
-        <div class="flex justify-center items-center">
-          <h1 class="text-[80px] underline text-green-700 font-light">
+        <div class="flex justify-center items-center col-span-3 lg:col-span-1">
+          <h1 class="text-5xl lg:text-[80px] underline text-green-700 font-light">
             Kush <br>
             <span class="ml-5">jemi</span> 
             <br>
             <span class="ml-10">ne?</span> 
           </h1>
         </div>
-        <div class="p-5 md:p-20 col-span-2 leading-8 space-y-8 font-light text-xl flex items-center">
+        <div class="p-5 md:p-20 leading-8 space-y-8 font-light text-base lg:text-xl flex items-center col-span-3 lg:col-span-2">
           <p>Kompania jonë lindi nga një pasion për gjumin dhe një dëshirë për të ndihmuar njerëzit të arrijnë pushimin më të mirë të mundshëm. Ne e kuptojmë se blerja për një dyshek mund të jetë dërrmuese, kjo është arsyeja pse ne ofrojmë konsultime të personalizuara për të ndihmuar klientët tanë të zgjedhin dyshekun e përsosur për nevojat e tyre specifike.
     
             Në LULIflex, ne besojmë se një gjumë i mirë i natës është themeli i një jete të lumtur dhe të shëndetshme. Ne e kuptojmë se të gjithë kanë nevoja unike për gjumë, kjo është arsyeja pse ne jemi të përkushtuar për të krijuar dyshekë të personalizuar që plotësojnë preferencat e secilit individ.
@@ -26,15 +26,15 @@
         </div>
       </div>
     <div class="grid grid-cols-1 md:grid-cols-3 bg-white mt-96">
-      <div class="p-5 md:p-20 col-span-2 leading-8 space-y-8 text-xl">
-        <div class="md:hidden flex justify-center items-center">
-          <h1 class="text-[80px] mb-5 underline text-green-700 font-light">
+      <div class="p-5 md:p-20 leading-8 space-y-8 text-xl  col-span-3 lg:col-span-2 order-2 lg-order-1">
+        <div class="md:hidden flex justify-center items-center mt-5 lg:mt-0">
+          <h1 class="text-5xl lg:text-[80px] mb-5 underline text-green-700 font-light">
             <span>Misioni</span><br><br>
             <span>jone!</span><br>
           </h1>
         </div>
-          <div class="p-5 md:p-20 col-span-2 leading-8 space-y-8 font-light text-xl flex items-center">
-            <p class="font-light">Në LULIflex, ne besojmë se një gjumë i mirë gjatë natës është thelbësor për shëndetin dhe mirëqenien e përgjithshme. Ne jemi të pasionuar për ofrimin e dyshekëve me cilësi të lartë që jo vetëm përmbushin, por tejkalojnë pritshmëritë e klientëve tanë.
+          <div class="col-span-2 leading-8 space-y-8 font-light flex items-center">
+            <p class="text-base lg:text-xl ">Në LULIflex, ne besojmë se një gjumë i mirë gjatë natës është thelbësor për shëndetin dhe mirëqenien e përgjithshme. Ne jemi të pasionuar për ofrimin e dyshekëve me cilësi të lartë që jo vetëm përmbushin, por tejkalojnë pritshmëritë e klientëve tanë.
 
               Misioni ynë është i thjeshtë: t'i ndihmojmë njerëzit të flenë më mirë. Ne e arrijmë këtë duke ofruar dyshekë që janë të dizajnuar me teknologjinë më të fundit dhe materialet më të mira, duke u siguruar që klientët tanë të kenë mbështetjen dhe komoditetin që u nevojitet për një gjumë të qetë të natës.
               
@@ -46,8 +46,8 @@
             </p>
           </div>
         </div>
-      <div class="md:flex hidden justify-center items-center">
-        <h1 class="text-[80px] underline text-green-700 font-light">
+      <div class="md:flex hidden justify-center items-center col-span-3 lg:col-span-1 order-1 lg:order-2">
+        <h1 class="lg:text-5xl text-[80px] underline text-green-700 font-light">
           Misioni<br>
           jone! <br>
         </h1>

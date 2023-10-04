@@ -3,6 +3,14 @@
     <Header />
     <RegisterModal />
     <!-- <Toaster message="Hello, World!" :duration="500000" :type="'pending'" /> -->
+        <div v-if="pageIsLoaded" class="bg-beige-100 w-full h-full fixed z-50 top-0 left-0 overflow-clip flex justify-center items-center text-2xl">
+           <div class="h-auto">
+            <div class="flex flex-col justify-center items-center h-full">
+              <img class="h-16 w-16 animate-spin animate-infinite animate-reverse" src="../assets/icons/spinner.png" alt="Spinner gif">
+              Po mbingarkohet...
+            </div>
+        </div>
+        </div>
         <Slider />
         <ListProducts />
         <div v-if="addValidity && showModal">
@@ -80,7 +88,8 @@ export default{
             active: 1,
             loading: true,
             formattedCountdownVariable: "",
-            addValidity: false
+            addValidity: false,
+            pageIsLoaded: true,
         }
     },
     components:{
@@ -124,6 +133,7 @@ export default{
 
       this.listProducts().then(() => {
             this.loading = false;
+            this.pageIsLoaded = false;
       });
     setInterval(this.updateCountdownVariable, 1000);
     },

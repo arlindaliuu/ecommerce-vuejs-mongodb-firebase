@@ -27,7 +27,7 @@
                         <p id="infolog" class="text-red-500"></p>
                         <p class="mt-2 text-sm border-green-900 font-light">Ke harruar fjalëkalim?</p>
                         <div class="mt-5">
-                            <button  type="submit" value="Login" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Login</button>
+                            <button  type="submit" value="Login" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Kyçu</button>
                         </div>
                        </form>
                     </div>

@@ -25,9 +25,9 @@
     </div>
         <div class="absolute bg-beige-100/40 top-1/2 lg:w-1/3 transform -translate-y-1/2 lg:left-10 p-6 mx-4">
             <div class="w-full h-full bg-beige-100/50 px-4 py-16 flex flex-col hover:bg-beige-100/40 duration-300 hover:scale-105">
-              <h1 class="tex-bold text-lg lg:text-3xl text-gray-700">Mirësevini në <span class="text-orange-600">LULIflex</span>,</h1>
+              <h1 class="text-bold text-xl lg:text-3xl text-gray-700">Mirësevini në <span class="text-orange-600">LULIflex</span>,</h1>
               <br>
-                <span class="text-left text-xs lg:text-base font-medium text-gray-700">
+                <span class="text-left text-base lg:text-lg font-medium text-gray-700">
                 destinacioni juaj i fundit për dyshek më të cilin mund të merrni pjesë në botimin e komfortit dhe rinovimit të pamatuar.
                 Kërkoni një botë të pa-përshkallur komoditeti dhe rinovimit, ndërsa eksploroni seleksionin tonë të kujdesshëm të zgjedhur më hir të Zotit të dyshekeve të shkëlqyera. Qoftë se kerkoni gjumën e pefërmë të përditshme apo po përmirësoni dhomen tuaj, në në keni dyshekun e përfekt dhënë juve.
                 Hedhuni në një botë cilësie, luksoze dhe netë rehatshme me ne!

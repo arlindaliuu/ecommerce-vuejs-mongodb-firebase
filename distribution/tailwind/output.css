@@ -793,6 +793,10 @@ video {
   margin-top: 1.25rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-\[280px\] {
   margin-top: 280px;
 }
@@ -831,10 +835,6 @@ video {
 
 .mb-6 {
   margin-bottom: 1.5rem;
-}
-
-.mt-4 {
-  margin-top: 1rem;
 }
 
 .mt-8 {
@@ -982,6 +982,10 @@ video {
   height: 500px;
 }
 
+.h-12 {
+  height: 3rem;
+}
+
 .max-h-\[130px\] {
   max-height: 130px;
 }
@@ -1050,6 +1054,11 @@ video {
   width: 2.5rem;
 }
 
+.w-max {
+  width: -moz-max-content;
+  width: max-content;
+}
+
 .w-full {
   width: 100%;
 }
@@ -1102,9 +1111,8 @@ video {
   width: 1.75rem;
 }
 
-.w-max {
-  width: -moz-max-content;
-  width: max-content;
+.w-12 {
+  width: 3rem;
 }
 
 .min-w-\[32px\] {
@@ -1244,6 +1252,16 @@ video {
   animation: jump .5s both;
 }
 
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
 @keyframes bounce {
   0%, 100% {
     transform: translateY(-25%);
@@ -1258,16 +1276,6 @@ video {
 
 .animate-bounce {
   animation: bounce 1s infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin {
-  animation: spin 1s linear infinite;
 }
 
 .cursor-pointer {
@@ -1952,17 +1960,22 @@ video {
   line-height: 1;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
 .text-\[200px\] {
   font-size: 200px;
 }
 
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
 .text-\[80px\] {
   font-size: 80px;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 
 .text-4xl {
@@ -1972,11 +1985,6 @@ video {
 
 .text-\[40px\] {
   font-size: 40px;
-}
-
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
 }
 
 .font-bold {
@@ -3451,9 +3459,8 @@ h1,h2,h3,h4,h5,h6,p, span, a, button{
     line-height: 1.75rem;
   }
 
-  .lg\:text-base {
-    font-size: 1rem;
-    line-height: 1.5rem;
+  .lg\:text-\[80px\] {
+    font-size: 80px;
   }
 
   .lg\:text-xl {
@@ -3461,18 +3468,14 @@ h1,h2,h3,h4,h5,h6,p, span, a, button{
     line-height: 1.75rem;
   }
 
-  .lg\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
-  .lg\:text-\[80px\] {
-    font-size: 80px;
-  }
-
   .lg\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .lg\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 

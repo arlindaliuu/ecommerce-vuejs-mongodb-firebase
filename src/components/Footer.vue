@@ -51,19 +51,41 @@
                   
               </div>
               <div class="text-center text-xl text-white">
-              <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/facebook.svg"></a>
-              <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/tik-tok.svg"></a>
-              <a href="#" class="w-11 h-11 border-2 border-white rounded-full bg-orange-600 hover:bg-green-900 mx-3 inline-block p-[5px]"><img class="w-8 h-8" src="../assets/icons/instagram.svg"></a>
-          </div>
+                    <a
+                    v-for="(socialMedia, index) in generalData.social_media"
+                    :key="index"
+                    :href="socialMedia.social_media_data.social_media_url"
+                    class="w-12 h-12 rounded-full mx-3 inline-block p-[5px]"
+                    target="_blank"
+                    >
+                    <img
+                        class="w-12 h-12 object-cover"
+                        :src="socialMedia.social_media_data.social_media_icon"
+                        :alt="socialMedia.social_media_data.social_media_alt"
+                    />
+                    </a>
+                </div>
           </div> 
       </footer>
 </template>
 <script>
 export default{
+    props: {
+        generalFields: [String, Object], // Define the headerClass prop to accept a string or object
+    },
     data() {
     return {
       currentYear: new Date().getFullYear(), // 2020
     };
-  }
+  },
+    computed: {
+        generalData() {
+        return this.generalFields;
+        },
+    },
+    mounted() {
+        // Log the generalFields prop when the component is mounted
+        console.log("generalFields prop:", this.generalFielda);
+    },
 }
 </script>

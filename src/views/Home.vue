@@ -49,7 +49,7 @@
     <Map />
     <ContactUs />
     <CookieAcceptDecline />
-    <Footer />
+    <Footer v-if="generalDataList.length > 0" :generalFields="generalDataList[0]"  />
   </div>
 </template>
 
@@ -117,6 +117,10 @@ export default{
         productListAll() {
         return this.listProduct;
       },
+      ...mapGetters(['listAboutContent']),  // Map the correct getter
+        generalDataList() {
+          return this.listAboutContent;  // Use the getter to access the data
+        },
       formattedCountdownForProduct() {
         return this.productListAll.map(product => ({
             ...product,
@@ -186,5 +190,11 @@ export default{
         .filter((product) => product.formattedCountdown !== null);
         },
     },
+    created() {
+      // Call the aboutContent action to fetch the data
+      this.$store.dispatch('aboutContent').then(() => {
+        // Data is now available, and the Footer component will receive it
+      });
+      },
 }
 </script>

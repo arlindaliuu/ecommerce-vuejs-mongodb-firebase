@@ -48,11 +48,10 @@
                   <div class="text-center">
                       COPYRIGHT &copy; {{ currentYear }} <strong><span>LULI-FLEX </span></strong><span></span>
                   </div>
-                  
-              </div>
-              <div class="text-center text-xl text-white">
+                  <div class="text-center text-xl text-white">
                     <a
-                    v-for="(socialMedia, index) in generalData.social_media"
+                    v-if="generalDataList.length > 0"
+                    v-for="(socialMedia, index) in generalDataList[0].social_media"
                     :key="index"
                     :href="socialMedia.social_media_data.social_media_url"
                     class="w-12 h-12 rounded-full mx-3 inline-block p-[5px]"
@@ -65,27 +64,29 @@
                     />
                     </a>
                 </div>
+              </div>
+         
           </div> 
       </footer>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default{
-    props: {
-        generalFields: [String, Object], // Define the headerClass prop to accept a string or object
-    },
     data() {
     return {
-      currentYear: new Date().getFullYear(), // 2020
+      currentYear: new Date().getFullYear(),
     };
   },
     computed: {
-        generalData() {
-        return this.generalFields;
+        ...mapGetters(['listAboutContent']),  // Map the correct getter
+        generalDataList() {
+          return this.listAboutContent;  // Use the getter to access the data
         },
     },
-    mounted() {
-        // Log the generalFields prop when the component is mounted
-        console.log("generalFields prop:", this.generalFielda);
+    created() {
+        // Call the aboutContent action to fetch the data
+        this.$store.dispatch('aboutContent');
     },
 }
 </script>

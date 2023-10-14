@@ -26,7 +26,7 @@
     "vue-cookies": "^1.8.3",
     "vue-router": "^4.0.13",
     "vue-touch": "^2.0.0-beta.4",
-    "vue3-touch-events": "^4.1.5",
+    "vue3-touch-events": "^4.1.8",
     "vuex": "^4.1.0"
   },
   "devDependencies": {

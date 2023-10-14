@@ -6,8 +6,7 @@
         v-if="productList.length > 0"
         v-for="(item, index) in productList[0].about_us" 
         :key="index"
-        class="h-56 text-left space-y-2"
-      >
+        class="text-left space-y-2">
         <img class="h-10 w-10" :src="item.about_us_field.about_us_icon" :alt="'About-' + (index + 1) + ' Icon'" >
         <h1 class="font-bold">{{ item.about_us_field.about_us_title }}</h1>
         <p class="text-gray-600">{{ item.about_us_field.about_us_content }}</p>

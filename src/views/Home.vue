@@ -39,7 +39,9 @@
     <SecondBanner /> 
     <BannerBox />
     <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
-        <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');"></div>
+        <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');">
+          <img class="hidden" src="../assets/image/offer-bg.webp" />
+        </div>
         <div class="max-w-5xl mx-6 lg:mx-auto grid items-center">
             <p class="relative text-white text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>
             <router-link to="/shop" class="hover:px-10 h over:text-white hover:border-white hover:bg-main duration-200 relative text-green-900 text-2xl mt-6 font-serif border-2 rounded-full px-6 bg-white py-2 border-green-900 m-auto">Bleni tani!</router-link>
@@ -47,7 +49,8 @@
     </div>
     <!-- <BackToTop /> -->
     <Map />
-    <ContactUs />
+    <FAQComponent />
+    <ContactForm />
     <CookieAcceptDecline />
     <Footer />
   </div>
@@ -79,6 +82,10 @@ import { parse, differenceInSeconds } from 'date-fns';
 import router from './../router'
 import Slider from "../components/Slider.vue"
 import ListProducts from "../components/ListProducts.vue"
+import ContactForm from "../components/ContactForm.vue"
+import FAQComponent from '../components/FAQComponent.vue';
+
+
 export default{
     data(){
         return{
@@ -103,10 +110,11 @@ export default{
         BackToTop,
         Map,
         CookieAcceptDecline,
-        ContactUs,
+        ContactForm,
         Slider,
-        ListProducts
-        
+        ListProducts,
+        FAQComponent,
+        Image
     },
     computed: {
       ...mapGetters(['listDiscountProduct']),

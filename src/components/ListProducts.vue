@@ -13,7 +13,7 @@
     <div v-else class="my-8 mx-6 lg:mx-auto max-w-5xl">
       <div class="overflow-hidden">
         <div class="slider-container grid justify-center" :style="`transform: translateX(${sliderPosition}px)`">
-        <transition-group name="slide" tag="div" class="slider justify-between gap-10">
+        <transition-group name="slide" tag="div" class="slider lg:flex justify-between gap-10">
           <Card v-for="(listProduct, index) in displayedProducts" :key="listProduct.id" :card-data="listProduct" />
         </transition-group>        
         </div>
@@ -109,7 +109,6 @@
 }
 /* Style for the slider */
 .slider {
-  display: flex;
   transition: transform 0.5s ease-in-out; /* Adjust the transition duration for slide speed */
 }
   /* Modify the transition properties for sliding left */

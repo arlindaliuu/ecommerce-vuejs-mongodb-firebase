@@ -13,7 +13,7 @@
               </h3>
               <div class="mt-2 flex">
                 <p class="text-md text-gray-500">
-                  Nuk keni llogari ende? Nxito dhe regjistrohuni tani 
+                  Nuk keni llogari ende? Nxito dhe regjistrohuni tani!
                 </p>
                 <router-link to="/register" class="border ml-auto px-5 py-2 bg-orange-600 text-white font-light rounded-full hover:bg-orange-500 self-center">Regjistrohu</router-link>
               </div>
@@ -39,7 +39,7 @@
     mounted() {
       setTimeout(() => {
         this.showModal = true;
-      }, 5000);
+      }, 15000);
     },
   };
   </script>

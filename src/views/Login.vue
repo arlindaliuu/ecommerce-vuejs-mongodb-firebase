@@ -1,7 +1,7 @@
 <template>
     <div>
-            <div class="min-h-screen py-40">
-                <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat" style="background-image: url('../src/assets/image/hero-home.webp');"></div>
+        <div class="min-h-screen py-40">
+            <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat" style="background-image: url('../src/assets/image/hero-home.webp');"></div>
                 <div class="lg:max-w-4xl mx-5 lg:mx-auto bg-white rounded-xl">
                     <div class="flex flex-col lg:flex-row bg-white rounded-xl mx-auto shadow-lg overflow-hidden relative">
                     <div class="w-full lg:w-1/2 p-6 md:p-10">
@@ -13,14 +13,14 @@
                                 </svg>
                             </button>
                         </div>
-                       <form @submit.prevent="login">
+                    <form @submit.prevent="login">
                         <div class="grid grid-cols mt-4">
                             <label class="font-semibold">Email</label>
                             <input v-model="login_form.email" type="text" placeholder="Email" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl">
                         </div>
                         <div class="mt-5">
                             <label class="font-semibold">Fjalëkalimi</label>
-                            <input  v-model="login_form.password" type="password" placeholder="Fjalëkalimi" class="border-2 mt-2 bg-slate-100 border-gray-100 py-2 px-2 w-full rounded-3xl">
+                            <input v-model="login_form.password" type="password" placeholder="Fjalëkalimi" class="border-2 mt-2 bg-slate-100 border-gray-100 py-2 px-2 w-full rounded-3xl">
                             <span class="eye" onclick="myFunction()">
                             </span>
                         </div>
@@ -29,7 +29,7 @@
                         <div class="mt-5">
                             <button  type="submit" value="Login" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Kyçu</button>
                         </div>
-                       </form>
+                    </form>
                     </div>
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 md:p-10 bg-login">
                         <div class="text-sm grid gap-4 justify-between items-center">
@@ -41,7 +41,7 @@
                     </div>
                 </div>  
             </div>
-            </div>
+        </div>
     </div>
     <Footer />
 </template>
@@ -52,6 +52,10 @@ import { useStore, mapActions } from 'vuex'
 import Toaster from '../components/Toaster.vue'
 import Footer from '../components/Footer.vue'
 export default{
+    components: {
+        Toaster,
+        Footer
+    },
     setup(){
         const login_form = ref({});
         const store = useStore();
@@ -66,11 +70,9 @@ export default{
             ...mapActions(['registerWithGoogle'])
         }
     },
-    components: {
-        Toaster,
-        Footer
+    mounted() {
+      window.scrollTo(0, 0);
     }
-
 }
 </script>
 <style scoped>

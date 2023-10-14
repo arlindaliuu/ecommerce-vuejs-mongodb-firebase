@@ -13,7 +13,7 @@
             <span class="ml-10">ne?</span> 
           </h1>
         </div>
-        <div class="p-5 md:p-20 leading-8 space-y-8 font-light text-base lg:text-xl flex items-center col-span-3 lg:col-span-2">
+        <div class="p-5 md:p-20 leading-8 space-y-8 font-light text-base lg:text-lg flex items-center col-span-3 lg:col-span-2">
           <p>Kompania jonë lindi nga një pasion për gjumin dhe një dëshirë për të ndihmuar njerëzit të arrijnë pushimin më të mirë të mundshëm. Ne e kuptojmë se blerja për një dyshek mund të jetë dërrmuese, kjo është arsyeja pse ne ofrojmë konsultime të personalizuara për të ndihmuar klientët tanë të zgjedhin dyshekun e përsosur për nevojat e tyre specifike.
     
             Në LULIflex, ne besojmë se një gjumë i mirë i natës është themeli i një jete të lumtur dhe të shëndetshme. Ne e kuptojmë se të gjithë kanë nevoja unike për gjumë, kjo është arsyeja pse ne jemi të përkushtuar për të krijuar dyshekë të personalizuar që plotësojnë preferencat e secilit individ.
@@ -34,7 +34,7 @@
           </h1>
         </div>
           <div class="col-span-2 leading-8 space-y-8 font-light flex items-center">
-            <p class="text-base lg:text-xl ">Në LULIflex, ne besojmë se një gjumë i mirë gjatë natës është thelbësor për shëndetin dhe mirëqenien e përgjithshme. Ne jemi të pasionuar për ofrimin e dyshekëve me cilësi të lartë që jo vetëm përmbushin, por tejkalojnë pritshmëritë e klientëve tanë.
+            <p class="text-base lg:text-lg ">Në LULIflex, ne besojmë se një gjumë i mirë gjatë natës është thelbësor për shëndetin dhe mirëqenien e përgjithshme. Ne jemi të pasionuar për ofrimin e dyshekëve me cilësi të lartë që jo vetëm përmbushin, por tejkalojnë pritshmëritë e klientëve tanë.
 
               Misioni ynë është i thjeshtë: t'i ndihmojmë njerëzit të flenë më mirë. Ne e arrijmë këtë duke ofruar dyshekë që janë të dizajnuar me teknologjinë më të fundit dhe materialet më të mira, duke u siguruar që klientët tanë të kenë mbështetjen dhe komoditetin që u nevojitet për një gjumë të qetë të natës.
               

@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '../firebase';
 
-
 const routes = [
     {
       name: 'home',
@@ -10,9 +9,33 @@ const routes = [
       meta: { title: 'Ballina' }
     },
     {
+      path: '/sitemap.xml',
+      name: 'sitemap',
+      component: () => import('../views/Sitemap.vue'),
+    },
+    {
+      name: "privacy-policy",
+      path:"/privacy-policy",
+      component:()=>import("../views/PrivacyPolicy.vue"),
+      meta:{title:'Privacy Policy'}
+    },
+    {
+      name: "faq",
+      path:"/faq",
+      component:()=>import("../views/FAQ.vue"),
+      meta:{title:'Frequently asked questions'}
+    },
+    {
+      path: '/services',
+      name: 'services',
+      component: () => import('../views/Services.vue'),
+      meta:{title:'Services'}
+    },
+    {
       name: 'register',
       path: '/register',
-      component: () => import('../views/Register.vue')
+      component: () => import('../views/Register.vue'),
+      meta:{title:'Register'}
     },
     {
       name: 'ProductDetails',

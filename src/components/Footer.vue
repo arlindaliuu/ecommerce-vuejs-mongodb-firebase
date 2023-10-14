@@ -17,19 +17,19 @@
                           <ul class="text-gray-500 mt-2">
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/" href="#" class="hover:text-green-900">Ballina</router-link></li>         
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/about" href="#" class="hover:text-green-900">Rreth nesh</router-link></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/" href="#" class="hover:text-green-900">Serviset</router-link></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/" href="#" class="hover:text-green-900">Kushtet e Shërbimeve</router-link></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/services" href="#" class="hover:text-green-900">Serviset</router-link></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/faq" href="#" class="hover:text-green-900">Pyetjet më të shpeshta</router-link></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/register" href="#" class="hover:text-green-900">Regjistrohu</router-link></li>
                           </ul>
                       </div> 
                       <div class="mb-5">
                           <h4 class="pb-4">Shërbimet tona</h4>
                           <ul class="text-gray-500 mt-2">
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Shop</a></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/contactus" class="hover:text-green-900">Shop</router-link></li>
                               <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to="/contactus" class="hover:text-green-900">Kontakti</router-link></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Mbrojtja e privatësisë</a></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Marketing</a></li>
-                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><a href="#" class="hover:text-green-900">Oferta</a></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to='/privacy-policy' class="hover:text-green-900">Politika e Privatësisë</router-link></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to='/' class="hover:text-green-900">Marketing</router-link></li>
+                              <li class="pb-4"><i class="fa fa-chevron-right text-green-900"></i><router-link to='/' class="hover:text-green-900">Oferta</router-link></li>
                           </ul>
                       </div>
                       <div class="mb-5">

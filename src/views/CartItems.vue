@@ -31,7 +31,7 @@
             <button v-if="cartItemsWithQuantity.length >= 1" @click="generatePDF" class="ml-4 mt-4 bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out">Gjenero PDF</button>
             <button v-if="cartItemsWithQuantity.length >= 1" @click="removeAll" class="ml-4 mt-4 bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">Fshij të gjitha</button>
           </div>
-          <div v-else>
+          <div class="text-xl lg:text-3xl h-96 text-red-600" v-else>
             Ju nuk keni asgjë në shportë!
           </div>
         </div>
@@ -183,6 +183,9 @@
           return this.cartItemsWithQuantity.reduce((total, item) => total + (item.totalPrice * item.quantity), 0);
         },
     },
+    mounted(){
+      window.scrollTo(0, 0)
+    }
   };
   </script>
  

@@ -1,56 +1,17 @@
 <template>
-    <div class="bg-gray-100 py-12">
-      <Toaster type="success" ref="toaster" />
-      <Toaster type="wrong" ref="toasterError" />
-      <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 class="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">Na Kontakto!</h2>
-        <p class="mt-2 text-base lg:text-lg text-gray-600">Keni një pyetje apo koment? Do të donim të dëgjonim nga ju. Plotësoni formularin e mëposhtëm dhe ne do t'ju kontaktojmë sa më shpejt të jetë e mundur.</p>
-        <form ref="form" method="POST" class="mt-8 space-y-6">
-            <div class="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8">
-              <div>
-                <label for="first_name" class="block text-lg font-medium text-gray-700">Emri</label>
-                <div class="mt-1">
-                  <input type="text" name="first_name" id="first_name" v-model="firstName" autocomplete="given-name" required class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
-                </div>
-              </div>
-              <div>
-                <label for="last_name" class="block text-lg font-medium text-gray-700">Mbiemri</label>
-                <div class="mt-1">
-                  <input type="text" name="last_name" id="last_name" v-model="lastName" autocomplete="family-name" required class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
-                </div>
-              </div>
-            </div>
-            <div>
-              <label for="email" class="block text-lg font-medium text-gray-700">Email</label>
-              <div class="mt-1">
-                <input id="email" name="email" type="email" v-model="email" autocomplete="email" required class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">
-              </div>
-            </div>
-            <div>
-              <label for="message" class="block text-lg font-medium text-gray-700">Mesazhi</label>
-              <div class="mt-1">
-                <textarea id="message" name="message" rows="4" v-model="message" class="py-3 px-4 block w-full shadow-sm text-gray-900 focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"></textarea>
-              </div>
-            </div>
-            <div>
-            <button @click.prevent="checkForm" class="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-lg font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Dërgo
-              </button>
-          </div>
-        </form>
-        <p v-if="errors.length">
-            <b>Ju lutem përmirësoni gabimet mëposhtme:</b>
-            <ul class="text-red-800">
-              <li v-for="error in errors">{{ error }}</li>
-            </ul>
-          </p>
-      </div>
+  <Header :class="'bg-orange-600/30'" />
+    <div class="bg-gray-100 pt-40">
+      <ContactForm />
     </div>
-  </template>
+  <Footer />
+</template>
   
   <script>
   import Toaster from '../components/Toaster.vue';
   import axios from 'axios';
+  import Header from '../components/Header.vue';
+  import ContactForm from '../components/ContactForm.vue';
+  import Footer from '../components/Footer.vue';
   export default {
     name: 'ContactUs',
     data() {
@@ -63,7 +24,10 @@
       }
     },
     components:{
-      Toaster
+      Toaster,
+      Header,
+      Footer,
+      ContactForm
     },
     methods: {
         async handleSubmit() {

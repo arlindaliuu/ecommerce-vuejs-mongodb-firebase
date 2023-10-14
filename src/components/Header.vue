@@ -1,9 +1,13 @@
 <template>
     <header :class="[this.classes, headerClass]" class="backdrop-blur-xl bg-white/30 z-30 transition ease-in-out delay-150 duration-300 fixed w-full  grid md:grid-rows-1 grid-cols-2  text-orange-600 font-serif md:pr-20 md:pl-10">
-        <div class="logo flex lg:justify-self-start justify-self-center ">
+        <router-link to="/"  class="logo flex lg:justify-self-start justify-self-center ">
             <img src="../assets/icons/logo-luliflex.png" class="self-center w-64 xl:w-96 max-h-[130px]" alt="Luliflex logo" />
-        </div>
-        <div class="items-center lg:hidden flex justify-end p-10">
+        </router-link>
+        <div class="items-center lg:hidden flex justify-end gap-6 p-10">
+          <router-link to="/cartitems" class="self-center relative lg:ml-4 uppercase link link-underline link-underline-black lg:hidden">
+            <img class="max-w-[32px] min-w-[32px] max-h-[32px] min-h-[32px] relative z-20" src="../assets/icons/shopping-cart.webp" alt="shoping bag" />
+            <span class="absolute top-[-13px] left-[13px]">{{ cartItemCount }}</span>
+          </router-link>
           <button @click="hadleShowMenu"><img src="../assets/icons/menu.png" /></button>
         </div>
         <div v-if="showMenu" :class="this.headerFontColor" class="grid grid-cols-1 whitespace-nowrap lg:flex col-span-2 lg:col-span-1 animate-ease-linear gap-y-1 lg:gap-y-0 animate-fade-down duration-1000 self-center justify-self-start lg:justify-self-end pl-5 lg:pl-0 text-xl">

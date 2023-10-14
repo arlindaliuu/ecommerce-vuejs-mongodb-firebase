@@ -1,6 +1,8 @@
 <template>
     <div>
-            <div class="min-h-screen py-40">
+        <div class="min-h-screen py-40">
+            <Toaster type="success" ref="toaster" />
+            <Toaster type="wrong" ref="toasterError" />
             <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat" style="background-image: url('../src/assets/image/hero-home.webp');"></div>
                 <div class="lg:max-w-4xl  mx-5 lg:mx-auto bg-white relative rounded-lg">
                     <div class="flex flex-col lg:flex-row rounded-lg bg-white mx-auto shadow-lg overflow-hidden">
@@ -16,7 +18,7 @@
                             <p class="mb-4 font-light">
                                 Krijo llogarinë tënde, është falas dhe merr vetëm një minutë.
                             </p>
-                        <form @submit.prevent="Register">
+                        <form @submit.prevent="Register" ref="form" method="POST">
                             <div class="grid grid-cols-2 gap-5">
                                 <div>
                                     <label class="font-semibold">Emri</label>
@@ -27,24 +29,24 @@
                                     <input type="text" placeholder="Mbiemri" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl">
                                 </div>
                             </div>
-                            <p v-if="usernameError" class="text-red-500">{{ usernameError }}</p>
+                            <p v-if="usernameError" class="text-red-500 text-sm">{{ usernameError }}</p>
                             <div class="mt-5">
                                 <label class="font-semibold">Email</label>
                                 <input v-model="register_form.email" type="text" placeholder="Email" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validateEmail">
                             </div>
-                            <p v-if="emailError" class="text-red-500">{{ emailError }}</p>
+                            <p v-if="emailError" class="text-red-500 text-sm">{{ emailError }}</p>
                             <div class="mt-5">
                                 <label class="font-semibold">Fjalëkalimi</label>
                                 <input v-model="register_form.password" type="password" placeholder="Fjalëkalimi" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validatePassword">
                                 <span class="eye" onclick="myFunction()">
                                 </span>
                             </div>
-                            <p v-if="passwordError" class="text-red-500">{{ passwordError }}</p>
+                            <p v-if="passwordError" class="text-red-500 text-sm">{{ passwordError }}</p>
                             <div class="mt-5">
                                 <label class="font-semibold">Konfirmo Fjalëkalimi</label>
                                 <input v-model="register_form_fake.confirmPassword"  type="password" placeholder="Konfirmo fjalëkalimin" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validateConfirmPassword">
                             </div>
-                            <p v-if="confirmPasswordError" class="text-red-500">{{ confirmPasswordError }}</p>
+                            <p v-if="confirmPasswordError" class="text-red-500 text-sm">{{ confirmPasswordError }}</p>
                             <div class="mt-5">
                                 <input type="checkbox" class="border border-green-900">
                                 <span class="font-light"> 
@@ -73,12 +75,18 @@
 <script>
 import {ref, computed} from 'vue';
 import { mapActions, useStore } from 'vuex'
+import Toaster from '../components/Toaster.vue'
 import 'firebase/auth'
 import Footer from '../components/Footer.vue';
+import axios from 'axios';
 
 export default{
     components:{
-        Footer
+        Footer,
+        Toaster
+    },
+    mounted() {
+      window.scrollTo(0, 0);
     },
     setup(){
         const register_form = ref({});
@@ -90,7 +98,20 @@ export default{
         const confirmPasswordError = ref('');
 
         const Register = () =>{
-            store.dispatch('register', register_form.value);
+            // Make a POST request to create the user
+            axios.post('https://api.luliflex.com/wp-json/wp/v2/users/?timestamp=22241', register_form.value, 
+            {
+                withCredentials: true,
+            })
+            .then(response => {
+                    this.$refs.toaster.show(`Regjistrimi u bë me sukses!`, "success");
+                    console.log('User created:', response.data);
+                    this.$refs.form.reset(); // reset the form fields
+                })
+                .catch(error => {
+                    this.$refs.toaster.show(`Diçka shkoi gabim, provoni më vonë. Mesazhi: ` + error, "wrong");
+                    console.error('Error creating user:', error);
+                });
         }
 
         // add validation function for username input

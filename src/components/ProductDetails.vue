@@ -4,12 +4,12 @@
     <div ref="elementToMeasure"  class="thisElement mt-[280px] w-full mb-[100%] bg-white">
       <Breadcrumbs class="col-span-2 pt-5 px-6 lg:px-24 text-xl font-light"/>
       <div v-if="!isLoading">
-        <div class="grid lg:grid-cols-2 py-6 justify-center">
-          <div class="px-20 lg:px-24">
+        <div class="grid lg:grid-cols-2 grid-cols-1 py-6 justify-center order-1">
+          <div class="px-6 lg:px-24">
               <h1 class="animate-fade-right text-lg lg:text-3xl py-6">{{ product.title }}</h1>
               <p class="text-sm lg:text-lg font-light animate-fade-left">{{ product.content }}</p>
           </div>
-          <div class="py-5 grid items-center justify-center px-24 lg:px-0">
+          <div class="py-5 grid items-center justify-center px-6 lg:px-24 lg:px-0 lg:order-2 order-3">
               <img class="max-w-[300px] min-w-[300px] min-h-[300px] max-h-[300px] lg:max-w-[400px] lg:min-w-[400px] lg:min-h-[400px] lg:max-h-[400px] xl:max-w-[500px] xl:min-w-[500px] xl:min-h-[500px] xl:max-h-[500px] duration-300 hover:shadow-2xl hover:scale-105" :src="product.post_image" />
               <p class="py-4 text-base lg:text-lg" v-if="product.discount">Çmimi: <span class="text-red-600 line-through">{{ product.price }}€</span><span class="ml-2"> {{getDiscountPrice(product.discount_percentage, product.price)}}€ </span> <span class="px-2 p-1 border ml-1 text-white font-bold bg-red-600 animate-wiggle">{{ product.discount_percentage }}%</span></p>
               <p class="py-4 text-base lg:text-lg" v-else>Çmimi {{product.price}}€</p>
@@ -19,12 +19,12 @@
                 <button @click="downloadPDF" class="ml-4 mt-2 bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out">Gjenero PDF</button>
               </div>
           </div>
-        </div>
-        <div class="grid lg:grid-cols-2 py-4 px-6 lg:px-24">
+          <div class="grid lg:grid-cols-2 py-4 px-6 lg:px-24 lg:col-span-2 lg:order-3 order-2">
             <li class="text-sm lg:text-lg font-light items-center animate-fade-left list-none flex gap-4 my-2" v-if="product.mattress_features.length >= 1" v-for="(feature, index) in product.mattress_features">
               <img src="../assets/image/badge.png" class="max-w-[32px] max-h-[32px] min-h-[32px] min-w-[32px]" />
               {{ feature.features }}
             </li>
+        </div>
         </div>
       </div>
       <div v-else class="flex justify-center items-center w-full h-64">

@@ -69,120 +69,123 @@
                     </div>
                 </div>
             </div> 
-        </div>
-        <Footer />
+    </div>
+    <Footer />
 </template>
 <script>
-import {ref, computed} from 'vue';
-import { mapActions, useStore } from 'vuex'
-import Toaster from '../components/Toaster.vue'
-import 'firebase/auth'
-import Footer from '../components/Footer.vue';
+import Cookies from 'js-cookie';
 import axios from 'axios';
+import Footer from '../components/Footer.vue';
+import Toaster from '../components/Toaster.vue';
 
-export default{
+export default {
     components:{
         Footer,
         Toaster
     },
-    mounted() {
-      window.scrollTo(0, 0);
+    data() {
+        return {
+        register_form: {},
+        register_form_fake: {},
+        usernameError: '',
+        emailError: '',
+        passwordError: '',
+        confirmPasswordError: '',
+        };
     },
-    setup(){
-        const register_form = ref({});
-        const register_form_fake = ref({});
-        const store = useStore();
-        const usernameError = ref('');
-        const emailError = ref('');
-        const passwordError = ref('');
-        const confirmPasswordError = ref('');
+    methods: {
+        async Register() {
+            const userData = {
+                username: this.register_form.username,
+                email: this.register_form.email,
+                password: this.register_form.password,
+            };
 
-        const Register = () =>{
-            // Make a POST request to create the user
-            axios.post('https://api.luliflex.com/wp-json/wp/v2/users/?timestamp=22241', register_form.value, 
-            {
+            try {
+                const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/register', userData, {
                 withCredentials: true,
-            })
-            .then(response => {
-                    this.$refs.toaster.show(`Regjistrimi u bë me sukses!`, "success");
-                    console.log('User created:', response.data);
-                    this.$refs.form.reset(); // reset the form fields
-                })
-                .catch(error => {
-                    this.$refs.toaster.show(`Diçka shkoi gabim, provoni më vonë. Mesazhi: ` + error, "wrong");
-                    console.error('Error creating user:', error);
                 });
-        }
 
-        // add validation function for username input
-        const validateUsername = () => {
-            if (!register_form.value.username) {
-                usernameError.value = 'Ju lutemi shkruani emrin e përdoruesit.'
-                return false;
-            } else if(register_form.value.username.length < 5){
-                usernameError.value = 'Emri duhet të jetë më i gjatë se 5 shkronja.';
-                return false;
-            } else {
-                usernameError.value = '';
-                return true;
+                if (response.status === 400) {
+                    this.$refs.toasterError.show('Regjistrimi dështoi. Mesazhi: ' + response.statusText, 'wrong' );
+                } 
+                if(response.status === 200) {
+                    this.$refs.form.reset(); // Reset the form fields
+                    this.$refs.toaster.show('U regjistruat me sukses!', 'success' );
+                    Cookies.set('luliflex_username', userData.username);
+                    Cookies.set('luliflex_email', userData.email);
+                    this.$router.push('/');
+                }else{
+                    this.$refs.toaster.show(
+                    'Diçka shkoi gabim, provoni më vonë. Mesazhi: ' + response.statusText,
+                    'wrong'
+                );
+                }
+            } catch (error) {
+                this.$refs.toasterError.show('Diçka shkoi gabim, provoni më vonë. Mesazhi: ', 'wrong');
             }
-        };
-        const validateEmail = () => {
-            const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
-            const emailValid = emailPattern.test(register_form.value.email)
-            if(!emailValid){
-                emailError.value = 'Shkruani një email valid.'
-                return false;
-            }else{
-                emailError.value = ''
-                return true;
-            }
-        };
-        const validatePassword = () => {
-            if (!register_form.value.password) {
-                passwordError.value = 'Ju lutem shkruani fjalëkalimin.';
-                return false;
-            } else if(register_form.value.password.length < 8){
-                passwordError.value = 'Fjalëkalimi duhet të jetë mbi 8 karaktere.';
-                return false;
-            } else {
-                passwordError.value = '';
-                return true;
-            }
-        };
-        const validateConfirmPassword = () => {
-            if (!register_form_fake.value.confirmPassword) {
-                confirmPasswordError.value = 'Ju lutem konfirmoni fjalëkalimin.';
-                return false;
-            } else if(register_form.value.password != register_form_fake.value.confirmPassword){
-                confirmPasswordError.value = 'Fjalëkalimet nuk përputhen';
-                return false;
-            } else {
-                confirmPasswordError.value = '';
-                return true;
-            }
-        };
-        const isFormValid = computed(() => {
-        return validateUsername() && validateEmail() && validatePassword() && validateConfirmPassword();
-        });
-        return{
-            Register,
-            register_form,
-            register_form_fake,
-            ...mapActions(['registerWithGoogle']),
-            usernameError,
-            emailError,
-            passwordError,
-            confirmPasswordError,
-            validateUsername,
-            validateEmail,
-            validatePassword,
-            validateConfirmPassword,
-            isFormValid 
+        },
+        validateUsername() {
+        if (!this.register_form.username) {
+            this.usernameError = 'Ju lutemi shkruani emrin e përdoruesit.';
+            return false;
+        } else if (this.register_form.username.length < 5) {
+            this.usernameError = 'Emri duhet të jetë më i gjatë se 5 shkronja.';
+            return false;
+        } else {
+            this.usernameError = '';
+            return true;
         }
+        },
+        validateEmail() {
+        const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+        const emailValid = emailPattern.test(this.register_form.email);
+        if (!emailValid) {
+            this.emailError = 'Shkruani një email valid.';
+            return false;
+        } else {
+            this.emailError = '';
+            return true;
+        }
+        },
+        validatePassword() {
+        if (!this.register_form.password) {
+            this.passwordError = 'Ju lutem shkruani fjalëkalimin.';
+            return false;
+        } else if (this.register_form.password.length < 8) {
+            this.passwordError = 'Fjalëkalimi duhet të jetë mbi 8 karaktere.';
+            return false;
+        } else {
+            this.passwordError = '';
+            return true;
+        }
+        },
+        validateConfirmPassword() {
+        if (!this.register_form_fake.confirmPassword) {
+            this.confirmPasswordError = 'Ju lutem konfirmoni fjalëkalimin.';
+            return false;
+        } else if (this.register_form.password !== this.register_form_fake.confirmPassword) {
+            this.confirmPasswordError = 'Fjalëkalimet nuk përputhen';
+            return false;
+        } else {
+            this.confirmPasswordError = '';
+            return true;
+        }
+        },
     },
-}
-</script>
+    computed: {
+        isFormValid() {
+        return (
+            this.validateUsername() &&
+            this.validateEmail() &&
+            this.validatePassword() &&
+            this.validateConfirmPassword()
+        );
+        },
+    },
+    };
+    </script>
+
 
 <style scoped>
 body{

@@ -51,6 +51,8 @@ import {ref} from 'vue'
 import { useStore, mapActions } from 'vuex'
 import Toaster from '../components/Toaster.vue'
 import Footer from '../components/Footer.vue'
+import axios from 'axios';
+
 export default{
     components: {
         Toaster,
@@ -60,9 +62,42 @@ export default{
         const login_form = ref({});
         const store = useStore();
 
-        const login = () =>{
-           store.dispatch('login', login_form.value);
-        }
+        const login = async () => {
+            try {
+                // Prepare the user data to send to the server
+                const userData = {
+                    email: login_form.value.email,
+                    password: login_form.value.password,
+                };
+
+                // Make a POST request to your custom login endpoint
+                const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/login', userData, {
+                    withCredentials: true,
+                });
+
+                // Check the response status to determine if the login was successful
+                if (response.status === 200) {
+                    // Successful login
+                    // You can perform actions like setting user state, storing tokens, and redirecting here.
+                    console.log('Login successful:', response.data);
+                    // Example: Set user state in Vuex
+                    store.commit('setUser', response.data);
+                    // Example: Redirect to the home page
+                    router.push('/');
+                } else {
+                    // Login failed
+                    console.error('Login failed:', response.data.message);
+                    // Show an error message to the user
+                    document.getElementById('infolog').innerText = 'Login failed: ' + response.data.message;
+                }
+            } catch (error) {
+                // Handle network errors or other issues
+                console.error('Network error:', error);
+                // Show an error message to the user
+                document.getElementById('infolog').innerText = 'Network error: ' + error;
+            }
+        };
+
 
         return{
             login_form,

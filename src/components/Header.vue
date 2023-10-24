@@ -43,7 +43,7 @@
                       <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Preferencat</a>
                     </li>
                     <li>
-                      <a @click="$store.dispatch('logout')" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shkyçu</a>
+                      <a @click="logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shkyçu</a>
                     </li>
                   </ul>
                 </div>
@@ -59,6 +59,7 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import Cookies from 'js-cookie';
 
 export default {
   props: {
@@ -112,11 +113,21 @@ export default {
             },
             hadleShowMenu(){
               this.showMenu = !this.showMenu;
-            }
+            },
+
         },
         computed: {
             userEmail() {
-                return this.$store.state.user ? this.$store.state.user.email : '';                
+              const username = Cookies.get('luliflex_username');
+                return username ? username : '';                
+            },
+            logout(){
+             // Delete all cookies
+              const cookies = Object.keys(Cookies.get());
+              cookies.forEach(cookie => {
+                Cookies.remove(cookie);
+              });
+              window.location.reload();
             },
             ...mapGetters(['cartItemCount']), // Import the cartItemCount getter
         }

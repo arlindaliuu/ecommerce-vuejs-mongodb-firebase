@@ -16,7 +16,7 @@
                     <form @submit.prevent="login">
                         <div class="grid grid-cols mt-4">
                             <label class="font-semibold">Email</label>
-                            <input v-model="login_form.email" type="text" placeholder="Email" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl">
+                            <input v-model="login_form.username" type="text" placeholder="Username" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl">
                         </div>
                         <div class="mt-5">
                             <label class="font-semibold">Fjalëkalimi</label>
@@ -25,22 +25,33 @@
                             </span>
                         </div>
                         <p id="infolog" class="text-red-500"></p>
-                        <p class="mt-2 text-sm border-green-900 font-light">Ke harruar fjalëkalim?</p>
                         <div class="mt-5">
                             <button  type="submit" value="Login" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Kyçu</button>
                         </div>
                     </form>
+                    <button class="font-light whitespace-nowrap text-sm mt-2 cursor-pointer hover:underline" @click="openModal">Keni harruar fjalëkalimin?</button>
                     </div>
                     <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-6 md:p-10 bg-login">
                         <div class="text-sm grid gap-4 justify-between items-center">
-                            <p class="text-3xl">Mirësevini në LULIflex</p>
-                            <p class="font-light whitespace-nowrap">Nuk keni llogari?</p>
-                            <router-link to="/register" type="submit" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Regjistrohu</router-link>
-                            <router-link to="/" class="w-full bg-beige-100 py-3 text-center text-green-900 rounded-lg hover:scale-105 duration-300 mt-10">Shko në faqen kryesore &#x2192;</router-link>
+                        <p class="text-3xl">Mirësevini në LULIflex</p>
+                        <router-link to="/register" type="submit" class="w-full bg-green-900 py-3 text-center text-white rounded-lg hover:scale-105 duration-300">Regjistrohu</router-link>
+                        <router-link to="/" class="w-full bg-beige-100 py-3 text-center text-green-900 rounded-lg hover:scale-105 duration-300 mt-10">Shko në faqen kryesore &#x2192;</router-link>
                         </div>
                     </div>
                 </div>  
             </div>
+        </div>
+    </div>
+    <div v-if="showModal" class="modal">
+        <div class="modal-content">
+        <div class="flex justify-between">
+            <h2>Email Address</h2>
+            <span @click="openModal" class="cursor-pointer">&#10006;</span>
+        </div>
+        <form @submit.prevent="forgotPassword">
+            <input class="border" v-model="email" type="email" required />
+            <button type="submit">Reset Password</button>
+        </form>
         </div>
     </div>
     <Footer />
@@ -52,65 +63,96 @@ import { useStore, mapActions } from 'vuex'
 import Toaster from '../components/Toaster.vue'
 import Footer from '../components/Footer.vue'
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export default{
     components: {
         Toaster,
         Footer
     },
-    setup(){
-        const login_form = ref({});
-        const store = useStore();
+        data() {
+            return {
+            login_form: {
+                email: ''
+            },
+            showModal: false,
+            };
+        },
+        methods: {
+            openModal(){
+                this.showModal = !this.showModal;
+            },
+            async forgotPassword() {
+                try {
+                    // Extract the email address from the login form
+                    const userEmailAddress = this.email;
 
-        const login = async () => {
-            try {
-                // Prepare the user data to send to the server
-                const userData = {
-                    email: login_form.value.email,
-                    password: login_form.value.password,
-                };
+                    // Make a request to initiate the password reset process
+                    const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/send-password-reset-email', { email: userEmailAddress });
 
-                // Make a POST request to your custom login endpoint
-                const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/login', userData, {
-                    withCredentials: true,
-                });
-
-                // Check the response status to determine if the login was successful
-                if (response.status === 200) {
-                    // Successful login
-                    // You can perform actions like setting user state, storing tokens, and redirecting here.
-                    console.log('Login successful:', response.data);
-                    // Example: Set user state in Vuex
-                    store.commit('setUser', response.data);
-                    // Example: Redirect to the home page
-                    router.push('/');
-                } else {
-                    // Login failed
-                    console.error('Login failed:', response.data.message);
-                    // Show an error message to the user
-                    document.getElementById('infolog').innerText = 'Login failed: ' + response.data.message;
+                    // Display a message to the user indicating that a password reset link has been sent
+                    alert('Password reset instructions have been sent to your email address.');
+                } catch (error) {
+                    // Handle errors, e.g., display an error message to the user
+                    console.error('Password reset request failed:', error);
+                    alert('Password reset request failed. Please try again later.');
                 }
-            } catch (error) {
-                // Handle network errors or other issues
-                console.error('Network error:', error);
-                // Show an error message to the user
-                document.getElementById('infolog').innerText = 'Network error: ' + error;
-            }
-        };
+            },
+            async login() {
+                try {
+                    // Prepare the user data to send to the server
+                    const userData = {
+                    username: this.login_form.username,
+                    password: this.login_form.password,
+                    };
+                    // Make a POST request to your custom login endpoint
+                    const response = await axios.post('https://api.luliflex.com/wp-json/custom/v1/login', userData, {
+                    withCredentials: true,
+                    });
 
-
-        return{
-            login_form,
-            login,
-            ...mapActions(['registerWithGoogle'])
-        }
-    },
-    mounted() {
-      window.scrollTo(0, 0);
-    }
-}
+                    // Check the response status to determine if the login was successful
+                    if (response.status === 200) {
+                    // Successful login
+                    // Save datas in cookie
+                    Cookies.set('luliflex_username', userData.username);
+                    // Redirect to the home page
+                    this.$router.push('/');
+                    } else {
+                    // Show an error message to the user
+                    document.getElementById('infolog').innerText = 'Kycja dështoi: ' + response.data.message;
+                    }
+                } catch (error) {
+                    // Show an error message to the user
+                    document.getElementById('infolog').innerText = 'Dicka shkoi gabim, rishiko të dhënat tua.'
+                }
+            },
+        },
+        mounted() {
+            window.scrollTo(0, 0);
+        },
+    };
 </script>
 <style scoped>
+.modal {
+  /* Styling for a modal overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  /* Styling for the modal content */
+  background: white;
+  padding: 20px;
+  border-radius: 5px;
+}
 body{
     background-color: rebeccapurple;
     

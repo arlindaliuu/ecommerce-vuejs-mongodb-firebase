@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {auth} from '../firebase';
+import PasswordReset from '@/components/PasswordReset.vue';
 
 const routes = [
     {
@@ -48,6 +49,11 @@ const routes = [
       path: '/about',
       component: () => import('../views/AboutUs.vue'),
       meta: { title: 'Rreth Nesh' }
+    },
+    {
+      path: '/password-reset/:token',
+      name: 'password-reset',
+      component: PasswordReset,
     },
     {
       name: 'login',

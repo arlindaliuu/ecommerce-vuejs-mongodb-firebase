@@ -25,7 +25,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Hostinger
-        uses: appleboy/ssh-action@v0.4.2  # You may need to adjust the version
+        uses: appleboy/ssh-action@latest  # You may need to adjust the version
         with:
           host: 145.14.153.167
           username: server659

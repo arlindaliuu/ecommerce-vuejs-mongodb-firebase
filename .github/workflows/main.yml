@@ -1,0 +1,37 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - master  # Change this to your desired branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18.18.0  # You can specify your desired Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vue.js app
+        run: npm run build
+
+      - name: Deploy to Hostinger
+        uses: appleboy/ssh-action@v0.4.2  # You may need to adjust the version
+        with:
+          host: 145.14.153.167
+          username: server659
+          key: fgasdf2sdg2t34wedfDdF)R221
+          script: |
+            cd /public_html/luliflex
+            git pull origin master
+        env:
+          SSH_PRIVATE_KEY: fgasdf2sdg2t34wedfDdF)R221

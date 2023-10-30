@@ -4,7 +4,6 @@
               <div class="max-w-7xl mx-auto">
                   <div class="grid grid-cols-1 md-cols-2 lg:grid-cols-4 gap-2">
                       <div class="mb-5">
-                          <h4 class="text-2xl pb-4">{{getAdmin}}</h4>
                         <p class="text-gray-500">
                           15. Novembra <br>
                           Preševo 17523 <br><br>

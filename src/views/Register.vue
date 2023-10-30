@@ -122,7 +122,11 @@ export default {
                 );
                 }
             } catch (error) {
-                this.$refs.toasterError.show('Diçka shkoi gabim, provoni më vonë. Mesazhi: ', 'wrong');
+                if (error instanceof Error && error.message === 'Network Error') {
+                    this.$refs.toasterError.show('Network error, please check your internet connection.', 'wrong');
+                } else {
+                    this.$refs.toasterError.show('Diçka shkoi gabim, provoni më vonë. Mesazhi: ' + error.message, 'wrong');
+                }
             }
         },
         validateUsername() {

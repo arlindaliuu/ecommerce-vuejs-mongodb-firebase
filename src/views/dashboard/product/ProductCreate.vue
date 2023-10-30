@@ -23,7 +23,6 @@ export default{
     },
     methods:{
         async handleCreateCategory(){
-            console.log(this.newCategory)
             this.$store.dispatch('createProduct', {...this.newCategory})  
             .then((success) => {
                 if (success) {

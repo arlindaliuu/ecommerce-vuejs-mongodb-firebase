@@ -22,7 +22,7 @@ jobs:
         run: npm install
 
       - name: Build Vue.js app
-        run: npm run build
+        run: npx vue-cli-service build
 
       - name: Deploy to Hostinger
         uses: appleboy/ssh-action@v1.0.0

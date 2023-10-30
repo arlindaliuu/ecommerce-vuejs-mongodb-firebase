@@ -29,7 +29,7 @@ jobs:
         with:
           host: 145.14.153.167
           username: server659
-          key: fgasdf2sdg2t34wedfDdF)R221
+          key: SHA256:rQpvp/RzLSNFoeGqM6nhNJY1Is5w59S6CQXGzVEDe/U arlindaliu08@gmail.com
           script: |
             cd /public_html/luliflex
             git pull origin master

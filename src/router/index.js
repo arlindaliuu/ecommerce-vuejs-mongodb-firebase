@@ -27,6 +27,12 @@ const routes = [
       meta:{title:'Frequently asked questions'}
     },
     {
+      name: 'orders',
+      path: '/orders',
+      component: () => import('../components/MyOrders.vue'),
+      meta: { title: 'Porosite' }
+    },
+    {
       path: '/services',
       name: 'services',
       component: () => import('../views/Services.vue'),

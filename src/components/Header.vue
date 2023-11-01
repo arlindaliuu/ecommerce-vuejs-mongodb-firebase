@@ -29,21 +29,18 @@
                 <div v-if="showDropdown" id="dropdownHover" class="z-10 right-3 bg-white divide-y absolute overflow-y-auto max-h-[200px]: divide-gray-100  shadow w-44 dark:bg-gray-700">
                   <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownHoverButton">
                     <li v-if="userEmail">
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                        <span class="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                             {{ userEmail }}
-                        </a>
+                        </span>
                       </li>
-                    <li v-if="isAdmin">
-                      <router-link to="/dashboard" href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</router-link >
+                    <li>
+                      <router-link to="/orders" class="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Porosite e mia</router-link>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Konfigurimet</a>
+                      <span class="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Preferencat</span>
                     </li>
                     <li>
-                      <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Preferencat</a>
-                    </li>
-                    <li>
-                      <a @click="logout" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shkyçu</a>
+                      <span @click="logout" class="block cursor-pointer px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Shkyçu</span>
                     </li>
                   </ul>
                 </div>

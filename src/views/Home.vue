@@ -39,8 +39,8 @@
     <SecondBanner /> 
     <BannerBox />
     <div class="top-1/3 border-2 p-20 pb-52 grid bg-orange-600 overflow-hidden relative">
-        <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3" style="background-image: url('../src/assets/image/offer-bg.webp');">
-          <img class="hidden" src="../assets/image/offer-bg.webp" />
+        <div class="absolute inset-0 bg-orange-600 opacity-50 bg-cover bg-no-repeat -rotate-3">
+          <img class="w-full" src="../assets/image/offer-bg.webp" />
         </div>
         <div class="max-w-5xl mx-6 lg:mx-auto grid items-center">
             <p class="relative text-white text-4xl font-serif">Ne jemi të përkushtuar t'ju sjellim gjumin <br> më të mirë të jetës suaj.</p>

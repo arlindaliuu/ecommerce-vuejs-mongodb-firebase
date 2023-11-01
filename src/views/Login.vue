@@ -1,7 +1,9 @@
 <template>
     <div>
         <div class="min-h-screen py-40">
-            <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat" style="background-image: url('../src/assets/image/hero-home.webp');"></div>
+            <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat">
+                <img class="w-full" src="../assets/image/hero-home.webp" />
+            </div>
                 <div class="lg:max-w-4xl mx-5 lg:mx-auto bg-white rounded-xl">
                     <div class="flex flex-col lg:flex-row bg-white rounded-xl mx-auto shadow-lg overflow-hidden relative">
                     <div class="w-full lg:w-1/2 p-6 md:p-10">
@@ -112,11 +114,23 @@ export default{
 
                     // Check the response status to determine if the login was successful
                     if (response.status === 200) {
-                    // Successful login
-                    // Save datas in cookie
-                    Cookies.set('luliflex_username', userData.username);
-                    // Redirect to the home page
-                    this.$router.push('/');
+                        // Successful login
+                        // Split the string into lines
+                        const lines = response.data.split('\n');
+                        
+                        // Extract the JSON part of the string
+                        const jsonPart = lines[1];
+                        
+                        // Parse the JSON to access the user_id
+                        const jsonObject = JSON.parse(jsonPart);
+                        
+                        const user_id = jsonObject.user_id;
+                        console.log('User ID:', user_id);
+                      
+                        Cookies.set('luliflex_username', userData.username);
+                        Cookies.set('luliflex_user_id', user_id)
+                        // Redirect to the home page
+                        this.$router.push('/');
                     } else {
                     // Show an error message to the user
                     document.getElementById('infolog').innerText = 'Kycja dështoi: ' + response.data.message;

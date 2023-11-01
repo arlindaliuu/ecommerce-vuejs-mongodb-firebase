@@ -1,9 +1,11 @@
 <template>
     <div>
-        <div class="min-h-screen py-40">
+        <div class="min-h-screen pt-40 pb-24">
             <Toaster type="success" ref="toaster" />
             <Toaster type="wrong" ref="toasterError" />
-            <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat" style="background-image: url('../src/assets/image/hero-home.webp');"></div>
+            <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat">
+                <img class="w-full" src="../assets/image/hero-home.webp" />
+            </div>
                 <div class="lg:max-w-4xl  mx-5 lg:mx-auto bg-white relative rounded-lg">
                     <div class="flex flex-col lg:flex-row rounded-lg bg-white mx-auto shadow-lg overflow-hidden">
                         <div class="w-full p-6 md:p-10">

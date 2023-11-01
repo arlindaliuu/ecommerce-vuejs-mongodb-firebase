@@ -1,5 +1,7 @@
 <template>
     <Header :headerClass="headerStyles" />
+    <Toaster type="success" ref="toaster" />
+    <Toaster type="wrong" ref="toasterError" />
     <div class="bg-beige-100">
     <div class="bg-gray-100 py-8 pt-40">
         <div class="max-w-screen-lg mx-auto p-4">
@@ -39,7 +41,12 @@
     </div>
      <!-- Checkout Modal -->
      <div v-if="isCheckoutModalVisible" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
-      <div class="bg-white p-8 rounded-lg text-center mx-4">
+      <div class="bg-white p-8 rounded-lg text-center mx-4 flex flex-col">
+        <span>Shkruani numrin tuaj të telefonit.</span>
+        <input class="rounded-sm border" v-model="phoneNo" />
+        <button v-if="cartItemsWithQuantity.length >= 1" @click="createOrder" class="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">Blej</button>
+      </div>
+      <!-- <div class="bg-white p-8 rounded-lg text-center mx-4">
         <h2>Zgjidhni një opsion të blerjes:</h2>
         <div class="mt-4 w-full">
           <button class="bg-green-600 w-full px-4 py-2 rounded-full text-white font-medium" @click="whatsappText">
@@ -52,7 +59,7 @@
           </a>
         </div>
         <button @click="closeCheckoutModal" class="mt-4 bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">Mbyll</button>
-      </div>
+      </div> -->
     </div>
     <div v-if="isPDFDownloaded" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div class="bg-white p-8 rounded-lg text-center mx-4">
@@ -78,10 +85,14 @@
   import Header from '../components/Header.vue';
   import Footer from '../components/Footer.vue';
   import jsPDF from 'jspdf';
+  import Cookies from 'js-cookie';
+  import axios from 'axios';
+  import Toaster from '../components/Toaster.vue';
 
   export default {
     data(){
         return{
+            phoneNo: '+381',
             headerStyles: 'bg-orange-600/30', // Define the class as a string
             isCheckoutModalVisible: false,
             isPDFDownloaded: false,
@@ -90,7 +101,8 @@
     },
     components:{
     Header,
-    Footer
+    Footer,
+    Toaster
     },
     methods:{
     ...mapMutations(['removeCartItem']),
@@ -102,7 +114,47 @@
           this.removeAllCartItems();
         },
         showCheckoutModal() {
-          this.isCheckoutModalVisible = true;
+         this.isCheckoutModalVisible = !this.isCheckoutModalVisible;
+        },
+        createOrder() {
+          if(this.phoneNo.length < 12){
+            return this.$refs.toasterError.show(`Shkruani numrin e saktë!`, "wrong");
+          }else{
+            const username = Cookies.get('luliflex_user_id');
+            
+            // Retrieve product data from local storage
+            var localStorageData = localStorage.getItem('cartItems');
+            localStorageData = JSON.parse(localStorageData);
+
+            if (Array.isArray(localStorageData)) {
+                // Extract product IDs from the retrieved data
+                const productIds = localStorageData.map(item => item.id);
+
+                // Phone number (replace with your actual data)
+                const phone = this.phoneNo;
+
+                // Create a data object to send to the API
+                const requestData = {
+                    user_id: username,  // Replace with the user's ID
+                    product_ids: productIds,  // Array of product IDs
+                    phone_number: phone,  // Replace with the user's phone number
+                };
+
+                // Make a POST request to your API endpoint
+                axios.post('https://api.luliflex.com/wp-json/custom-api/v1/create-order', requestData)
+                    .then(response => {
+                      this.$refs.toaster.show(`Porosia u realizua, së shpëjti do të njoftoheni për konfirmim të porosisë!`, "success");
+                      this.isCheckoutModalVisible = false;
+                      localStorage.removeItem("cartItems");
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle the error, e.g., show an error message
+                    });
+            } else {
+                console.error('Data retrieved from local storage is not an array.');
+            }
+          }
         },
         closeCheckoutModal() {
           this.isCheckoutModalVisible = false;

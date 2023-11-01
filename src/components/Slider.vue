@@ -19,8 +19,17 @@
         </div>
       </div>
       <div class="slider-controls flex absolute bottom-1 left-1/2 transform -translate-x-1/2">
-        <button @click="prevSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 left-arrow">&#129028;</button>
-        <button @click="nextSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 right-arrow">&#129030;</button>
+        <button @click="prevSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 left-arrow">
+          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 11.25C20.4142 11.25 20.75 11.5858 20.75 12C20.75 12.4142 20.4142 12.75 20 12.75H10.75L10.75 18C10.75 18.3034 10.5673 18.5768 10.287 18.6929C10.0068 18.809 9.68417 18.7449 9.46967 18.5304L3.46967 12.5304C3.32902 12.3897 3.25 12.1989 3.25 12C3.25 11.8011 3.32902 11.6103 3.46967 11.4697L9.46967 5.46969C9.68417 5.25519 10.0068 5.19103 10.287 5.30711C10.5673 5.4232 10.75 5.69668 10.75 6.00002L10.75 11.25H20Z" fill="#1C274C"/>
+          </svg>
+        </button>
+        <button @click="nextSlide" class="slider-arrow text-white backdrop-blur-md bg-beige-100/30 hover:scale-105 duration-150 ease-in hover:bg-orange-600 right-arrow">
+          <svg width="16px" height="16px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M3.25 12C3.25 11.5858 3.58579 11.25 4 11.25H13.25V12.75H4C3.58579 12.75 3.25 12.4142 3.25 12Z" fill="#1C274C"/>
+            <path d="M13.25 12.75V18C13.25 18.3034 13.4327 18.5768 13.713 18.6929C13.9932 18.809 14.3158 18.7449 14.5303 18.5304L20.5303 12.5304C20.671 12.3897 20.75 12.1989 20.75 12C20.75 11.8011 20.671 11.6103 20.5303 11.4697L14.5303 5.46969C14.3158 5.25519 13.9932 5.19103 13.713 5.30711C13.4327 5.4232 13.25 5.69668 13.25 6.00002V11.25V12.75Z" fill="#1C274C"/>
+          </svg>
+        </button>
       </div>
     </div>
         <div class="absolute bg-beige-100/40 top-1/2 lg:w-1/3 transform -translate-y-1/2 lg:left-10 p-6 mx-4">

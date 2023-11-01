@@ -2,6 +2,7 @@
     <Header :headerClass="headerStyles" />
     <Toaster type="success" ref="toaster" />
     <Toaster type="wrong" ref="toasterError" />
+    <Toaster type="pending" ref="toasterWarning" />
     <div class="bg-beige-100">
     <div class="bg-gray-100 py-8 pt-40">
         <div class="max-w-screen-lg mx-auto p-4">
@@ -29,9 +30,11 @@
               </div>
               <p class="text-2xl font-semibold">{{ totalCartPrice }}€</p>
             </div>
-            <button v-if="cartItemsWithQuantity.length >= 1" @click="showCheckoutModal" class="mt-4 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">Blej</button>
-            <button v-if="cartItemsWithQuantity.length >= 1" @click="generatePDF" class="ml-4 mt-4 bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out">Gjenero PDF</button>
-            <button v-if="cartItemsWithQuantity.length >= 1" @click="removeAll" class="ml-4 mt-4 bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">Fshij të gjitha</button>
+            <div class="flex gap-4 mt-4 flex-wrap">
+              <button v-if="cartItemsWithQuantity.length >= 1" @click="showCheckoutModal" class="self-center bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">Blej</button>
+              <button v-if="cartItemsWithQuantity.length >= 1" @click="generatePDF" class="self-center bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out">Gjenero PDF</button>
+              <button v-if="cartItemsWithQuantity.length >= 1" @click="removeAll" class="self-center bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition duration-300 ease-in-out">Fshij të gjitha</button>
+            </div>
           </div>
           <div class="text-xl lg:text-3xl h-96 text-red-600" v-else>
             Ju nuk keni asgjë në shportë!
@@ -114,7 +117,12 @@
           this.removeAllCartItems();
         },
         showCheckoutModal() {
-         this.isCheckoutModalVisible = !this.isCheckoutModalVisible;
+          const username = Cookies.get('luliflex_user_id');
+          if(!username){
+            return this.$refs.toasterWarning.show(`Ju duhet të kyçeni për të bërë porosinë`, "pending");
+          }else{
+            this.isCheckoutModalVisible = !this.isCheckoutModalVisible;
+          }
         },
         createOrder() {
           if(this.phoneNo.length < 12){

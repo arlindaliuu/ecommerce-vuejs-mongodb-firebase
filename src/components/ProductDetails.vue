@@ -116,18 +116,37 @@
             // Create a new jsPDF instance
             const doc = new jsPDF();
 
-            // Add content to the PDF (e.g., product details)
-            doc.text("Titulli: " + this.product.title, 10, 10);
-            doc.text("Permbajtja: " + this.product.content, 10, 20);
+            // Initial y-position for content
+            let yPos = 10;
+
+            // Title
+            doc.setFontSize(14);
+            doc.text("Titulli: " + this.product.title, 10, yPos);
+
+            // Content
+            const content = this.product.content;
+            const maxContentWidth = 150; // Adjust this width as needed
+            const contentLines = doc.splitTextToSize(content, maxContentWidth);
+            const contentHeight = contentLines.length * 10; // Adjust line height as needed
+            yPos += 15; // Adjust spacing between title and content
+            doc.text(contentLines, 10, yPos);
+
+            yPos += contentHeight;
+
+            // Price
+            yPos += 10; // Adjust spacing between content and price
+            doc.text("Price: " + this.product.price, 10, yPos);
 
             const imageUrl = this.product.post_image;
-            const splitUrl = imageUrl.split('https://api.luliflex.com/');
-            const imageData = await this.fetchImageData("/api/"+splitUrl[1]);
-            
+            const splitUrl = imageUrl.split('https://api.luliflex.com');
+            const imageData = await this.fetchImageData("/api" + splitUrl[1]);
+
             if (imageData) {
-              // Add the image to the PDF document
-              // Adjust the coordinates, width, and height as needed
-              doc.addImage(imageData, 'JPEG', 10, 30, 50, 50);
+              // Calculate the vertical center of the page
+              const pageHeight = doc.internal.pageSize.height;
+              const imageHeight = 50;
+              const imageY = pageHeight - imageHeight - 10; // Adjust spacing between content and image
+              
               const d = new Date();
               let year = d.getFullYear();
 
@@ -136,13 +155,19 @@
               doc.setTextColor(200); // Adjust transparency here
               doc.text("LULIflex "+ year, doc.internal.pageSize.width / 2, doc.internal.pageSize.height / 2, 'center');
 
+              // Add the image below the content
+              doc.addImage(imageData, 'JPEG', 10, 220, 50, imageHeight);
+
               // Save the PDF as a file
               doc.save('product_details.pdf');
             } else {
               // Handle the case when image data cannot be fetched
               console.error('Failed to fetch image data');
             }
-          },
+          }
+
+
+
         }
   };
   </script>

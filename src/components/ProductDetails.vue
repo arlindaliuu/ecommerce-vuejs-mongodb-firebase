@@ -15,7 +15,7 @@
               <p class="py-4 text-base lg:text-lg" v-else>Çmimi {{product.price}}€</p>
               <p class="italic text-sm">Informacion: {{ product.product_information }}</p>
               <div class="py-2">
-                <button class="mt-2 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">Blej</button>
+                <button @click="buyProdcut" class="mt-2 bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out">Blej</button>
                 <button @click="downloadPDF" class="ml-4 mt-2 bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out">Gjenero PDF</button>
               </div>
           </div>
@@ -44,6 +44,7 @@
   import Footer from './Footer.vue';
   import Breadcrumbs from './Breadcrumbs.vue';
   import jsPDF from 'jspdf';
+  import router from '../router/index';
 
   export default {
     name: 'ProductDetails',
@@ -87,6 +88,12 @@
        
         },
         methods:{
+          buyProdcut(){
+            // Add the card data to the cart using Vuex
+            this.$store.commit('addToCart', this.product)
+            router.push({ name: 'Cart' });
+
+          },
           getDiscountPrice(discount, price){
             if (discount) {
               const deletedPrice = price * discount / 100;

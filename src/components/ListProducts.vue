@@ -1,6 +1,6 @@
 <template>
     <div class="my-8 mx-6 lg:mx-auto max-w-5xl">
-      <p class="text-left text-lg lg:text-3xl font-light">Përfito nga zbritja...</p>
+      <p class="text-left text-lg lg:text-3xl font-light">Produktet tona...</p>
       <hr class="h-1 lg:h-3 w-1/2 my-4 bg-green-900 border-0 rounded-full md:my-10 dark:bg-green-900">
     </div>
     <div v-if="loading" class="flex justify-center items-center w-full h-64">

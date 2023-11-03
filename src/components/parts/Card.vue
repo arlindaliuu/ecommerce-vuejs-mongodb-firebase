@@ -6,7 +6,7 @@
         <div class="card-inner">
           <div class="image card-front relative ">
             <div v-if="cardData.discount" class="absolute right-1 p-3 border bg-white font-bold animate-bounce hover:bg-yellow-50">- {{cardData.discount_percentage }}%</div>
-            <img :src="cardData.post_image" class="card-image transition duration-300 ease-in-out hover:scale-110 w-full h-full" />
+            <img :src="cardData.post_image" class="card-image transition duration-300 ease-in-out hover:scale-110 w-full h-full" alt="Mattress image" />
           </div>
         </div>
       </div>
@@ -21,12 +21,12 @@
             <p class="text-base text-center">{{ cardData.price }}€</p>
           </div>
           <div class="grid mt-2">
-            <a @click="navigateToProduct" class="hover:text-orange-600 cursor-pointer duration-200 text-base text-center hover:text-lg">
+            <span @click="navigateToProduct" class="hover:text-orange-600 cursor-pointer duration-200 text-base text-center hover:text-lg">
               Shiko detajet &#8594;
-            </a>
+            </span>
             <div @click="addToCart" class="b mt-2 mx-auto flex justify-center items-center">
               <div class="i px-5 py-2 bg-gradient-to-br from-blue-400 to-blue-600 items-center rounded-xl shadow-2xl cursor-pointer overflow-hidden transform hover:scale-x-105 hover:scale-y-105 transition duration-300 ease-out">
-                <a class="text-center text-white font-semibold z-10 pointer-events-none flex justify-content items-center">Shto në shportë</a>
+                <span class="text-center text-white font-semibold z-10 pointer-events-none flex justify-content items-center">Shto në shportë</span>
               </div>
             </div>
           </div>

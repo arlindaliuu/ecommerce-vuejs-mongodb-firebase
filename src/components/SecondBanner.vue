@@ -3,7 +3,7 @@
     <h1 ref="myElement" class="hidden absolute text-green-900 z-[1] md:top-1/3 top-[10%] font-extrabold lg:flex text-6xl whitespace-nowrap overflow-hidden">
       Sekreti për një ditë<span class="mx-3 text-white">të mirë</span>është një<span class="mx-3 text-[#FFFFFF]">gjumë i mirë</span>!
     </h1>
-    <img class="w-full flex max-h-[600px] md:max-h-[800px] object-cover opacity-50" src="../assets/image/secondbannerbg.jpg">
+    <img class="w-full flex max-h-[600px] md:max-h-[800px] object-cover opacity-50" alt="Home page banner" src="../assets/image/secondbannerbg.jpg">
     <div class="relative mx-5 md:mx-0 md:w-[500px] bg-transparent backdrop-blur-sm hover:backdrop-blur-2xl border  duration-200 -mt-72 z-1 md:left-[85%] transform md:-translate-x-[85%] m-auto shadow-xl flex flex-wrap">
       <h1 class="text-xl lg:text-3xl px-3 pt-3 w-full text-center text-orange-600">Rreth Nesh!</h1>
       <p class="px-4 py-6 lg:text-lg text-base text-gray-800">

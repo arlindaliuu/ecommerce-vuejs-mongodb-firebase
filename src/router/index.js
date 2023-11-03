@@ -18,13 +18,13 @@ const routes = [
       name: "privacy-policy",
       path:"/privacy-policy",
       component:()=>import("../views/PrivacyPolicy.vue"),
-      meta:{title:'Privacy Policy'}
+      meta:{title:'Kushtet e politikes dhe privatesise'}
     },
     {
       name: "faq",
       path:"/faq",
       component:()=>import("../views/FAQ.vue"),
-      meta:{title:'Frequently asked questions'}
+      meta:{title:'Pyetjet e shpeshta'}
     },
     {
       name: 'orders',
@@ -36,13 +36,13 @@ const routes = [
       path: '/services',
       name: 'services',
       component: () => import('../views/Services.vue'),
-      meta:{title:'Services'}
+      meta:{title:'Serviset'}
     },
     {
       name: 'register',
       path: '/register',
       component: () => import('../views/Register.vue'),
-      meta:{title:'Register'}
+      meta:{title:'Regjistrohu'}
     },
     {
       name: 'ProductDetails',
@@ -141,6 +141,7 @@ function flattenRoutes(routes) {
   }
 
 router.beforeEach((to, from, next) =>{
+    document.title = `${to.meta.title}`;
     if(to.path === '/login' && auth.currentUser){
         next('/')
         return;

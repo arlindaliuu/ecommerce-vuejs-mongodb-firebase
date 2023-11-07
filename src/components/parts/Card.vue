@@ -63,7 +63,6 @@ export default {
       // Add the card data to the cart using Vuex
       this.$store.commit('addToCart', this.cardData)
       this.$refs.toaster.show(`U shtua në shportë me sukses!`, "success");
-
     },
   },
   computed: {

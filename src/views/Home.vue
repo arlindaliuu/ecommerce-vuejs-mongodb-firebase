@@ -47,7 +47,9 @@
             <router-link to="/shop" class="hover:px-10 h over:text-white hover:border-white hover:bg-main duration-200 relative text-green-900 text-2xl mt-6 font-serif border-2 rounded-full px-6 bg-white py-2 border-green-900 m-auto">Bleni tani!</router-link>
         </div>
     </div>
+    <ScrollToBottom />
     <BackToTop />
+    <WhatsApp />
     <FAQComponent />
     <Map />
     <ContactForm />
@@ -84,16 +86,10 @@ import Slider from "../components/Slider.vue"
 import ListProducts from "../components/ListProducts.vue"
 import ContactForm from "../components/ContactForm.vue"
 import FAQComponent from '../components/FAQComponent.vue';
+import WhatsApp from "../components/WhatsApp.vue"
+import ScrollToBottom from "../components/ScrollToBottom.vue"
 
 export default{
-  head(){
-    return{
-      titleTemplate: "$s - Ballina",
-      meta: [
-        { name: 'description', content: `Find the best products in ballina` },
-      ]
-    };
-  },
     data(){
         return{
             showModal: true,
@@ -104,22 +100,6 @@ export default{
             formattedCountdownVariable: "",
             addValidity: false,
             pageIsLoaded: true,
-            title: 'Home Page',
-            meta: [
-              {
-                name: 'description',
-                content: 'This is the description for the home page.',
-              },
-              {
-                property: 'og:title',
-                content: 'Home Page - Your Website',
-              },
-              {
-                property: 'og:description',
-                content: 'This is the description for the home page on Your Website.',
-              },
-              // Add more static meta tags as needed
-            ],
         }
     },
     components:{
@@ -137,7 +117,9 @@ export default{
         Slider,
         ListProducts,
         FAQComponent,
-        Image
+        Image,
+        WhatsApp,
+        ScrollToBottom
     },
     computed: {
       ...mapGetters(['listDiscountProduct']),

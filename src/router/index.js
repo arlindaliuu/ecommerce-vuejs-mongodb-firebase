@@ -90,40 +90,7 @@ const routes = [
       component: () => import('../views/CartItems.vue'),
       meta: { title: 'Karta' }
     },
-    {
-      name: 'dashboard',
-      path: '/dashboard',
-      component: () => import('../views/dashboard/dashboard.vue')
-    },
-    {
-      name: 'dashboardd',
-      path: '/dashboardd',
-      children: [
-        {
-          name: 'product',
-          path: 'product',
-          children: [
-            {
-              name: 'product-create',
-              path: 'create',
-              component: () => import(/* webpackChunkName: "product-create" */'../views/dashboard/product/ProductCreate.vue')
-            },
-            {
-              name: 'product-list',
-              path: 'list',
-              component: () => import(/* webpackChunkName: "product-list" */ '../views/dashboard/product/ProductList.vue')
-            },
-            {
-              name: 'product-edit',
-              path: '/edit/:id',
-              component: () => import(/* webpackChunkName: "product-edit" */ '../views/dashboard/product/ProductEdit.vue')
-            }
-          ]
-        }
-      ]
-    }
-  ]
-  
+  ]  
 
 const router = createRouter({
         history: createWebHistory('/'),

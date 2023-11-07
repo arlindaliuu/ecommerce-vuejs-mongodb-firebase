@@ -126,9 +126,10 @@ const routes = [
   
 
 const router = createRouter({
-        history: createWebHistory(),
+        history: createWebHistory('/'),
         routes
 });
+
 function flattenRoutes(routes) {
     return routes.flatMap((route) => {
       if (Array.isArray(route.children)) {

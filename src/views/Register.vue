@@ -4,7 +4,7 @@
             <Toaster type="success" ref="toaster" />
             <Toaster type="wrong" ref="toasterError" />
             <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat">
-                <img class="w-full" src="../assets/image/hero-home.webp" />
+                <img class="w-full h-full" src="../assets/image/hero-home.webp" />
             </div>
                 <div class="lg:max-w-4xl  mx-5 lg:mx-auto bg-white relative rounded-lg">
                     <div class="flex flex-col lg:flex-row rounded-lg bg-white mx-auto shadow-lg overflow-hidden">
@@ -21,17 +21,16 @@
                                 Krijo llogarinë tënde, është falas dhe merr vetëm një minutë.
                             </p>
                         <form @submit.prevent="Register" ref="form" method="POST">
-                            <div class="grid grid-cols-2 gap-5">
-                                <div>
-                                    <label class="font-semibold">Emri</label>
-                                    <input v-model="register_form.username" type="text" placeholder="Emri" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validateUsername">
-                                </div>
-                                <div>
-                                    <label class="font-semibold">Mbiemri</label>
-                                    <input type="text" placeholder="Mbiemri" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl">
-                                </div>
+                            <div>
+                                <label class="font-semibold">Emri i përdoruesit</label>
+                                <input v-model="register_form.username" type="text" placeholder="Emri" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validateUsername">
                             </div>
                             <p v-if="usernameError" class="text-red-500 text-sm">{{ usernameError }}</p>
+                            <div class="mt-5">
+                                <label class="font-semibold">Emri / Mbiemri</label>
+                                <input v-model="register_form.name" type="text" placeholder="Emri / Mbiemri" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl"  @blur="validateName">
+                            </div>
+                            <p v-if="nameError" class="text-red-500 text-sm">{{ nameError }}</p>
                             <div class="mt-5">
                                 <label class="font-semibold">Email</label>
                                 <input v-model="register_form.email" type="text" placeholder="Email" class="border-2 bg-slate-100 mt-2 border-gray-100 py-2 px-2 w-full rounded-3xl" @blur="validateEmail">
@@ -90,6 +89,7 @@ export default {
         register_form: {},
         register_form_fake: {},
         usernameError: '',
+        nameError: '',
         emailError: '',
         passwordError: '',
         confirmPasswordError: '',
@@ -132,57 +132,70 @@ export default {
             }
         },
         validateUsername() {
-        if (!this.register_form.username) {
-            this.usernameError = 'Ju lutemi shkruani emrin e përdoruesit.';
-            return false;
-        } else if (this.register_form.username.length < 5) {
-            this.usernameError = 'Emri duhet të jetë më i gjatë se 5 shkronja.';
-            return false;
-        } else {
-            this.usernameError = '';
-            return true;
-        }
+            if (!this.register_form.username) {
+                this.usernameError = 'Ju lutemi shkruani emrin e përdoruesit.';
+                return false;
+            } else if (this.register_form.username.length < 5) {
+                this.usernameError = 'Emri i përdoruesit duhet të jetë më i gjatë se 5 shkronja.';
+                return false;
+            } else {
+                this.usernameError = '';
+                return true;
+            }
+        },
+        validateName() {
+            if (!this.register_form.name) {
+                this.nameError = 'Ju lutemi shkruani emrin dhe mbiemrin tuaj.';
+                return false;
+            } else if (this.register_form.name.length < 5) {
+                this.nameError = 'Emri dhe mbiemri duhet të jetë më i gjatë se 5 shkronja.';
+                return false;
+            } else {
+                this.nameError = '';
+                return true;
+            }
         },
         validateEmail() {
-        const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-        const emailValid = emailPattern.test(this.register_form.email);
-        if (!emailValid) {
-            this.emailError = 'Shkruani një email valid.';
-            return false;
-        } else {
-            this.emailError = '';
-            return true;
-        }
+            const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+            const emailValid = emailPattern.test(this.register_form.email);
+            if (!emailValid) {
+                this.emailError = 'Shkruani një email valid.';
+                return false;
+            } else {
+                this.emailError = '';
+                return true;
+            }
         },
         validatePassword() {
-        if (!this.register_form.password) {
-            this.passwordError = 'Ju lutem shkruani fjalëkalimin.';
-            return false;
-        } else if (this.register_form.password.length < 8) {
-            this.passwordError = 'Fjalëkalimi duhet të jetë mbi 8 karaktere.';
-            return false;
-        } else {
-            this.passwordError = '';
-            return true;
-        }
+            if (!this.register_form.password) {
+                this.passwordError = 'Ju lutem shkruani fjalëkalimin.';
+                return false;
+            } else if (this.register_form.password.length < 8) {
+                this.passwordError = 'Fjalëkalimi duhet të jetë mbi 8 karaktere.';
+                return false;
+            } else {
+                this.passwordError = '';
+                return true;
+            }
         },
         validateConfirmPassword() {
-        if (!this.register_form_fake.confirmPassword) {
-            this.confirmPasswordError = 'Ju lutem konfirmoni fjalëkalimin.';
-            return false;
-        } else if (this.register_form.password !== this.register_form_fake.confirmPassword) {
-            this.confirmPasswordError = 'Fjalëkalimet nuk përputhen';
-            return false;
-        } else {
-            this.confirmPasswordError = '';
-            return true;
-        }
+            if (!this.register_form_fake.confirmPassword) {
+                this.confirmPasswordError = 'Ju lutem konfirmoni fjalëkalimin.';
+                return false;
+            } else if (this.register_form.password !== this.register_form_fake.confirmPassword) {
+                this.confirmPasswordError = 'Fjalëkalimet nuk përputhen';
+                return false;
+            } else {
+                this.confirmPasswordError = '';
+                return true;
+            }
         },
     },
     computed: {
         isFormValid() {
         return (
             this.validateUsername() &&
+            this.validateName() &&
             this.validateEmail() &&
             this.validatePassword() &&
             this.validateConfirmPassword()

@@ -2,7 +2,7 @@
     <div>
         <div class="min-h-screen py-40">
             <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat">
-                <img class="w-full" src="../assets/image/hero-home.webp" />
+                <img class="w-full h-full" src="../assets/image/hero-home.webp" />
             </div>
                 <div class="lg:max-w-4xl mx-5 lg:mx-auto bg-white rounded-xl">
                     <div class="flex flex-col lg:flex-row bg-white rounded-xl mx-auto shadow-lg overflow-hidden relative">

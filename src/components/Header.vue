@@ -20,7 +20,7 @@
               <span class="absolute top-[-13px] left-[13px]">{{ cartItemCount }}</span>
             </router-link>
             <router-link v-if="userEmail" to="/userprofile" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Profili</router-link>
-            <a v-if="userEmail" @click="$store.dispatch('logout')" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
+            <a v-if="userEmail" @click="logout" class="self-center block lg:hidden lg:ml-4 uppercase link link-underline link-underline-black">Shkyçu</a>
             <router-link to="/cartitems" class="self-center lg:ml-4 uppercase link link-underline link-underline-black block lg:hidden">
               Shporta
             </router-link>

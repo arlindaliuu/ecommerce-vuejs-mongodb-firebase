@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import {auth} from '../firebase';
 import PasswordReset from '@/components/PasswordReset.vue';
+import Cookies from 'js-cookie';
 
 const routes = [
     {
@@ -142,23 +142,20 @@ function flattenRoutes(routes) {
   }
 
 router.beforeEach((to, from, next) =>{
+    const isLoggedIn = Cookies.get('luliflex_username');
+
     document.title = `${to.meta.title}`;
-    if(to.path === '/login' && auth.currentUser){
+    if(to.path === '/login' && isLoggedIn){
         next('/')
         return;
     }
     if(!flattenRoutes(routes).includes(to.name)){
             next('/404')
     }
-    if(to.matched.some(record => record.meta.requiresAdmin) && (!auth.currentUser || !auth.currentUser.isAdmin)){
+    if(to.matched.some(record => record.meta.requiresAdmin)){
         next('/')
         return;
     }
-
-
-    const isAdmin = JSON.stringify(localStorage.getItem('isAdmin'));
-
-
         //redirect non-admin users from the dashboard route
     if (to.path === '/dashboard' && !isAdmin) {
         next('/')

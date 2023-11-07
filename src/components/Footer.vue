@@ -34,10 +34,6 @@
                       <div class="mb-5">
                           <h4 class="pb-4">Ji në kontakt!</h4>
                           <p class="text-gray-500 pb-2">Bashkohuni me 25.000 të tjerë dhe mos humbisni udhëzimet për ofertat të reja dhe më shumë</p>
-                          <form class="flex flex-row flex-wrap">
-                             <label> <input type="text" placeholder="email@gmail.com" class="text-gray-500 p-2 focus:border-green-900"> </label>
-                              <button class="p-2 w-1/3 bg-green-900 text-white font-light hover:bg-green-900">ABONOHU</button>
-                          </form>
                       </div>
                   </div>
               </div>

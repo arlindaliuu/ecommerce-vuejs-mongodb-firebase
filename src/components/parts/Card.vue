@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Toaster type="success" ref="toaster" />
+    <Toaster type="success" ref="toaster" message="U shtua në shportë me sukses!" />
     <div class="border card-main shadow-2xl w-full h-full">
       <div class="card overflow-hidden bg-cover bg-no-repeat">  
         <div class="card-inner">

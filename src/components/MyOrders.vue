@@ -3,17 +3,30 @@
       <Header :headerClass="'bg-darkblue-100/30'"/>
       <div class="container py-40 px-20">
         <h1 class="text-2xl">Your Orders</h1>
-        <ul v-if="order">
-          <li v-for="order in orders" :key="order.order_id">
-            <h3>Order ID: {{ order.order_id }}</h3>
-            <p>User Email: {{ order.user_email }}</p>
-            <p>Products: {{ order.products.join(', ') }}</p>
-            <p>Total Price: ${{ order.total_price }}</p>
-            <p>Phone Number: {{ order.phone_no }}</p>
-          </li>
-        </ul>
+          <table v-if="orders && Object.keys(orders).length > 0" class="w-full">
+          <thead>
+            <tr class="bg-gray-500">
+              <th>Order ID</th>
+              <th>Products</th>
+              <th>Total Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="(order, orderId) in orders" :key="orderId">
+              <td>{{ orderId }}</td>
+              <td>
+                <ul>
+                  <li v-for="product in order.products" :key="product.product_name">
+                    {{ product.product_name }} - €{{ product.product_price }} - Phone Number: {{ product.phone_no }}
+                  </li>
+                </ul>
+              </td>
+              <td>€{{ order.total_price }}</td>
+            </tr>
+          </tbody>
+        </table>
         <div class="mt-4 text-red-500" v-else>
-            Nuk keni asnje porosi
+          Nuk keni asnje porosi
         </div>
       </div>
       <Footer />
@@ -50,6 +63,7 @@
             params: {
               user_id: user_id, // Replace with the actual user ID
             },
+            withCredentials: true
           })
           .then((response) => {
             this.orders = response.data; // Update the 'orders' data with fetched orders

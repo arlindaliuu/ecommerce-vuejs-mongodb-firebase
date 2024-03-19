@@ -2,9 +2,11 @@ import { createStore } from 'vuex';
 import router from '../router';
 import apiRequest from '../utilities/apiRequest';
 import axios from 'axios';
+import Cookies from 'js-cookie';
+
 function getInitialState() {
   return {
-    user: null,
+    user: Cookies.get('luliflex_user_id') || null,
     newProduct: null,
     listProduct: [],
     discountProduct: [],
@@ -26,7 +28,7 @@ const store = createStore({
     },
     mutations: {
         SET_USER(state, user){
-            state.user = user
+            state.user = localStorage.getItem('luliflex_username') || null;
         },
         CLEAR_USER(state){
             state.user = null

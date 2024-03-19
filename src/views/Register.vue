@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="min-h-screen pt-40 pb-24">
-            <Toaster type="success" ref="toaster" />
-            <Toaster type="wrong" ref="toasterError" />
+            <Toaster type="success" ref="toaster" message="U regjistruat me sukses!" />
+            <Toaster type="wrong" ref="toasterError" message="Regjistrimi dështoi. Ju lutem provoni me vone!" />
             <div class="absolute inset-0 bg-white opacity-50 bg-cover bg-no-repeat">
                 <img class="w-full h-full" src="../assets/image/hero-home.webp" />
             </div>

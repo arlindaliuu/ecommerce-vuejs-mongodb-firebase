@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div v-else-if="filteredProductList.length > 0" class="grid grid-cols-1 gap-10 md:grid-cols-3 mt-10">
-                  <Card v-for="product in filteredProductList" :key="product.id" :card-data="product" />
+                  <Card v-for="product in filteredProductList" :key="product.id" :card-data="product"  />
                 </div>
                 <div v-else class="w-full">
                     <p class="text-center font-light text-4xl">Nuk u gjet asnjë rezultat!</p>

@@ -125,7 +125,6 @@ export default{
                         const jsonObject = JSON.parse(jsonPart);
                         
                         const user_id = jsonObject.user_id;
-                        console.log('User ID:', user_id);
                       
                         Cookies.set('luliflex_username', userData.username);
                         Cookies.set('luliflex_user_id', user_id)

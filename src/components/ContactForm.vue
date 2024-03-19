@@ -1,7 +1,7 @@
 <template>
     <div class="bg-gray-100 py-12">
-        <Toaster type="success" ref="toaster" />
-        <Toaster type="wrong" ref="toasterError" />
+        <Toaster type="success" ref="toaster" message="Emaili u dergua me sukses!"/>
+        <Toaster type="wrong" ref="toasterError" message="Ndodhi një gabim gjatë dërgimit të emailit!" />
         <div class="max-w-xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 class="text-xl lg:text-3xl font-bold tracking-tight text-gray-900">Na Kontakto!</h2>
           <p class="mt-2 text-base lg:text-lg text-gray-600">Keni një pyetje apo koment? Do të donim të dëgjonim nga ju. Plotësoni formularin e mëposhtëm dhe ne do t'ju kontaktojmë sa më shpejt të jetë e mundur.</p>

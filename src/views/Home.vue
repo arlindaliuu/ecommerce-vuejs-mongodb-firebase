@@ -128,7 +128,7 @@ export default{
       },
       ...mapGetters(['listProduct']),
         productListAll() {
-        return this.listProduct;
+          return this.listProduct;
       },
 
       formattedCountdownForProduct() {

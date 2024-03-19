@@ -1,8 +1,8 @@
 <template>
     <Header :headerClass="headerStyles" />
-    <Toaster type="success" ref="toaster" />
-    <Toaster type="wrong" ref="toasterError" />
-    <Toaster type="pending" ref="toasterWarning" />
+    <Toaster type="success" ref="toaster" message="Porosia u realizua, së shpëjti do të njoftoheni për konfirmim të porosisë!"/>
+    <Toaster type="wrong" ref="toasterError" message="Shkruani numrin e saktë!"/>
+    <Toaster type="pending" ref="toasterWarning" message="Ju duhet të kyçeni për të bërë porosinë"/>
     <div class="bg-beige-100">
     <div class="bg-gray-100 py-8 pt-40">
         <div class="max-w-screen-lg mx-auto p-4">
@@ -11,7 +11,10 @@
             <div v-for="(item, index) in cartItemsWithQuantity" :key="index" class="bg-white rounded-lg p-4 shadow-md">
               <div class="flex justify-between">
                 <h2 class="text-lg font-semibold">{{ item.title }}</h2>
-                <span class="text-gray-600">{{ item.totalPrice }}€</span>
+                <div class="flex gap-4">
+                  <span v-if="item.discount" class="text-red-600 line-through">{{ item.price }}€</span>
+                  <span class="text-gray-600">{{ item.totalPrice }}€</span>
+                </div>
               </div>
               <div class="my-4">
                 <img class="w-full max-h-[250px] min-h-[250px]" :src="item.post_image" />
@@ -215,13 +218,10 @@
         // Create an array to store items with quantities
         const itemsWithQuantity = [];
   
-        // Get the discount percentage from localStorage
-        const discountPercentage = localStorage.getItem('discountPercentage') || 0; // Default to 0 if not found
-  
         // Loop through the cart items and calculate quantities
         this.cartItems.forEach((item) => {
           // Calculate the discounted price based on the discount percentage
-          const discountedPrice = item.price - (item.price * discountPercentage / 100);
+          const discountedPrice = item.price - (item.price * item.discount_percentage / 100);
   
           // Find the index of the item with the same ID in itemsWithQuantity
           const index = itemsWithQuantity.findIndex((x) => x.id === item.id);
